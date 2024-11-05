@@ -1,0 +1,230 @@
+.nav-link:hover {
+  color: red !important;
+}
+.dropdown-menu {
+  background-color: black; 
+  color: white; 
+    border-top: 4px solid red; 
+}
+
+.navbar-toggler {
+  position: relative;
+  z-index: 1050;
+}
+
+.navtop {
+  position: relative;
+  z-index: 1000;
+}
+.dropdown-item {
+  color: white; 
+}
+
+.dropdown-item:hover {
+  background-color: #f6526d; 
+}
+.custom-dropdown-menu .dropdown-menu {
+  border-top: 3px solid red;
+  border-top-left-radius: 3px;
+  border-top-right-radius: 3px;
+}
+.custom-dropdown-menu .dropdown-item {
+  position: relative;
+}
+
+.caretup{
+  position: absolute;
+    top: -16px;
+    color: red;
+    font-size: 24px;
+}
+
+#gallery-dropdown .dropdown-toggle::after {
+  display: none !important; 
+}
+
+
+.a.dropdown-item {
+  padding: 5px;
+}
+.navtop{
+  position: absolute;
+  top: 26px;
+}
+.Navstyle {
+  font-size: 20px;
+}
+.nav-link{
+  color: black;
+}
+.dropdown-toggle::after {
+  display: none;
+}
+.nav-top {
+  padding-top: 1.5rem;
+  padding-bottom: 1.5rem;
+}
+.basket{
+  position: absolute;
+  top: -2px;
+
+}
+.basket-icon{
+  color: black;
+  width: 30px;
+  font-size: 2rem;
+}
+span.count {
+  color: white;
+  background-color: black;
+  font-size: 13px;
+  border-radius: 50%;
+  width: 24px;
+  height: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  left: 25px;
+  top: -18px;
+}
+
+
+
+.Navstyle .dropdown-menu {
+  display: none; /* Hide dropdown by default */
+}
+.dropdown-style{
+      font-size: 20px;
+    color: white !important;
+    padding-top: 10px;
+
+}
+.popup-items{
+  background-color: #f6526d;
+  font-size: 23px;
+
+  
+}
+#offcanvasNavbar{
+  width: 40%;
+  
+}
+/* Dropdown opens on hover in large screens */
+@media (min-width: 992px) {
+  .navbar-toggler {
+    display: block;
+  }
+   .Navstyle .nav-dropdown:hover .dropdown-menu {
+    display: block; /* Show dropdown on hover */
+  }
+
+}
+@media (max-width: 900px) {
+    
+  .Navstyle {
+    display: none;
+  }
+  .appbtn {
+    display: none;
+  }
+  .navbar-toggler span {
+    position: relative;
+    background-color: #0e1b2c;
+    border-radius: 3px;
+    display: block;
+    height: 3px;
+    margin-top: 5px;
+    padding: 0;
+    transition-duration: 300ms;
+    width: 30px;
+    cursor: pointer;
+    display: block;
+  }
+  .navbar-toggler {
+    display: block;
+    position: absolute;
+    right: 30px;
+    background-color: transparent;
+    border: 0px white;
+  }
+  .basket{
+  position: absolute;
+  top: -60px;
+  left: 50px;
+
+}
+
+  span.count {
+  color: white;
+  background-color: black;
+  font-size: 13px;
+  border-radius: 50%;
+  width: 24px;
+  height: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  left: 77px;
+  top: -62px;
+}
+.nav-top {
+  padding-top: 1.5rem;
+  padding-bottom: 0.5rem;
+}
+  
+}
+@media (max-width:500px){
+  .navtop{
+  position: absolute;
+  top:0px
+}
+.genrl-logo img{
+  width: 40%;
+}
+ .basket{
+  position: absolute;
+  top: -26px;
+  left: 235px;
+
+}
+  span.count {
+  color: white;
+  background-color: black;
+  font-size: 13px;
+  border-radius: 50%;
+  width: 24px;
+  height: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  left: 263px;
+  top: -33px;
+}
+.basket-icon{
+  color: black;
+  width: 30px;
+  font-size: 1.5rem;
+}
+    .navbar-toggler span{
+      width: 19px;
+    }
+     .nav-top {
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+}
+}
+@media (min-width: 1024px) and (max-width: 1024px) {
+  .genrl-logo img{
+    width: 90%;
+  }
+  .appbtn{
+    width: 80%;
+  }
+  .nav-top {
+  padding-top: 2.5rem;
+  padding-bottom: 2.5rem;
+}
+}

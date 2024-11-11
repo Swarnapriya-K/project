@@ -25,7 +25,7 @@ function Header() {
     <Container fluid className="g-0" style={{ position: "relative" }}>
       <Container fluid className="g-0 navtop">
         <header>
-          <Navbar expand="lg" bg="light" className="genrl-main-head nav-top">
+          <Navbar expand="lg" bg="white" className="genrl-main-head nav-top">
             <Container>
               <Row className="align-items-center w-100 logo">
                 {/* Logo and Toggler */}
@@ -74,7 +74,6 @@ function Header() {
             className="popup-items woocommerce"
           >
             <Offcanvas.Header closeButton>
-              {/* <Offcanvas.Title>Basket (0)</Offcanvas.Title> */}
             </Offcanvas.Header>
             <Offcanvas.Body>
               <Nav className="flex-column">

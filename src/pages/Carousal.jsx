@@ -1,90 +1,98 @@
-import React, { useRef } from "react";
+import {React,useRef} from "react";
 import Carousel from "react-bootstrap/Carousel";
-import Container from "react-bootstrap/esm/Container";
-import Carimg1 from "../images/ddd.jpg";
-import Carimg2 from "../images/slide-2-5.jpg";
-import Carimg3 from "../images/slide-1-1.jpg";
+import Container from "react-bootstrap/Container";
 import "bootstrap/dist/css/bootstrap.min.css";
 import Hometext from "./Hometext";
-import Navigation from "./Navigation";
-import Header from "./Navigation"
+import Header from "./Navigation";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faChevronRight,faChevronLeft } from "@fortawesome/free-solid-svg-icons";
+
+
 
 
 function NoTransitionExample() {
-  const carouselRef = useRef(null);
+   const carouselRef = useRef(null);
 
-  
+   // Function to go to the previous slide
+   const handlePrev = () => {
+     if (carouselRef.current) {
+       carouselRef.current.prev();
+     }
+   };
 
+   // Function to go to the next slide
+   const handleNext = () => {
+     if (carouselRef.current) {
+       carouselRef.current.next();
+     }
+   };
   return (
     <Container fluid className="p-0">
       <Carousel
-        ref={carouselRef}
         slide={false}
         controls={false}
         indicators={false}
+        responsive
+        ref={carouselRef}
       >
         <Carousel.Item>
-          <div
-            className="bg-img"
-            style={{
-              backgroundImage: `url(${Carimg1})`,
-              height: "900px",
-              backgroundSize: "cover",
-              backgroundPosition: "center"
-            }}
-          >
-          <Header/>
-          </div>
-          <Carousel.Caption>
+          <div className="bg-img1">
+            <Header />
             <Hometext />
-          </Carousel.Caption>
-          
-        </Carousel.Item>
 
-        {/* <Carousel.Item>
-          <div
-            className="bg-img"
-            style={{
-              backgroundImage: `url(${Carimg2})`,
-              height: "900px",
-              backgroundSize: "cover",
-              // backgroundPosition: "center"
-            }}
-          >
-           <Header/>
+            <button type="button" className="nextbtn" onClick={handleNext}>
+              <FontAwesomeIcon
+                icon={faChevronRight}
+                style={{ color: "#000000" }}
+              />
+            </button>
+            <button type="button" className="prevbtn" onClick={handlePrev}>
+              <FontAwesomeIcon
+                icon={faChevronLeft}
+                style={{ color: "#000000" }}
+              />
+            </button>
           </div>
-          <Carousel.Caption >
-            <Hometext />
-          </Carousel.Caption>
         </Carousel.Item>
 
         <Carousel.Item>
-          <div
-            className="bg-img"
-            style={{
-              backgroundImage: `url(${Carimg3})`,
-              height: "900px",
-              backgroundSize: "cover",
-              // backgroundPosition: "center"
-            }}
-          >
-            <Header/>
-          </div>
-          <Carousel.Caption>
+          <div className="bg-img2">
+            <Header />
             <Hometext />
-          </Carousel.Caption>
-        </Carousel.Item> */}
-      </Carousel>
+            <button type="button" className="nextbtn" onClick={handleNext}>
+              <FontAwesomeIcon
+                icon={faChevronRight}
+                style={{ color: "#000000" }}
+              />
+            </button>
+            <button type="button" className="prevbtn" onClick={handlePrev}>
+              <FontAwesomeIcon
+                icon={faChevronLeft}
+                style={{ color: "#000000" }}
+              />
+            </button>
+          </div>
+        </Carousel.Item>
 
-      {/* Custom Indicators with Left and Right Arrows
-      <div className="carousel-custom-indicator">
-        <button className="left-arrow" onClick={goToPrev}>
-          &#10094;
-        </button>
-        <button className="right-arrow" onClick={goToNext}>
-          &#10095;
-        </button>
-      </div> */}
+        <Carousel.Item>
+          <div className="bg-img3">
+            <Header />
+            <Hometext />
+            <button type="button" className="nextbtn" onClick={handleNext}>
+              <FontAwesomeIcon
+                icon={faChevronRight}
+                style={{ color: "#000000" }}
+              />
+            </button>
+            <button type="button" className="prevbtn" onClick={handlePrev}>
+              <FontAwesomeIcon
+                icon={faChevronLeft}
+                style={{ color: "#000000" }}
+              />
+            </button>
+          </div>
+        </Carousel.Item>
+      </Carousel>
     </Container>
   );
 }

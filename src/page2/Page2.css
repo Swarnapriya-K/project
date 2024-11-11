@@ -1,0 +1,182 @@
+
+
+@import url('https://fonts.googleapis.com/css2?family=Cookie&family=Dancing+Script:wght@400..700&family=Niconne&family=PT+Serif:ital,wght@0,400;0,700;1,400;1,700&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+
+
+
+* {
+  padding: 0px;
+  margin: 0px;
+}
+.offerimg1 {
+  padding-top: 50px;
+  width: 100%;
+}
+.offerimg2 {
+  width: 100%;
+}
+.nextbtn,
+.prevbtn {
+  position: absolute;
+  top: 645px;
+
+  width: 70px;
+  height: 70px;
+  border-radius: 100px;
+  border: 0px solid white;
+  opacity: 0;
+  background-color: 0, 0, 0, 0.1;
+}
+
+.nextbtn {
+  left: 1780px;
+}
+.prevbtn {
+  left: 1690px;
+}
+.carousel-item:hover .prevbtn,
+.carousel-item:hover .nextbtn {
+  transition-delay: 0.5s;
+  opacity: 1;
+}
+.textcol{
+    margin-top: 85px;
+    padding-left: 40px;
+}
+
+
+.sec2-text1{
+ font-family: "niconne";
+ color:  #f6526d;
+ font-size: 30px;
+}
+.sec2-text2{
+font-size: 47px;
+font-weight: 600;
+font-family: sans-serif
+}
+.sec2-text3{
+  margin-top: 30px;
+ font-size: 19px;
+    font-weight: 400;
+    line-height: 30px;
+
+}
+.clock {
+  width: 65px;
+}
+.sec2-timing{
+  font-weight: 700;
+  margin-left: 20px;
+}
+.sec2-para{
+  font-size: 19px;
+  font-weight: 300;
+   margin-left: 20px;
+}
+.circleslide {
+    position: absolute;
+    width: 250px;
+    height: 250px;
+    background-color: #f6526d;
+    border-radius: 100%;
+    left: 200px;
+    top: 190px;
+    border: red;
+}
+.slider-year{
+     color: #FFFFFF;
+    font-family: "Niconne", Sans-serif;
+    font-size: 170px;
+    font-weight: 400;
+    line-height: 60px;
+}
+.slider-text{
+      color: white;
+    font-size: 13px;
+    margin-top: 30px;
+}
+.circleslide::before {
+    content: "";
+    position: absolute;
+    width: 95%;
+    height: 95%;
+    left: 6px;
+    top: 6px;
+    border-radius: 100%;
+    border: 2px dashed;
+    border-color: #fff;
+    animation-name: Drotate;
+    animation-duration: 49s;
+    animation-iteration-count: infinite;
+    animation-timing-function: linear;
+}
+@keyframes Drotate {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
+@media (max-width:1100px){
+  .circleslide{
+    top: 350px;
+    left: 350px;
+  }
+  .textcol{
+    padding-left: 0px;
+  }
+  .sec2-timing,.sec2-para{
+    margin-left: 0px;
+  }
+}
+@media (max-width: 1500px) {
+  .prevbtn {
+    left: 1215px;
+  }
+  .nextbtn {
+    left: 1300px;
+  }
+}
+@media (max-width: 1110px) {
+  .prevbtn {
+    left: 920px;
+  }
+  .nextbtn {
+    left: 830px;
+  }
+}
+@media (max-width: 800px) {
+  .prevbtn {
+    left: 620px;
+    top: 450px;
+    width: 60px;
+    height: 60px;
+  }
+  .nextbtn {
+    left: 690px;
+    top: 450px;
+    width: 60px;
+    height: 60px;
+  }
+}
+
+@media (max-width: 500px) {
+  /* .prevbtn{
+  left: 300px;
+  top: 360px;
+  width: 50px;
+  height: 50px;
+ }
+ .nextbtn{
+  left:350px;
+  top:360px;
+  width: 50px;
+  height: 50px;
+ } */
+  .prevbtn,
+  .nextbtn {
+    display: none;
+  }
+}

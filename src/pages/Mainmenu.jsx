@@ -28,7 +28,7 @@ function Mainmenu() {
             onMouseLeave={() => setShowHome(false)}
           >
             <NavDropdown.Item
-              href="https://dictate.webinane.com/"
+              href="https://de.com/"
               className="dropdown-style"
             >
               <FontAwesomeIcon
@@ -39,7 +39,7 @@ function Mainmenu() {
               Home Page 1
             </NavDropdown.Item>
             <NavDropdown.Item
-              href="https://dictate.webinane.com/home-page-2/"
+              href="#/"
               className="dropdown-style"
             >
               Home Page 2
@@ -55,7 +55,7 @@ function Mainmenu() {
             onMouseLeave={() => setShowShop(false)}
           >
             <NavDropdown.Item
-              href="https://dictate.webinane.com/shop/"
+              href="shop/"
               className="dropdown-style"
             >
               <FontAwesomeIcon
@@ -66,13 +66,13 @@ function Mainmenu() {
               Shop
             </NavDropdown.Item>
             <NavDropdown.Item
-              href="https://dictate.webinane.com/checkout/"
+              href="https://dict/"
               className="dropdown-style"
             >
               Checkout
             </NavDropdown.Item>
             <NavDropdown.Item
-              href="https://dictate.webinane.com/product/massage-sofa/"
+              href="https://-sofa/"
               className="dropdown-style"
             >
               Product Detail
@@ -88,7 +88,7 @@ function Mainmenu() {
             onMouseLeave={() => setShowServices(false)}
           >
             <NavDropdown.Item
-              href="https://dictate.webinane.com/service-style-1/"
+              href="https://d1/"
               className="dropdown-style"
             >
               <FontAwesomeIcon
@@ -99,19 +99,19 @@ function Mainmenu() {
               Service Style 1
             </NavDropdown.Item>
             <NavDropdown.Item
-              href="https://dictate.webinane.com/service-style-2/"
+              href="https://dictate.wetyle-2/"
               className="dropdown-style"
             >
               Service Style 2
             </NavDropdown.Item>
             <NavDropdown.Item
-              href="https://dictate.webinane.com/service-style-3/"
+              href="httprvice-style-3/"
               className="dropdown-style"
             >
               Service Style 3
             </NavDropdown.Item>
             <NavDropdown.Item
-              href="https://dictate.webinane.com/service/detox-therapy-service/"
+              href="hterapy-service/"
               className="dropdown-style"
             >
               Service Detail
@@ -127,7 +127,7 @@ function Mainmenu() {
             onMouseLeave={() => setShowBlog(false)}
           >
             <NavDropdown.Item
-              href="https://dictate.webinane.com/blog/"
+              href="httpblog/"
               className="dropdown-style"
             >
               <FontAwesomeIcon
@@ -138,7 +138,7 @@ function Mainmenu() {
               Our Blog
             </NavDropdown.Item>
             <NavDropdown.Item
-              href="https://dictate.webinane.com/how-to-apply-a-gold-facial-mask/"
+              href="https:/ly-a-gold-facial-mask/"
               className="dropdown-style"
             >
               Blog Detail
@@ -154,7 +154,7 @@ function Mainmenu() {
             onMouseLeave={() => setShowPages(false)}
           >
             <NavDropdown.Item
-              href="https://dictate.webinane.com/appointment/"
+              href="httpsintment/"
               className="dropdown-style"
             >
               <FontAwesomeIcon
@@ -165,13 +165,13 @@ function Mainmenu() {
               Appointment
             </NavDropdown.Item>
             <NavDropdown.Item
-              href="https://dictate.webinane.com/team/"
+              href="https:am/"
               className="dropdown-style"
             >
               Team
             </NavDropdown.Item>
             <NavDropdown.Item
-              href="https://dictate.webinane.com/team/eliana-ivy/"
+              href="https://dictaana-ivy/"
               className="dropdown-style"
             >
               Team Detail
@@ -187,13 +187,13 @@ function Mainmenu() {
               drop="end"
             >
               <NavDropdown.Item
-                href="https://dictate.webinane.com/gallery-style-1/"
+                href="https://dictllery-style-1/"
                 className="dropdown-style"
               >
                 Gallery Style 1
               </NavDropdown.Item>
               <NavDropdown.Item
-                href="https://dictate.webinane.com/gallery-style-2/"
+                href="https://dllery-style-2/"
                 className="dropdown-style"
               >
                 Gallery Style 2
@@ -201,18 +201,18 @@ function Mainmenu() {
             </NavDropdown>
 
             <NavDropdown.Item
-              href="https://dictate.webinane.com/gallery/deep-tissue-massage/"
+              href="https://dery/deep-tissue-massage/"
               className="dropdown-style"
             >
               Gallery Detail
             </NavDropdown.Item>
           </NavDropdown>
 
-          <Nav.Link href="https://dictate.webinane.com/about/" className="px-2">
+          <Nav.Link href="https://m/about/" className="px-2 nav-dropdown">
             About
           </Nav.Link>
           <Nav.Link
-            href="https://dictate.webinane.com/contact/"
+            href="https://dicontact/"
             className="px-2"
           >
             Contact

@@ -1,18 +1,5 @@
 
-.no-icon-dropdown .dropdown-toggle::after {
-  display: none !important;
-}
-.appbtn{
-    position: absolute;
-    left: 85px;
-    top: -21px;
-    background-color: #f6526d;
-    width: 65%;
-    height: 64px;
-    border-radius: 50px;
-     font-size: 20px;
-    color: white;
-    border: #f6526d;
-}
+
+
 
 

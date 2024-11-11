@@ -14,14 +14,14 @@ function Innercontainer() {
       <Container m-auto style={{position:"relative"}}>
         <CircleSlider/>
         <Row> 
-          <Col xl={3} md={6}>
+          <Col xl={3} md={6} className='col-425'>
             <Imgcol1 />
           </Col>
-          <Col xl={3} md={6}>
+          <Col xl={3} md={6} className='col-425-2' >
             <Imgcol2 />
           </Col>
 
-          <Col xl={6} md={12}>
+          <Col xl={6} md={12} >
             <Imgcol3 />
           </Col>
         </Row>

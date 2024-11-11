@@ -200,6 +200,11 @@ span.count {
   font-weight: 600;
   font-size: 18px;
 }
+.booking-btn:hover{
+      background-color: white;
+      color: #f6526d;
+      border: #f6526d 1px solid;
+    }
 
 /* --------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Dropdown opens on hover in large screens */
@@ -439,6 +444,7 @@ span.count {
       font-size: 11px;
 
     }
+    
 }
 @media (min-width: 500px) and (max-width: 800px) {
   .bg-img1,

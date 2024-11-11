@@ -1,8 +1,4 @@
-
-
-@import url('https://fonts.googleapis.com/css2?family=Cookie&family=Dancing+Script:wght@400..700&family=Niconne&family=PT+Serif:ital,wght@0,400;0,700;1,400;1,700&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
-
-
+@import url("https://fonts.googleapis.com/css2?family=Cookie&family=Dancing+Script:wght@400..700&family=Niconne&family=PT+Serif:ital,wght@0,400;0,700;1,400;1,700&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap");
 
 * {
   padding: 0px;
@@ -39,95 +35,94 @@
   transition-delay: 0.5s;
   opacity: 1;
 }
-.textcol{
-    margin-top: 85px;
-    padding-left: 40px;
+.textcol {
+  margin-top: 85px;
+  padding-left: 40px;
 }
 
-
-.sec2-text1{
- font-family: "niconne";
- color:  #f6526d;
- font-size: 30px;
+.sec2-text1 {
+  font-family: "niconne";
+  color: #f6526d;
+  font-size: 30px;
 }
-.sec2-text2{
-font-size: 47px;
-font-weight: 600;
-font-family: sans-serif
+.sec2-text2 {
+  font-size: 47px;
+  font-weight: 600;
+  font-family: sans-serif;
 }
-.sec2-text3{
+.sec2-text3 {
   margin-top: 30px;
- font-size: 19px;
-    font-weight: 400;
-    line-height: 30px;
-
+  font-size: 19px;
+  font-weight: 400;
+  line-height: 30px;
 }
 .clock {
   width: 65px;
 }
-.sec2-timing{
+.sec2-timing {
   font-weight: 700;
   margin-left: 20px;
 }
-.sec2-para{
+.sec2-para {
   font-size: 19px;
   font-weight: 300;
-   margin-left: 20px;
+  margin-left: 20px;
 }
 .circleslide {
-    position: absolute;
-    width: 250px;
-    height: 250px;
-    background-color: #f6526d;
-    border-radius: 100%;
-    left: 200px;
-    top: 190px;
-    border: red;
+  position: absolute;
+  width: 250px;
+  height: 250px;
+  background-color: #f6526d;
+  border-radius: 100%;
+  left: 200px;
+  top: 190px;
+  border: red;
 }
-.slider-year{
-     color: #FFFFFF;
-    font-family: "Niconne", Sans-serif;
-    font-size: 170px;
-    font-weight: 400;
-    line-height: 60px;
+.slider-year {
+  color: #ffffff;
+  font-family: "Niconne", Sans-serif;
+  font-size: 170px;
+  font-weight: 400;
+  line-height: 60px;
 }
-.slider-text{
-      color: white;
-    font-size: 13px;
-    margin-top: 30px;
+.slider-text {
+  color: white;
+  font-size: 13px;
+  margin-top: 30px;
 }
 .circleslide::before {
-    content: "";
-    position: absolute;
-    width: 95%;
-    height: 95%;
-    left: 6px;
-    top: 6px;
-    border-radius: 100%;
-    border: 2px dashed;
-    border-color: #fff;
-    animation-name: Drotate;
-    animation-duration: 49s;
-    animation-iteration-count: infinite;
-    animation-timing-function: linear;
+  content: "";
+  position: absolute;
+  width: 95%;
+  height: 95%;
+  left: 6px;
+  top: 6px;
+  border-radius: 100%;
+  border: 2px dashed;
+  border-color: #fff;
+  animation-name: Drotate;
+  animation-duration: 49s;
+  animation-iteration-count: infinite;
+  animation-timing-function: linear;
 }
 @keyframes Drotate {
-    from {
-        transform: rotate(0deg);
-    }
-    to {
-        transform: rotate(360deg);
-    }
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
 }
-@media (max-width:1100px){
-  .circleslide{
+@media (max-width: 1100px) {
+  .circleslide {
     top: 350px;
     left: 350px;
   }
-  .textcol{
+  .textcol {
     padding-left: 0px;
   }
-  .sec2-timing,.sec2-para{
+  .sec2-timing,
+  .sec2-para {
     margin-left: 0px;
   }
 }
@@ -141,10 +136,11 @@ font-family: sans-serif
 }
 @media (max-width: 1110px) {
   .prevbtn {
-    left: 920px;
+      left: 830px;
   }
   .nextbtn {
-    left: 830px;
+  
+    left: 920px;
   }
 }
 @media (max-width: 800px) {
@@ -160,23 +156,76 @@ font-family: sans-serif
     width: 60px;
     height: 60px;
   }
+  .circleslide {
+    top: 230px;
+    left: 230px;
+  }
+  .sec2-timing,.sec2-para{
+    margin-left: 15px;
+  }
+
 }
 
 @media (max-width: 500px) {
-  /* .prevbtn{
-  left: 300px;
-  top: 360px;
-  width: 50px;
-  height: 50px;
- }
- .nextbtn{
-  left:350px;
-  top:360px;
-  width: 50px;
-  height: 50px;
- } */
+  
   .prevbtn,
   .nextbtn {
     display: none;
   }
+  .col-425{
+width: 50%;
+  }
+  .col-425-2{
+width: 50%;
+  }
+ .circleslide {
+        top: 140px;
+        left: 116px;
+        height: 180px;
+        width: 180px;
+    }
+    .slider-year{
+     font-size: 100px;
+    }
+    .slider-text{
+      margin-top: 0px;
+    }
+    .sec2-text1,.sec2-text2,.sec2-text3,.clock,.sec2-para,.sec2-timing{
+      text-align: center;
+    }
+    .sec2-text2{
+      font-size: 28px;
+    }
+    .clockstyle{
+          display: flex;
+    justify-content: center;
+    }
+    .circleslide{
+              top: 80px;
+        left: 100px;
+        
+    }
+    .circleslide::before{
+  width: 93%;
+  height: 93%;
+}
+}
+@media (max-width:350px){
+  .circleslide{
+  width: 140px;
+  height: 140px;
+}
+.circleslide::before{
+  width: 91%;
+  height: 91%;
+}
+.textcol{
+  margin-top: 25px;
+}
+.sec2-timing{
+  font-size: 20px;
+}
+.sec2-text2{
+  font-size: 24px;
+}
 }

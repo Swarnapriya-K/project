@@ -16,10 +16,10 @@ function Imgcol3() {
       </p>
       <div>
         <Row className="mt-5">
-          <Col lg={1}>
+          <Col lg={1} md={1} className="clockstyle">
             <img src={clock} alt="" className="clock" />
           </Col>
-          <Col lg={10}>
+          <Col lg={10} md={10}>
             <h4 className="sec2-timing">Monday - Friday 08:00-19:00</h4>
             <p className="sec2-para">Saturday and Sunday - CLOSED</p>
           </Col>

@@ -1,0 +1,280 @@
+@import url("https://fonts.googleapis.com/css2?family=Cookie&family=Dancing+Script:wght@400..700&family=Niconne&family=PT+Serif:ital,wght@0,400;0,700;1,400;1,700&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap");
+
+* {
+  padding: 0px;
+  margin: 0px;
+}
+.service-container {
+  margin-top: 60px;
+}
+.towel-flower {
+  bottom: -100px;
+  right: 640px;
+}
+.servicebox {
+  width: 20%;
+}
+
+.service1 {
+  position: absolute;
+  top: 111px;
+  padding: 23px 23px 30px 70px;
+  width: 20%;
+  left: 430px;
+}
+.serviceimage1 {
+  border: 2px solid rgb(211 231 243);
+  position: absolute;
+  width: 90px;
+  height: 90px;
+  background-color: #fff;
+  border-radius: 52%;
+  bottom: 135px;
+  right: 325px;
+  padding: 14px;
+}
+.service2 {
+  position: absolute;
+  top: 111px;
+  padding: 23px 23px 30px 52px;
+  width: 20%;
+  left: 1150px;
+}
+.serviceimage2 {
+  border: 2px solid rgb(251 218 222);
+  position: absolute;
+  width: 90px;
+  height: 90px;
+  background-color: #fff;
+  border-radius: 52%;
+  bottom: 125px;
+  right: 340px;
+  padding: 14px;
+}
+.imgsizing {
+  width: 64px;
+}
+.service3 {
+  position: absolute;
+  top: 400px;
+  padding: 23px 23px 30px 70px;
+  width: 20%;
+  left: 430px;
+}
+.serviceimage3 {
+  border: 2px solid #ededb2;
+  position: absolute;
+  width: 90px;
+  height: 90px;
+  background-color: #fff;
+  border-radius: 52%;
+  bottom: 135px;
+  right: 325px;
+  padding: 14px;
+}
+.imgsizing {
+  width: 64px;
+}
+.service4 {
+  position: absolute;
+  top: 400px;
+  padding: 23px 23px 30px 57px;
+  width: 20%;
+  left: 1150px;
+}
+.serviceimage4 {
+  border: 2px solid #ddd7f5;
+  position: absolute;
+  width: 90px;
+  height: 90px;
+  background-color: #fff;
+  border-radius: 52%;
+  bottom: 130px;
+  right: 340px;
+  padding: 14px;
+}
+.imgres {
+    width: 60px;
+  }
+@media (max-width: 1500px) {
+  .service1 {
+    width: 27%;
+    left: 190px;
+  }
+  .service2 {
+    width: 27%;
+    left: 898px;
+  }
+  .service3 {
+    width: 27%;
+    left: 190px;
+  }
+  .imgres {
+    width: 60px;
+  }
+  .service4 {
+    width: 27%;
+    left: 898px;
+  }
+  .towel-flower {
+    bottom: -100px;
+    right: 400px;
+  }
+}
+@media (max-width: 1110px) {
+  .service1 {
+    width: 39%;
+    left: 55px;
+    top: 130px;
+    padding-bottom: 10px;
+  }
+  .serviceimage1 {
+    bottom: 102px;
+    right: 345px;
+  }
+  .service2 {
+    width: 39%;
+    left: 590px;
+    padding-bottom: 1px;
+    top: 136px;
+    padding-left: 70px;
+  }
+  .serviceimage2 {
+    bottom: 96px;
+    right: 355px;
+  }
+  .service3 {
+    width: 39%;
+    left: 55px;
+    padding-bottom: 18px;
+  }
+  .serviceimage3 {
+    bottom: 65px;
+    right: 355px;
+  }
+  .service4 {
+    width: 38%;
+    padding-left: 70px;
+    left: 600px;
+    padding-bottom: 0px;
+  }
+  .serviceimage4 {
+    bottom: 100px;
+  }
+  .towel-flower {
+    bottom: -108px;
+    right: 190px;
+  }
+}
+@media (max-width: 800px) {
+  .boxpara {
+    font-size: 18px;
+    font-weight: 100;
+  }
+  .headingbox {
+    font-size: 30px;
+  }
+  .service1 {
+    width: 55%;
+    left: 160px;
+    top: 70px;
+    padding-left: 83px;
+  }
+  .serviceimage1,
+  .serviceimage2 {
+    bottom: 103px;
+    right: 375px;
+  }
+  .service2 {
+    width: 55%;
+    left: 160px;
+    top: 655px;
+    padding-left: 83px;
+  }
+  .service3 {
+    width: 55%;
+    left: 160px;
+    top: 280px;
+    padding-bottom: 0px;
+    padding-left: 83px;
+  }
+  .serviceimage3 {
+    right: 380px;
+  }
+  .service4 {
+    width: 55%;
+    left: 160px;
+    top: 475px;
+    padding-left: 83px;
+  }
+  .serviceimage4 {
+    bottom: 70px;
+    right: 375px;
+  }
+}
+@media (max-width: 430px) {
+  .manimg {
+    width: 100%;
+  }
+  .towel-flower {
+    width: 200px;
+    bottom: 0px;
+    right: 27px;
+  }
+  .service1 {
+    width: 100%;
+    left: 2px;
+    top: 480px;
+    padding: 45px 10px 18px 10px;
+    text-align: center;
+  }
+  .serviceimage1 {
+    bottom: 140px;
+    left: 155px;
+    width: 80px;
+    height: 80px;
+  }
+  .imgres {
+    width: 45px;
+  }
+  .serviceimage2 {
+    bottom: 130px;
+    left: 160px;
+    width: 80px;
+    height: 80px;
+  }
+
+  .serviceimage4 {
+    bottom: 130px;
+    left: 160px;
+    width: 80px;
+    height: 80px;
+  }
+  .service2 {
+    width: 100%;
+    left: 2px;
+    top: 1210px;
+    padding: 45px 10px 18px 10px;
+    text-align: center;
+  }
+  .service3 {
+    width: 100%;
+    left: 2px;
+    top: 735px;
+    padding: 45px 10px 18px 10px;
+    text-align: center;
+  }
+  .serviceimage3 {
+    bottom: 130px;
+    left: 160px;
+    width: 80px;
+    height: 80px;
+  }
+  .service4 {
+    width: 100%;
+    left: 2px;
+    top: 970px;
+    padding: 45px 10px 18px 10px;
+    text-align: center;
+  }
+}

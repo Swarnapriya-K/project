@@ -9,14 +9,17 @@ import Servicepage from "./page3-services/Service-page";
 import "../src/page3-services/service.css"
 import PackageList from "./page4-packages/PackageList";
 import "../src/page4-packages/package.css"
+import HorizontalScroll from "./page5-products/HorizontalScroller";
+import "../src/page5-products/HorizontalScroll.css"
 const App = () => {
     return (
-        <div className="App">
-            <Home/> 
-            <Sec2home/>
-            <Servicepage/>
-            <PackageList/>
-        </div>
+      <div className="App">
+        <Home />
+        <Sec2home />
+        <Servicepage />
+        <PackageList />
+        <HorizontalScroll />
+      </div>
     );
 };
 

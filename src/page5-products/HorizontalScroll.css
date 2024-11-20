@@ -1,8 +1,5 @@
 @import url("https://fonts.googleapis.com/css2?family=Cookie&family=Dancing+Script:wght@400..700&family=Manrope:wght@200..800&family=Niconne&family=PT+Serif:ital,wght@0,400;0,700;1,400;1,700&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap");
 
-
-
-
 * {
   padding: 0px;
   margin: 0px;
@@ -11,7 +8,6 @@
   width: 100%;
   overflow: hidden; /* Ensure no scrollbars are visible */
 }
-
 .swiper {
   width: 100%;
   overflow: hidden;
@@ -27,16 +23,170 @@
   width: 10%; /* Card width */
   margin: 0 5px; /* Reduced margin between cards (adjust as needed) */
 }
-.productrate{
+.productrate {
   color: red;
   font-size: 26px;
   font-family: "manrope";
 }
-.discount{
+.discount {
   font-size: 25px;
-   text-decoration: line-through;
-    font-family: "manrope";
+  text-decoration: line-through;
+  font-family: "manrope";
 }
-.card{
-   border: 1px solid #d2f2f8 !important;
+.card {
+  border: 1px solid #d2f2f8 !important;
+ 
 }
+.card-img-top {
+  margin-top: 40px;
+}
+.shopping-basket {
+  position: absolute;
+  bottom: -25px;
+  right: 10px;
+  border-radius: 50%;
+  width: 60px;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #fff;
+  color: #000000;
+  border: 2px solid #d2f2f8;
+  cursor: pointer;
+  transition: background-color 0.1s ease 0.1s, transform 0.1s ease;
+}
+.shopping-basket:hover {
+  background-color: #f65454;
+  border-color: #f65454;
+  color: #f8f9fa;
+}
+.shopping-basket svg {
+  font-size: 1.5rem;
+}
+.discountstyling {
+  width: 90px;
+  height: 90px;
+  background-color: #f6526d;
+  position: absolute;
+  left: 190px;
+  border-radius: 100%;
+  border: 1px #f6526d;
+  top: 9px;
+  font-size: 24px;
+  font-weight: 700;
+}
+.text-discount {
+  font-size: 15px;
+  font-weight: 500;
+}
+
+
+
+
+.product-rating {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  padding-top: 30px;
+}
+.woocommerce .star-rating {
+    float: right;
+    overflow: hidden;
+    position: relative;
+    height: 1em;
+    line-height: 1;
+    font-size: 1em;
+    width: 5.4em;
+    font-family: WooCommerce;
+}
+.woocommerce .star-rating span::before {
+    content: "\53\53\53\53\53";
+    top: 0;
+    position: absolute;
+    left: 0;
+    font-family: star;
+    color: var(--e-global-color-primary);
+}
+/* HorizontalScroll.css */
+
+/* Ensure the Swiper container is responsive */
+.product-swiper {
+  width: 100%; /* Make sure the swiper takes up the full width */
+  overflow: hidden; /* Hide anything that's out of bounds */
+}
+
+.product-swiper .swiper-slide {
+  display: flex;
+  justify-content: center; /* Center the slides */
+}
+
+/* Style the cards to be flexible */
+.card {
+  width: 100%; /* Make card take full available width */
+  max-width: 300px; /* Prevent cards from being too wide */
+  display: flex;
+  flex-direction: column;
+}
+
+/* Card Image */
+.card img {
+  width: 100%; /* Ensure the image takes full width */
+  height: auto; /* Maintain aspect ratio */
+}
+
+/* Optional: Style the card content */
+.card-body {
+  display: flex;
+  flex-direction: column;
+  padding: 10px;
+}
+
+/* Ensure text and button within the card are properly spaced */
+.card-title, .productrate, .discount {
+  margin-bottom: 10px;
+}
+
+.product-rate, .discount {
+  font-size: 1rem; /* Adjust font size */
+}
+
+.shopping-basket {
+  margin-top: 10px;
+  display: block;
+  text-align: center;
+}
+
+
+@media (max-width: 480px) {
+  .card {
+    max-width: 100%; /* Cards take full width on smaller screens */
+  }
+}
+
+/* Adjustments for medium screens (Tablets) */
+@media (max-width: 768px) {
+  .card {
+    max-width: 100%;
+    
+  }
+  .discountstyling{
+    left: 200px;
+ }
+}
+@media (max-width:1100px){
+ .discountstyling{
+  width: 70px;
+    height: 70px;
+    left: 140px;
+ }
+}
+@media(max-width:425px){
+  .products-page{
+    margin-top: 400px;
+  }
+   .discountstyling{
+    left: 200px;
+ }  
+}
+

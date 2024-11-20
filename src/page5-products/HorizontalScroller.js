@@ -21,14 +21,15 @@ const products = [
     picture: picture1,
     productname: "Massage Cream",
     price: 79
-   
   },
   {
     id: 1,
     picture: picture2,
     productname: "Almonds Massage Cream",
     price: 29,
-     discountprice:"$ 90"
+    discountprice: "$ 90",
+    discountstyle: "discountstyling",
+    discountpercentage: "82%"
   },
   {
     id: 2,
@@ -41,7 +42,9 @@ const products = [
     picture: picture4,
     productname: "Stretch Mark Massage Cream",
     price: 77,
-    discountprice: "$89"
+    discountprice: "$89",
+    discountpercentage: "62%",
+    discountstyle: "discountstyling"
   },
   {
     id: 4,
@@ -54,14 +57,18 @@ const products = [
     picture: picture6,
     productname: " Body Lotion for Massage",
     price: 99,
-    discountprice: "$107"
+    discountprice: "$107",
+    discountpercentage: "46%",
+    discountstyle: "discountstyling"
   },
   {
     id: 6,
     picture: picture7,
     productname: "Massage Sofa",
     price: 390,
-    discountprice:" $400"
+    discountprice: " $400",
+    discountpercentage: "52%",
+    discountstyle: "discountstyling"
   },
   {
     id: 7,
@@ -87,7 +94,7 @@ function HorizontalScroller() {
   console.log(products[0]);
   
   return (
-    <div>
+    <div className='products-page'>
       <SectionHeader title={"Beauty Products"} subtitle={"Need an awsome"} />
       <Container>
         <ProductCards products={products} />

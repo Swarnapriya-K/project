@@ -2,39 +2,39 @@ import { Card, Col, Row, Button } from "react-bootstrap";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/pagination";
-import "./HorizontalScroll.css"; // Add your custom styles for .shopping-basket here
-import { FaShoppingBasket } from "react-icons/fa"; // Install react-icons if not already done: npm install react-icons
-
+import "./HorizontalScroll.css";
+import { FaShoppingBasket } from "react-icons/fa"; 
 const ProductCards = ({ products }) => {
   return (
     <Swiper
+    style={{paddingBottom:"190px"}}
       spaceBetween={20}
       loop={true}
-      freeMode={true} // Enable free mode for smoother movement
-      freeModeMomentum={true} // Enable momentum when swiping
-      freeModeMomentumRatio={0.1} // Adjust the momentum (slower stop)
-      freeModeSticky={true} // Make the swiper "stick" to a point when stopped
-      touchReleaseOnEdges={true} // Allows momentum on edges
+      freeMode={true} 
+      freeModeMomentum={true} 
+      freeModeMomentumRatio={0.1} 
+      freeModeSticky={true} 
+      touchReleaseOnEdges={true} 
       breakpoints={{
-        // when window width is >= 320px (small screens like phones)
+    
         320: {
-          slidesPerView: 1, // Show 1 slide
-          spaceBetween: 10 // Space between slides
+          slidesPerView: 1, 
+          spaceBetween: 10 
         },
-        // when window width is >= 480px (larger phones)
+        //  480px (larger phones)
         480: {
-          slidesPerView: 2, // Show 2 slides
-          spaceBetween: 20 // Space between slides
+          slidesPerView: 2, 
+          spaceBetween: 20 
         },
-        // when window width is >= 768px (tablets)
+        // 768px (tablets)
         768: {
-          slidesPerView: 2, // Show 3 slides
-          spaceBetween: 20 // Space between slides
+          slidesPerView: 2, 
+          spaceBetween: 20 
         },
-        // when window width is >= 1024px (desktops)
+        //  1024px (desktops)
         1024: {
-          slidesPerView: 4, // Show 4 slides
-          spaceBetween: 20 // Space between slides
+          slidesPerView: 4, 
+          spaceBetween: 20 
         }
       }}
       className="product-swiper"

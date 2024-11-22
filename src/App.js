@@ -21,7 +21,7 @@ const App = () => {
         <Servicepage />
         <PackageList />
         <HorizontalScroll />
-        <BookingSlot/>
+        {/* <BookingSlot/> */}
         <Footer/>
       </div>
     );

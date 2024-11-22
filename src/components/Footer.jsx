@@ -122,7 +122,7 @@ export const Footer = () => {
                 <h5 className="time2">11am-8pm</h5>
               </Col>
             </Row>
-            <Row className="time-row3">
+            <Row className="time-row3" >
               <Col xl={4} lg={6} md={6} className="day3">
                 <h3 className="day-para1">Sunday</h3>
               </Col>

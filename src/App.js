@@ -12,6 +12,7 @@ import "../src/page4-packages/package.css"
 import HorizontalScroll from "./page5-products/HorizontalScroller";
 import "../src/page5-products/HorizontalScroll.css"
 import { Footer } from "./components/Footer";
+import BookingSlot from "./page6-app-Booking/BookingSlot";
 const App = () => {
     return (
       <div className="App">
@@ -20,6 +21,7 @@ const App = () => {
         <Servicepage />
         <PackageList />
         <HorizontalScroll />
+        <BookingSlot/>
         <Footer/>
       </div>
     );

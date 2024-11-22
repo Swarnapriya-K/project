@@ -7,7 +7,7 @@ import { FaShoppingBasket } from "react-icons/fa";
 const ProductCards = ({ products }) => {
   return (
     <Swiper
-    style={{paddingBottom:"190px"}}
+      style={{paddingBottom:"190px"}}
       spaceBetween={20}
       loop={true}
       freeMode={true} 

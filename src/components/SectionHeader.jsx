@@ -2,8 +2,7 @@ import React from "react";
 import { Container } from "react-bootstrap";
 import logoimg from "../images/lotus-logo.svg";
 
-
-function SectionHeader({subtitle, title}) {
+function SectionHeader({ subtitle, title }) {
   return (
     <div>
       <Container fluid className="text-center ">

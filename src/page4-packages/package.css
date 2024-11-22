@@ -4,6 +4,16 @@
   padding: 0px;
   margin: 0px;
 }
+/* .animation:not(.show)
+{
+
+    opacity: 1;
+}
+
+.animation {
+    transition: opacity .80s linear;
+} */
+
 .inner-container{
       padding-top: 136px;
     padding-bottom: 160px;

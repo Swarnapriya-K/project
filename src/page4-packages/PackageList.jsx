@@ -99,13 +99,10 @@ function PackageList() {
   const handlePackageClick = (id) => {
     setactivestate(id);
     setSelectedPackage(packageDetails.filter((item) => item.id === id)[0]);
+    
   };
   return (
-    <Container
-      fluid
-      className="package-container"
-   
-    >
+    <Container fluid className="package-container">
       <Container className="inner-container">
         <Packageheader />
         <div>
@@ -117,7 +114,7 @@ function PackageList() {
                 handlePackageClick={handlePackageClick}
               />
             </Col>
-            <Col lg={9} md={12}>
+            <Col lg={9} md={12} style={{ animationDelay: "3s" }}>
               <PackageContainer selectedPackage={selectedPackage} />
             </Col>
           </Row>

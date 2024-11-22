@@ -4,37 +4,37 @@ import "swiper/css";
 import "swiper/css/pagination";
 import "./HorizontalScroll.css";
 import { FaShoppingBasket } from "react-icons/fa"; 
+import { FaStar } from "react-icons/fa";
 const ProductCards = ({ products }) => {
   return (
     <Swiper
-      style={{paddingBottom:"190px"}}
+      style={{ paddingBottom: "190px" }}
       spaceBetween={20}
       loop={true}
-      freeMode={true} 
-      freeModeMomentum={true} 
-      freeModeMomentumRatio={0.1} 
-      freeModeSticky={true} 
-      touchReleaseOnEdges={true} 
+      freeMode={true}
+      freeModeMomentum={true}
+      freeModeMomentumRatio={0.1}
+      freeModeSticky={true}
+      touchReleaseOnEdges={true}
       breakpoints={{
-    
         320: {
-          slidesPerView: 1, 
-          spaceBetween: 10 
+          slidesPerView: 1,
+          spaceBetween: 10
         },
         //  480px (larger phones)
         480: {
-          slidesPerView: 2, 
-          spaceBetween: 20 
+          slidesPerView: 2,
+          spaceBetween: 20
         },
         // 768px (tablets)
         768: {
-          slidesPerView: 2, 
-          spaceBetween: 20 
+          slidesPerView: 2,
+          spaceBetween: 20
         },
         //  1024px (desktops)
         1024: {
-          slidesPerView: 4, 
-          spaceBetween: 20 
+          slidesPerView: 4,
+          spaceBetween: 20
         }
       }}
       className="product-swiper"
@@ -60,7 +60,16 @@ const ProductCards = ({ products }) => {
                   aria-label="Rated 5.00 out of 5"
                 >
                   <span>
-                    Rated <strong className="rating">5.00</strong> out of 5
+                    <div style={{ display: "flex"}}>
+                      {Array(5)
+                        .fill(null)
+                        .map((_, index) => (
+                          <FaStar
+                            key={index}
+                            style={{ color: "#f6526d", fontSize: "18px" }}
+                          />
+                        ))}
+                    </div>
                   </span>
                 </div>
                 <span>(1)</span>{" "}

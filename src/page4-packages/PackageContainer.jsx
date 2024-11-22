@@ -1,10 +1,11 @@
 import React from "react";
-import { Col, Row } from "react-bootstrap";
+
 
 const PackageContainer = ({ selectedPackage }) => {
   console.log(selectedPackage.packageDetails)
+  
   return (
-    <div style={{ position: "relative" }}>
+    <div style={{ position: "relative"}} >
       <div className="imgstyle">
         <img
           style={{ width: "100%" }}
@@ -19,7 +20,7 @@ const PackageContainer = ({ selectedPackage }) => {
             <div>{<li>{items}</li>}</div>
           ))}
         </ul>
-        <div style={{display:"flex"}}>
+        <div style={{ display: "flex" }}>
           <span>NOW JUST</span>
           <h5 className="packagerate">${selectedPackage.amount}</h5>
         </div>

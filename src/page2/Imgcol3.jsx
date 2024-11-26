@@ -2,12 +2,16 @@ import React from "react";
 import Col from "react-bootstrap/esm/Col";
 import Row from "react-bootstrap/esm/Row";
 import clock from "../images/clock.svg";
+import SectionSecHeader from "../components/SectionSecHeader";
 
 function Imgcol3() {
   return (
     <div className="textcol">
-      <h3 className="sec2-text1">Welcome Spa and Salon</h3>
-      <h1 className="sec2-text2">Salon Offer a Wide Range of Services</h1>
+      <SectionSecHeader
+        title={"Salon offer a Wide Range of Services"}
+        subtitle={"Welcome Spa and Salon"}
+      />
+
       <p className="sec2-text3">
         Lorem ipsum dolor sit amet, consectetuer. Proin gravida nibh vel velit
         auctor aliquet. Aenean sollicitudin, lorem quis bibendum auctor, nisi

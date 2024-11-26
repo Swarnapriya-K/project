@@ -11,7 +11,7 @@ function Servicepage() {
         <SectionHeader
           title={"Salon Services"}
           subtitle={"Welcome Spa and Salon"}
-        />
+        />  
         <Servicecontainer />
       </Container>
     </div>

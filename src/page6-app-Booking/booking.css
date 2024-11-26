@@ -1,11 +1,96 @@
-*{
+@import url("https://fonts.googleapis.com/css2?family=Cookie&family=Dancing+Script:wght@400..700&family=Manrope:wght@200..800&family=Niconne&family=PT+Serif:ital,wght@0,400;0,700;1,400;1,700&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap");
+
+* {
   margin: 0px;
   padding: 0px;
 }
-.slot-inner-container{
+.slot-inner-container {
   padding: 0px 260px 0px 260px;
 }
-.slot-row{
-
+.slot-row {
   padding: 120px 0px 120px 0px;
+}
+.booking-text{
+  padding-left: 80px;
+  padding-top: 50px;
+}
+.booking-txt2 {
+  font-size: 60px;
+  font-weight: 700;
+  width: 50%;
+  font-family: "manrope";
+  line-height: 60px;
+}
+.img-colmn{
+  position: relative;
+}
+.child-div {
+  background-color: white;
+  border: solid #f6526d;
+  border-width: 10px 10px 10px 10px;
+  width: 400px;
+  position: absolute;
+      bottom: 40px;
+    left: 325px;
+}
+.child-inner {
+  padding: 40px 40px 38px 40px;
+  position: relative;
+}
+.child-booking-col1,
+.child-booking-col3 {
+  font-size: 17px;
+}
+.child-booking-col2,
+.child-booking-col4 {
+  text-align: end;
+  font-size: 18px;
+  font-weight: 500;
+}
+
+.child-row3,
+.child-row4 {
+  background-color: #f6f6f6;
+  margin-top: 10px;
+  padding: 18px 15px;
+}
+.child-border-white {
+  width: 10px;
+  height: 318px;
+  background-color: #fff;
+  position: absolute;
+  bottom: 135px;
+  left: 380px;
+}
+@media (max-width: 1440px) {
+  .slot-inner-container {
+    padding: 0px;
+  }
+  .img-colmn {
+    padding-left: 44px;
+    padding-right: 45px;
+  }
+  .img-colmn img {
+    width: 100%;
+  }
+}
+@media(max-width:1024px){
+  .booking-txt2 {
+    font-size: 48px;
+    line-height: 55px;
+}
+}
+@media (max-width: 800px) {
+  .slot-row {
+    padding-top: 90px;
+  }
+}
+@media (max-width: 500px) {
+  .slot-row {
+    padding-top: 44px;
+  }
+  .img-colmn {
+    padding-left: 15px;
+    padding-right: 15px;
+  }
 }

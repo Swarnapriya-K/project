@@ -87,7 +87,7 @@ const ProductCards = ({ products }) => {
               </Row>
               {/* Shopping basket button */}
               <Button
-                variant="primary"
+               variant="none"
                 className="shopping-basket"
                 title="Add to Basket"
               >

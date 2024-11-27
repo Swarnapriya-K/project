@@ -8,7 +8,7 @@ import {
   Offcanvas,
   Button
 } from "react-bootstrap";
-
+import { Link } from "react-router-dom"; // Import Link from react-router-dom
 import Mainmenu from "./Mainmenu";
 import Shopbaskat from "./Shopbaskat";
 import "./MyNavbar.css";
@@ -17,9 +17,8 @@ function Header() {
   const [showOffcanvas, setShowOffcanvas] = useState(false);
 
   const toggleOffcanvas = () => {
-    console.log("button clicked")
     setShowOffcanvas((prev) => !prev);
-  }
+  };
 
   return (
     <Container fluid className="g-0" style={{ position: "relative" }}>
@@ -31,15 +30,12 @@ function Header() {
                 {/* Logo and Toggler */}
                 <Col lg={2}>
                   <div className="d-flex align-items-center">
-                    <a
-                      href="https://dictate.webinane.com/"
-                      className="genrl-logo"
-                    >
+                    <Link to="/" className="genrl-logo">
                       <img
                         src="https://dictate.webinane.com/wp-content/uploads/2022/03/Dictate-logo-new.svg"
                         alt="Dictate WordPress Theme Demo"
                       />
-                    </a>
+                    </Link>
                     <Button
                       variant="light"
                       className="navbar-toggler"
@@ -73,50 +69,28 @@ function Header() {
             id="offcanvasNavbar"
             className="popup-items woocommerce"
           >
-            <Offcanvas.Header closeButton>
-            </Offcanvas.Header>
+            <Offcanvas.Header closeButton />
             <Offcanvas.Body>
               <Nav className="flex-column">
-                <Nav.Link
-                  href="https://dictate.webinane.com/"
-                  style={{ color: "white" }}
-                >
+                <Nav.Link as={Link} to="/" style={{ color: "white" }}>
                   Home
                 </Nav.Link>
-                <Nav.Link
-                  href="https://dictate.webinane.com/shop/"
-                  style={{ color: "white" }}
-                >
+                <Nav.Link as={Link} to="/shop" style={{ color: "white" }}>
                   Shop
                 </Nav.Link>
-                <Nav.Link
-                  href="https://dictate.webinane.com/shop/"
-                  style={{ color: "white" }}
-                >
-                  Service
+                <Nav.Link as={Link} to="/services" style={{ color: "white" }}>
+                  Services
                 </Nav.Link>
-                <Nav.Link
-                  href="https://dictate.webinane.com/blog/"
-                  style={{ color: "white" }}
-                >
+                <Nav.Link as={Link} to="/blog" style={{ color: "white" }}>
                   Blog
                 </Nav.Link>
-                <Nav.Link
-                  href="https://dictate.webinane.com/shop/"
-                  style={{ color: "white" }}
-                >
+                <Nav.Link as={Link} to="/pages" style={{ color: "white" }}>
                   Pages
                 </Nav.Link>
-                <Nav.Link
-                  href="https://dictate.webinane.com/about/"
-                  style={{ color: "white" }}
-                >
+                <Nav.Link as={Link} to="/about" style={{ color: "white" }}>
                   About
                 </Nav.Link>
-                <Nav.Link
-                  href="https://dictate.webinane.com/contact/"
-                  style={{ color: "white" }}
-                >
+                <Nav.Link as={Link} to="/contact" style={{ color: "white" }}>
                   Contact
                 </Nav.Link>
               </Nav>

@@ -11,20 +11,19 @@ let serviceDetials = [
     para: "Lorem ipsum, dolor sit amet consectetur adipisicing elit Reiciendi vel",
     img: serviceimg1,
     color: "rgb(211 231 243)",
-    className: "service1 ",
+    className: "service1",
     imgclass: "serviceimage1",
-    imgres:"imgres"
+    imgres: "imgres"
   },
   {
-    heading: "vaccum Suction Therapy",
+    heading: "Vaccum Suction Therapy",
     para: "Lorem ipsum, dolor sit amet consectetur adipisicing elit Reiciendi vel",
-
     img: serviceimg2,
-    color: " rgb(251 218 222)",
+    color: "rgb(251 218 222)",
     className: "service2",
     imgclass: "serviceimage2",
     imgsize: "imgsizing",
-     imgres:"imgres"
+    imgres: "imgres"
   },
   {
     heading: "Wood/Metal Therapy",
@@ -33,7 +32,7 @@ let serviceDetials = [
     color: "#ededb2",
     className: "service3",
     imgclass: "serviceimage3",
-    imgres:"imgres"
+    imgres: "imgres"
   },
   {
     heading: "Face Therapy Service",
@@ -42,19 +41,22 @@ let serviceDetials = [
     color: "#ddd7f5",
     className: "service4",
     imgclass: "serviceimage4",
-     imgres:"imgres"
+    imgres: "imgres"
   }
 ];
+
 function Servicebox() {
   return (
-    <div className=" servicebox">
+    <div className="servicebox">
       <Row>
         <div>
           {serviceDetials.map((item, index) => {
+            const delayClass = `delay-${index}`;
             return (
               <div
                 style={{ backgroundColor: item.color }}
-                className={item.className}
+                className={`service-item ${item.className} ${delayClass}`}
+                key={index}
               >
                 <h2 className="headingbox">{item.heading}</h2>
                 <p className="boxpara">{item.para}</p>

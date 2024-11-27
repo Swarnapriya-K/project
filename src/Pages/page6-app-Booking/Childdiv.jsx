@@ -1,6 +1,6 @@
-import React from 'react'
-import { Col, Row } from 'react-bootstrap'
-import SectionSecHeader from '../components/SectionSecHeader';
+import React from "react";
+import { Col, Row } from "react-bootstrap";
+import SectionSecHeader from "../components/SectionSecHeader";
 
 function Childdiv() {
   return (
@@ -33,7 +33,7 @@ function Childdiv() {
             <h5 className="child-booking-col4"> 11:00am - 06:00pm</h5>
           </Col>
         </Row>
-        <div className='child-border-white'></div>
+        <div className="child-border-white"></div>
       </div>
     </div>
   );

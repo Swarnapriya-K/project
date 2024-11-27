@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Col, Row } from "react-bootstrap";
-import DatePicker from "react-datepicker";
+
 
 const serviceDetails = [
   {
@@ -61,8 +61,8 @@ function BookingTable() {
   const [selectedMember, setSelectedMember] = useState("");
   const [selectedDate, setSelectedDate] = useState("");
   return (
-    <div>
-      <Row>
+    <div >
+      <Row className="px-5">
         <Col>
           <select
             onChange={(e) => {

@@ -11,30 +11,7 @@
 .offerimg2 {
   width: 100%;
 }
-.nextbtn,
-.prevbtn {
-  position: absolute;
-  top: 645px;
 
-  width: 70px;
-  height: 70px;
-  border-radius: 100px;
-  border: 0px solid white;
-  opacity: 0;
-  background-color: 0, 0, 0, 0.1;
-}
-
-.nextbtn {
-  left: 1780px;
-}
-.prevbtn {
-  left: 1690px;
-}
-.carousel-item:hover .prevbtn,
-.carousel-item:hover .nextbtn {
-  transition-delay: 0.5s;
-  opacity: 1;
-}
 .textcol {
   margin-top: 85px;
   padding-left: 40px;
@@ -126,36 +103,10 @@
     margin-left: 0px;
   }
 }
-@media (max-width: 1500px) {
-  .prevbtn {
-    left: 1215px;
-  }
-  .nextbtn {
-    left: 1300px;
-  }
-}
-@media (max-width: 1110px) {
-  .prevbtn {
-      left: 830px;
-  }
-  .nextbtn {
-  
-    left: 920px;
-  }
-}
+
+
 @media (max-width: 800px) {
-  .prevbtn {
-    left: 620px;
-    top: 450px;
-    width: 60px;
-    height: 60px;
-  }
-  .nextbtn {
-    left: 690px;
-    top: 450px;
-    width: 60px;
-    height: 60px;
-  }
+  
   .circleslide {
     top: 230px;
     left: 230px;
@@ -168,10 +119,6 @@
 
 @media (max-width: 500px) {
   
-  .prevbtn,
-  .nextbtn {
-    display: none;
-  }
   .col-425{
 width: 50%;
   }

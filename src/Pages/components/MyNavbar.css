@@ -167,6 +167,30 @@ span.count {
   top: 220px;
   left: 195px;
 }
+.nextbtn,
+.prevbtn {
+  position: absolute;
+  top: 645px;
+
+  width: 70px;
+  height: 70px;
+  border-radius: 100px;
+  border: 0px solid white;
+  opacity: 0;
+  background-color: 0, 0, 0, 0.1;
+}
+
+.nextbtn {
+  left: 1780px;
+}
+.prevbtn {
+  left: 1690px;
+}
+.carousel-item:hover .prevbtn,
+.carousel-item:hover .nextbtn {
+  transition-delay: 0.5s;
+  opacity: 1;
+}
 .text1 {
   color: #f6526d;
   font-family: "Niconne";
@@ -215,6 +239,24 @@ span.count {
   .Navstyle .nav-dropdown:hover .dropdown-menu {
     display: block; /* Show dropdown on hover */
   }
+  
+}
+@media (max-width: 1500px) {
+  .prevbtn {
+    left: 1215px;
+  }
+  .nextbtn {
+    left: 1300px;
+  }
+}
+@media (max-width: 1110px) {
+  .prevbtn {
+      left: 830px;
+  }
+  .nextbtn {
+  
+    left: 920px;
+  }
 }
 @media (max-width: 900px) {
   .Navstyle {
@@ -222,6 +264,18 @@ span.count {
   }
   .appbtn {
     display: none;
+  }
+  .prevbtn {
+    left: 620px;
+    top: 450px;
+    width: 60px;
+    height: 60px;
+  }
+  .nextbtn {
+    left: 690px;
+    top: 450px;
+    width: 60px;
+    height: 60px;
   }
   .navbar-toggler span {
     position: relative;
@@ -272,6 +326,10 @@ span.count {
   .navtop {
     position: absolute;
     top: 0px;
+  }
+   .prevbtn,
+  .nextbtn {
+    display: none;
   }
   .genrl-logo img {
     width: 40%;

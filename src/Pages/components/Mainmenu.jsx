@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Container, Nav, Navbar, NavDropdown } from "react-bootstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCaretUp } from "@fortawesome/free-solid-svg-icons";
+import { Link } from "react-router-dom"; // Import Link for internal navigation
 import "./MyNavbar.css";
 
 function Mainmenu() {
@@ -27,10 +28,7 @@ function Mainmenu() {
             onMouseEnter={() => setShowHome(true)}
             onMouseLeave={() => setShowHome(false)}
           >
-            <NavDropdown.Item
-              href="https://de.com/"
-              className="dropdown-style"
-            >
+            <NavDropdown.Item as={Link} to="/" className="dropdown-style">
               <FontAwesomeIcon
                 icon={faCaretUp}
                 aria-hidden="true"
@@ -39,7 +37,8 @@ function Mainmenu() {
               Home Page 1
             </NavDropdown.Item>
             <NavDropdown.Item
-              href="#/"
+              as={Link}
+              to="/section"
               className="dropdown-style"
             >
               Home Page 2
@@ -54,10 +53,7 @@ function Mainmenu() {
             onMouseEnter={() => setShowShop(true)}
             onMouseLeave={() => setShowShop(false)}
           >
-            <NavDropdown.Item
-              href="shop/"
-              className="dropdown-style"
-            >
+            <NavDropdown.Item as={Link} to="/shop" className="dropdown-style">
               <FontAwesomeIcon
                 icon={faCaretUp}
                 aria-hidden="true"
@@ -66,13 +62,15 @@ function Mainmenu() {
               Shop
             </NavDropdown.Item>
             <NavDropdown.Item
-              href="https://dict/"
+              as={Link}
+              to="/checkout"
               className="dropdown-style"
             >
               Checkout
             </NavDropdown.Item>
             <NavDropdown.Item
-              href="https://-sofa/"
+              as={Link}
+              to="/product-detail"
               className="dropdown-style"
             >
               Product Detail
@@ -88,7 +86,8 @@ function Mainmenu() {
             onMouseLeave={() => setShowServices(false)}
           >
             <NavDropdown.Item
-              href="https://d1/"
+              as={Link}
+              to="/service1"
               className="dropdown-style"
             >
               <FontAwesomeIcon
@@ -99,19 +98,22 @@ function Mainmenu() {
               Service Style 1
             </NavDropdown.Item>
             <NavDropdown.Item
-              href="https://dictate.wetyle-2/"
+              as={Link}
+              to="/service2"
               className="dropdown-style"
             >
               Service Style 2
             </NavDropdown.Item>
             <NavDropdown.Item
-              href="httprvice-style-3/"
+              as={Link}
+              to="/service3"
               className="dropdown-style"
             >
               Service Style 3
             </NavDropdown.Item>
             <NavDropdown.Item
-              href="hterapy-service/"
+              as={Link}
+              to="/service-detail"
               className="dropdown-style"
             >
               Service Detail
@@ -127,7 +129,8 @@ function Mainmenu() {
             onMouseLeave={() => setShowBlog(false)}
           >
             <NavDropdown.Item
-              href="httpblog/"
+              as={Link}
+              to="/our-blog"
               className="dropdown-style"
             >
               <FontAwesomeIcon
@@ -138,7 +141,8 @@ function Mainmenu() {
               Our Blog
             </NavDropdown.Item>
             <NavDropdown.Item
-              href="https:/ly-a-gold-facial-mask/"
+              as={Link}
+              to="/blog-detail"
               className="dropdown-style"
             >
               Blog Detail
@@ -154,7 +158,8 @@ function Mainmenu() {
             onMouseLeave={() => setShowPages(false)}
           >
             <NavDropdown.Item
-              href="httpsintment/"
+              as={Link}
+              to="/appointment"
               className="dropdown-style"
             >
               <FontAwesomeIcon
@@ -164,14 +169,12 @@ function Mainmenu() {
               />
               Appointment
             </NavDropdown.Item>
-            <NavDropdown.Item
-              href="https:am/"
-              className="dropdown-style"
-            >
+            <NavDropdown.Item as={Link} to="/team" className="dropdown-style">
               Team
             </NavDropdown.Item>
             <NavDropdown.Item
-              href="https://dictaana-ivy/"
+              as={Link}
+              to="/team-detail"
               className="dropdown-style"
             >
               Team Detail
@@ -181,19 +184,21 @@ function Mainmenu() {
             <NavDropdown
               title={<span style={{ color: "white" }}>Gallery</span>}
               id="gallery-dropdown"
-              className="nav-dropdown px-2 dropdown-style" // Gallery styled as dropdown item
+              className="nav-dropdown px-2 dropdown-style"
               show={showGallery}
-              onClick={() => setShowGallery(!showGallery)} // Toggle dropdown on click
+              onClick={() => setShowGallery(!showGallery)}
               drop="end"
             >
               <NavDropdown.Item
-                href="https://dictllery-style-1/"
+                as={Link}
+                to="/gallery-style-1"
                 className="dropdown-style"
               >
                 Gallery Style 1
               </NavDropdown.Item>
               <NavDropdown.Item
-                href="https://dllery-style-2/"
+                as={Link}
+                to="/gallery-style-2"
                 className="dropdown-style"
               >
                 Gallery Style 2
@@ -201,20 +206,18 @@ function Mainmenu() {
             </NavDropdown>
 
             <NavDropdown.Item
-              href="https://dery/deep-tissue-massage/"
+              as={Link}
+              to="/gallery-detail"
               className="dropdown-style"
             >
               Gallery Detail
             </NavDropdown.Item>
           </NavDropdown>
 
-          <Nav.Link href="https://m/about/" className="px-2 nav-dropdown">
+          <Nav.Link as={Link} to="/about" className="px-2 nav-dropdown">
             About
           </Nav.Link>
-          <Nav.Link
-            href="https://dicontact/"
-            className="px-2"
-          >
+          <Nav.Link as={Link} to="/contact" className="px-2">
             Contact
           </Nav.Link>
         </Nav>

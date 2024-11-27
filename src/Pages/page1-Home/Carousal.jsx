@@ -1,31 +1,31 @@
-import {React,useRef} from "react";
+import { React, useRef } from "react";
 import Carousel from "react-bootstrap/Carousel";
 import Container from "react-bootstrap/Container";
 import "bootstrap/dist/css/bootstrap.min.css";
 import Hometext from "./Hometext";
-import Header from "./Navigation";
+import Header from "../components/Navigation";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faChevronRight,faChevronLeft } from "@fortawesome/free-solid-svg-icons";
-
-
-
+import {
+  faChevronRight,
+  faChevronLeft
+} from "@fortawesome/free-solid-svg-icons";
 
 function NoTransitionExample() {
-   const carouselRef = useRef(null);
+  const carouselRef = useRef(null);
 
-   // Function to go to the previous slide
-   const handlePrev = () => {
-     if (carouselRef.current) {
-       carouselRef.current.prev();
-     }
-   };
+  // Function to go to the previous slide
+  const handlePrev = () => {
+    if (carouselRef.current) {
+      carouselRef.current.prev();
+    }
+  };
 
-   // Function to go to the next slide
-   const handleNext = () => {
-     if (carouselRef.current) {
-       carouselRef.current.next();
-     }
-   };
+  // Function to go to the next slide
+  const handleNext = () => {
+    if (carouselRef.current) {
+      carouselRef.current.next();
+    }
+  };
   return (
     <Container fluid className="p-0">
       <Carousel

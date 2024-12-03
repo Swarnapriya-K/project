@@ -60,7 +60,7 @@ const LoginAdmin = () => {
 
   return (
     <div className="container-form">
-      <header id="header" className="navbar navbar-static-top">
+      <header id="header" className="navbar navbar-static-top navbar-login-style">
         <div className="header-div">
           <div id="header-logo" className="navbar-header">
             <a

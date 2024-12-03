@@ -1,0 +1,78 @@
+* {
+  padding: 0px;
+  margin: 0px;
+}
+/* Position the navigation buttons on the left and right */
+.prev-arrow,
+.next-arrow {
+  position: absolute;
+  top: 10%;
+  color: #767171;
+  width: 40px; /* Set width */
+  height: 40px; /* Set height */
+  border-radius: 50%; /* Make the buttons round */
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 10; /* Make sure buttons are above the carousel */
+  cursor: pointer; /* Make the buttons clickable */
+  font-size: 20px; /* Set the size of the arrow */
+}
+
+/* Position the "Next" button to the right */
+.next-arrow {
+  right: 10px;
+}
+
+/* Position the "Prev" button to the left */
+.prev-arrow {
+  left: 10px;
+}
+.video-icon {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 160px;
+  height: 160px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1;
+}
+
+.animation-circle {
+  content: "";
+  position: absolute;
+  top: -9px;
+  left: -9px;
+  width: 178px;
+  height: 178px;
+  border-radius: 50%;
+  border: 3px dashed white;
+  background: transparent;
+  z-index: -1;
+  animation-name: Drotate;
+  animation-duration: 49s;
+  animation-iteration-count: infinite;
+  animation-timing-function: linear;
+}
+.play-btn{
+  font-size: 60px;
+  color: white;
+}
+
+@keyframes Drotate {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+@media(max-width:1100px){
+  .prev-arrow,.next-arrow{
+    top: 4%;
+  }
+}

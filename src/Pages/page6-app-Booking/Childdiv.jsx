@@ -18,18 +18,18 @@ function Childdiv() {
           </p>
         </Row>
         <Row className="child-row3">
-          <Col style={{ color: "#F6526D" }} xl={4} lg={4}>
+          <Col style={{ color: "#F6526D" }} xl={4} lg={4} md={4} className="day-styling">
             <h5 className="child-booking-col1">Mon-Sat:</h5>
           </Col>
-          <Col xl={8} lg={8}>
+          <Col xl={8} lg={8} md={8} className="time-styling">
             <h5 className="child-booking-col2"> 10:00am - 08:00pm</h5>
           </Col>
         </Row>
         <Row className="child-row4">
-          <Col style={{ color: "#F6526D" }} xl={4} lg={4}>
+          <Col style={{ color: "#F6526D" }} xl={4} lg={4} md={4} className="day-styling">
             <h5 className="child-booking-col3">Sunday</h5>
           </Col>
-          <Col xl={8} lg={8}>
+          <Col xl={8} lg={8} md={8} className="time-styling">
             <h5 className="child-booking-col4"> 11:00am - 06:00pm</h5>
           </Col>
         </Row>

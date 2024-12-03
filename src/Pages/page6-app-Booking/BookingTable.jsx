@@ -61,46 +61,83 @@ function BookingTable() {
   const [selectedMember, setSelectedMember] = useState("");
   const [selectedDate, setSelectedDate] = useState("");
   return (
-    <div >
-      <Row className="px-5">
-        <Col>
-          <select
-            onChange={(e) => {
-              console.log(e.target.value);
-              setSelectedService(e.target.value);
-              setSelectedMember("");
-            }}
-          >
-            <option value={""}>Select Service</option>
-            {serviceDetails.map((serviceDetail) => {
-              return (
-                <option value={serviceDetail.serviceNames}>
-                  {serviceDetail.serviceName}
-                </option>
-              );
-            })}
-          </select>
-          {selectedService && (
-            <select>
-              <option value={""}>Select Members</option>
-              {serviceDetails
-                .filter((item) => item.serviceName === selectedService)[0]
-                .serviceMembers.map((member) => {
-                  return <option value={member}>{member}</option>;
-                })}
-            </select>
-          )}
-         <input class="" type="date" name="" placeholder="Choose Date"></input>
-         <button onClick="">Continue</button>
+    <div>
+      <Row className=" table-head">
+        <Col xl={4} lg={4} md={4} sm={4} className="tb-h1">
+          <h4 className="header-text">1.Service & Date</h4>
         </Col>
-        <Col></Col>
-        <Col></Col>
-        <Col></Col>
+        <Col xl={3} lg={3} md={3} sm={3} className="tb-h2">
+          <h4 className="header-text">2.Time</h4>
+        </Col>
+        <Col xl={3} lg={3} md={3} sm={3} className="tb-h3">
+          <h4 className="header-text">3.Details</h4>
+        </Col>
+        <Col xl={2} lg={2} md={2} sm={3} className="tb-h4">
+          <h4 className="header-text"> 4.Done</h4>
+        </Col>
       </Row>
-      <Row>
-        <Col></Col>
-        <Col></Col>
-        <Col></Col>
+      <Row
+        style={{
+          paddingTop: "10px",
+          paddingBottom: "20px",
+          backgroundColor: "white"
+        }}
+      >
+        <Col xl={12}>
+          <Row style={{ marginTop: "20px" }}>
+            <Col xl={4} lg={3} md={3}>
+              <label htmlFor="">Select Service *</label>
+            </Col>
+            <Col xl={8} lg={9} md={9}>
+              <select
+                style={{ width: "100%", height: "50px" }}
+                onChange={(e) => {
+                  console.log(e.target.value);
+                  setSelectedService(e.target.value);
+                  setSelectedMember("");
+                }}
+              >
+                <option value={""}>Select Service</option>
+                {serviceDetails.map((serviceDetail) => {
+                  return (
+                    <option value={serviceDetail.serviceNames}>
+                      {serviceDetail.serviceName}
+                    </option>
+                  );
+                })}
+              </select>
+              {selectedService && (
+                <select>
+                  <option value={""}>Select Members</option>
+                  {serviceDetails
+                    .filter((item) => item.serviceName === selectedService)[0]
+                    .serviceMembers.map((member) => {
+                      return <option value={member}>{member}</option>;
+                    })}
+                </select>
+              )}
+            </Col>
+          </Row>
+          <Row style={{ marginTop: "20px", position: "relative" }}>
+            <Col xl={4} lg={3} md={3}>
+              <label htmlFor="">Select Date*</label>
+            </Col>
+            <Col xl={8} lg={9} md={9}>
+              <input
+                style={{ width: "100%", height: "50px" }}
+                type="date"
+                name=""
+                placeholder="Choose Date"
+              ></input>
+            </Col>
+          </Row>
+          <Row className="btn-row">
+            <button className="continue-btn" onClick="">
+              Continue
+            </button>
+          </Row>
+          <div style={{}}></div>
+        </Col>
       </Row>
     </div>
   );

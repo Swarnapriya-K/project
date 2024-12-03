@@ -4,7 +4,7 @@ import BookingTable from "./BookingTable";
 
 function Colright() {
   return (
-    <div>
+    <div className="right-colmn">
       <div className="booking-text">
         <SectionSecHeader subtitle={"Book Today"} />
         <h1 className="booking-txt2">Make An Appointment</h1>

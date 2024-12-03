@@ -1,0 +1,209 @@
+* {
+  padding: 0px;
+  margin: 0px;
+}
+
+.img-banner {
+  position: relative;
+}
+.offer-div-container {
+  position: absolute;
+  bottom: 83px;
+  left: 40px;
+  width: 100%;
+}
+.img-banner img {
+  width: 100%;
+}
+.package-text {
+  font-size: 20px;
+  font-weight: 400;
+  text-align: center;
+}
+.offer-text {
+  text-align: center;
+  font-size: 34px;
+}
+.gift-button {
+  width: 44%;
+  height: 61px;
+  border: none;
+}
+.button-text {
+  font-size: 15px;
+  color: white;
+}
+.offer-inner-container {
+  width: 80%;
+  margin-left: 30px;
+  margin-top: 35px;
+}
+.offer-row1 {
+  padding: 30px 80px 0px 80px;
+}
+.offer-row2 {
+  padding: 10px 0px 0px 0px;
+}
+.offer-row3 {
+  display: flex;
+  justify-content: center;
+  padding: 20px 0px 45px 0px;
+}
+.email-main-container {
+  margin-top: -170px;
+}
+.email-container {
+  background-image: url(../images/Layer-19.jpg);
+  height: 700px;
+}
+.inner-email-container {
+  padding-top: 270px;
+}
+.message-box-div {
+  border: 1px solid black;
+  border-radius: 50%;
+  width: 80px;
+  height: 80px;
+  padding: 18px;
+}
+.message-box {
+  font-size: 40px;
+}
+.mail-row-1 {
+  justify-content: center;
+}
+.mail-row-2 {
+  text-align: center;
+  margin-top: 30px;
+}
+.mail-row-3 {
+  text-align: center;
+}
+.mail-text {
+  font-size: 17px;
+  font-weight: 400;
+}
+.email-input-box {
+  width: 60%;
+  height: 65px;
+  background-color: white;
+  border-radius: 100px;
+  border: 0px;
+}
+.email-box-div {
+  display: flex;
+  justify-content: center;
+  margin-top: 40px;
+}
+.email-input-text-styling {
+  text-align: start;
+  padding-left: 45px;
+  font-size: 19px;
+  font-weight: 300;
+}
+.subscribe-btn {
+  width: 17%;
+  height: 60px;
+  border-radius: 100px;
+  position: absolute;
+  right: 271px;
+  bottom: 2px;
+  background-color: #f6526d;
+  border: 0px;
+  color: white;
+  font-weight: 400;
+}
+@media (max-width: 1024px) {
+  .offer-div-container {
+    left: 200px;
+    width: 65%;
+    bottom: 197px;
+  }
+  .img-banner {
+    margin-top: 20px;
+  }
+
+  .subscribe-btn {
+    width: 18%;
+    right: 200px;
+  }
+}
+@media (max-width: 768px) {
+  .offer-div-container {
+    left: 82px;
+    width: 86%;
+    bottom: 94px;
+  }
+  .email-input-box {
+    width: 80%;
+  }
+  .subscribe-btn {
+    width: 27%;
+    right: 85px;
+  }
+}
+@media (max-width: 425px) {
+  .offer-main-container {
+    padding: 0px 10px;
+  }
+  .offer-inner-container {
+    margin-left: 0px;
+    width: 100%;
+  }
+  .offer-div-container {
+    width: 80%;
+  }
+  .offer-row1 {
+    padding: 30px 0px 0px 0px;
+  }
+  .package-text {
+    font-size: 15px;
+    font-weight: 300;
+  }
+  .offer-text {
+    font-size: 25px;
+  }
+  .gift-button {
+    width: 71%;
+    height: 50px;
+    border: none;
+  }
+  .offer-div-container {
+    left: 24px;
+    width: 90%;
+    bottom: 25px;
+  }
+  .img-banner {
+    margin-top: 50px;
+  }
+  .email-input-box {
+    width: 100%;
+    height: 50px;
+  }
+  .subscribe-btn {
+    width: 45%;
+    right: 107px;
+    bottom: -69px;
+    height: 50px;
+  }
+}
+@media (max-width: 375px) {
+  .offer-div-container {
+    left: 24px;
+    width: 85%;
+    bottom: 3px;
+  }
+}
+@media (max-width: 320px) {
+  .subscribe-btn {
+    right: 90px;
+  }
+  .email-input-text-styling {
+    font-size: 15px;
+  }
+  .offer-div-container {
+    left: 16px;
+    width: 90%;
+    bottom: -24px;
+  }
+}

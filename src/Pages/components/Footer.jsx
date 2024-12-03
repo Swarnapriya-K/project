@@ -10,9 +10,10 @@ import { FaEnvelope } from "react-icons/fa";
 import { FaMobile } from "react-icons/fa";
 import "./footer.css";
 
-export const Footer = () => {
+export const Footer = ({id}) => {
   return (
     <Container style={{ paddingTop: "50px" }}>
+      <h1>{id}</h1>
       <Row className="mb-5 header-row">
         <Col xl={6} lg={6} md={6} sm={12}>
           <img src={logoimg} alt="" />

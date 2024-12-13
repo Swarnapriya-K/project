@@ -1,39 +1,41 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import { Container, Row, Col, Form, Button, Alert } from "react-bootstrap";
 import { FaUser, FaLock, FaKey } from "react-icons/fa";
 import adminlogo from "../images/admin-logo.png";
 import "./Loginpage.css";
-import { Navigate, useNavigate } from "react-router";
+import { useNavigate } from "react-router";
+import { AuthContext } from "../../context/AuthContext";
 
-const LoginAdmin = () => {
+const LoginAdmin = ({ setIsLoggedIn }) => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
+
+  const { login } = useContext(AuthContext);
+  const navigate = useNavigate(); // Correct use of useNavigate
 
   const usernameRegex = /^[a-zA-Z0-9]{6,}$/;
   const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{6,}$/;
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    console.log(e.target);
 
     if (!username && !password) {
       setError("Please fill both fields");
       return;
     }
 
-    // Check if username is empty
     if (username === "") {
       setError("Please fill the username field");
       return;
     }
 
-    // Check if password is empty
     if (password === "") {
       setError("Please fill the password field");
       return;
     }
 
-    // Username validation (alphanumeric, at least 3 characters)
     if (!usernameRegex.test(username)) {
       setError(
         "Username must be at least 6 characters long and only contain letters and numbers."
@@ -41,26 +43,25 @@ const LoginAdmin = () => {
       return;
     }
 
-    // Password validation (at least 6 characters, 1 uppercase, 1 lowercase, 1 digit)
     if (!passwordRegex.test(password)) {
       setError(
         "Password must be at least 6 characters long, include at least one uppercase letter, one lowercase letter, and one digit."
       );
       return;
     }
-    else{
-      Navigate("/Dashboard");
-    }
 
     setError("");
     console.log("Logged in:", { username, password });
-     
-    
+    login();
+    navigate("/admin/");
   };
 
   return (
     <div className="container-form">
-      <header id="header" className="navbar navbar-static-top navbar-login-style">
+      <header
+        id="header"
+        className="navbar navbar-static-top navbar-login-style"
+      >
         <div className="header-div">
           <div id="header-logo" className="navbar-header">
             <a
@@ -130,7 +131,11 @@ const LoginAdmin = () => {
                     </Form.Group>
 
                     <div className="text-right">
-                      <Button variant="primary" type="submit">
+                      <Button
+                        variant="primary"
+                        type="submit"
+                        className="btn-styling"
+                      >
                         <FaKey /> Login
                       </Button>
                     </div>

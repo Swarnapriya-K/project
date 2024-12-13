@@ -1,0 +1,214 @@
+* {
+  padding: 0px;
+  margin: 0px;
+}
+.colmleft {
+  padding: 0px;
+  width: 238px;
+}
+.Nav-sec {
+  color: white;
+  /* background-color: #19222e; */
+  /* font-size: 13px; */
+  width: 235px;
+}
+.List-Dashboard {
+  background-color: #2b3642;
+  padding-left: 0px;
+  height: 885px;
+  margin-bottom: 0px;
+}
+.List-Dashboard li {
+  font-size: 14px;
+  color: #b3cbdd;
+  padding: 9px 21px;
+  border-bottom: 0px solid #585858;
+  list-style: none;
+}
+.List-Dashboard li span {
+  padding-right: 10px;
+}
+.Sidebar-Link {
+  text-decoration: none;
+  color: inherit;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.sidebar-nav {
+  color: white;
+  text-decoration: none;
+  font-size: 12px;
+}
+.colmright {
+  width: 87%;
+}
+.col-xl-3-colm {
+  width: 13%;
+}
+.Admin-sidebar {
+  text-decoration: none;
+  list-style: none;
+  display: flex;
+  margin-top: 23px;
+  font-size: 15px;
+  gap: 16px;
+  color: black;
+}
+.gear-btn-div {
+  text-align: end;
+}
+.gear-btn {
+  width: 43px;
+  height: 35px;
+  background-color: #85c1e3;
+  color: white;
+  border: 0px;
+  margin-top: 20px;
+}
+.hr-line-design {
+  margin: 5px -21px;
+}
+.Details-cards {
+  margin-top: 25px;
+  padding: 10px;
+}
+.card-inner-div {
+  width: 95%;
+}
+.catagory-name {
+  font-size: 12px;
+  color: white;
+  margin-bottom: 0px;
+}
+.card-percentage {
+  text-align: end;
+  font-size: 13px;
+  margin-bottom: 0px;
+}
+.card-count {
+  text-align: end;
+}
+.card-row1 {
+  background-color: #2b8fc7;
+  color: white;
+  padding: 4px 0px;
+}
+.card-row2 {
+  padding: 15px 5px 31px 4px;
+  background-color: #49a5e3;
+  color: white;
+}
+.card-row3 {
+  background-color: #0cbdef;
+  color: white;
+}
+.card-footer-text {
+  font-size: 13px;
+}
+.card-icon {
+  font-size: 50px;
+  opacity: 0.3;
+  transition: all 1s;
+  color: white;
+}
+.Analytic-page {
+  margin-top: 30px;
+  padding: 10px;
+}
+.map-div {
+  background-color: white;
+  border: 1px solid rgb(245 237 237);
+}
+.map-img {
+  width: 100%;
+  height: 360px;
+}
+.sale-analaytic {
+  width: 100%;
+  height: 360px;
+}
+.sidebar-dropdown {
+  padding-left: 0px;
+}
+.dropdown-arrow {
+  transition: transform 0.3s ease;
+  transform: rotate(270deg); /* Initially facing right */
+  font-size: 10px;
+  margin-left: 75px;
+  margin-top: 3px;
+}
+.dropdown-arrow.rotate {
+  transform: rotate(360deg); /* Rotate downwards */
+}
+.Sidebar-Link:hover {
+  background-color: #757575;
+}
+
+/* --------------------------------SERVICE STYLING-------------------------------------------------- */
+.Service-Container {
+  background-color: rgba(117, 119, 119, 0.116);
+}
+.Service-Row-Style {
+  padding: 4px 0px;
+}
+.hr-line-design2 {
+  margin: 5px -21px;
+  font-weight: 100px;
+  color: #cfc0c0;
+}
+.icons-colmn {
+  display: flex;
+  justify-content: end;
+  margin-top: 14px;
+}
+.add-btn,
+.ref-btn,
+.del-btn {
+  width: 35px;
+  height: 35px;
+  border: 0px;
+  border-radius: 2px;
+  margin-left: 5px;
+}
+.add-btn {
+  color: #fff;
+  background-color: #1e91cf;
+}
+.addicon {
+  color: white;
+  font-size: 15px;
+}
+.ref-btn {
+  background-color: white;
+}
+.reficon {
+  color: rgb(0, 0, 0);
+  font-size: 15px;
+}
+.del-btn {
+  background-color: red;
+}
+.delicon {
+  color: white;
+}
+.service-list-Container {
+  padding: 15px 35px;
+}
+.Service-inner-row {
+  border: 1px solid black;
+  padding: 8px 5px;
+}
+.servicelist-icon{
+  width: 20px;
+}
+.edit-btn {
+    width: 33px;
+    height: 33px;
+    border-radius: 3px;
+    background-color: #4b9fe3;
+    color: white;
+    border: 0px;
+    font-size: 15px;
+}
+

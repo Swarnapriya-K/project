@@ -14,7 +14,7 @@ const LoginAdmin = ({ setIsLoggedIn }) => {
   const { login } = useContext(AuthContext);
   const navigate = useNavigate(); // Correct use of useNavigate
 
-  const usernameRegex = /^[a-zA-Z0-9]{6,}$/;
+  const usernameRegex = /^[a-zA-Z0-9]{3,}$/;
   const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{6,}$/;
 
   const handleSubmit = (e) => {
@@ -43,16 +43,16 @@ const LoginAdmin = ({ setIsLoggedIn }) => {
       return;
     }
 
-    if (!passwordRegex.test(password)) {
-      setError(
-        "Password must be at least 6 characters long, include at least one uppercase letter, one lowercase letter, and one digit."
-      );
-      return;
-    }
+    // if (!passwordRegex.test(password)) {
+    //   setError(
+    //     "Password must be at least 6 characters long, include at least one uppercase letter, one lowercase letter, and one digit."
+    //   );
+    //   return;
+    // }
 
     setError("");
     console.log("Logged in:", { username, password });
-    login();
+    login(username, password);
     navigate("/admin/");
   };
 

@@ -1,0 +1,14 @@
+.rowsection{
+  background-image: url(../images/slide-1-1.jpg);
+  opacity: 0.5;
+  padding: 140px 50px;
+}
+.checkout-text{
+    padding-top: 51px;
+    color: red;
+    font-size: 70px;
+}
+.home-link{
+  padding-top: 20px;
+  margin-left: 20px;
+}

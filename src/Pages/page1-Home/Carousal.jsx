@@ -37,7 +37,7 @@ function NoTransitionExample() {
       >
         <Carousel.Item>
           <div className="bg-img1">
-            <Header />
+            {/* <Header /> */}
             <Hometext />
 
             <button type="button" className="nextbtn" onClick={handleNext}>
@@ -57,7 +57,7 @@ function NoTransitionExample() {
 
         <Carousel.Item>
           <div className="bg-img2">
-            <Header />
+            {/* <Header /> */}
             <Hometext />
             <button type="button" className="nextbtn" onClick={handleNext}>
               <FontAwesomeIcon
@@ -76,7 +76,7 @@ function NoTransitionExample() {
 
         <Carousel.Item>
           <div className="bg-img3">
-            <Header />
+            {/* <Header /> */}
             <Hometext />
             <button type="button" className="nextbtn" onClick={handleNext}>
               <FontAwesomeIcon

@@ -1,9 +1,10 @@
 import React from "react";
-import { Container, Row, Col,OverlayTrigger,Tooltip } from "react-bootstrap";
+import { Container, Row, Col, OverlayTrigger, Tooltip } from "react-bootstrap";
 import { Link } from "react-router-dom"; // Correct import for react-router-dom
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCopy, faPlus, faTrash } from "@fortawesome/free-solid-svg-icons";
 import ProductsList from "./ProductsList";
+import AddProduct from "./AddProductContainer";
 
 const Services = () => {
   return (
@@ -29,9 +30,9 @@ const Services = () => {
                 placement="top" // Tooltip will appear on top of the button
                 overlay={<Tooltip>Add New</Tooltip>}
               >
-                <button className="add-btn">
+                <Link to={"/admin/products/add-product"} className="add-btn">
                   <FontAwesomeIcon icon={faPlus} className="addicon" />
-                </button>
+                </Link>
               </OverlayTrigger>
               <OverlayTrigger
                 placement="top" // Tooltip will appear on top of the button

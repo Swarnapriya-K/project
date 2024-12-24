@@ -29,7 +29,8 @@ const SideBarItems = [
     className: "has-dropdown",
     subItems: [
       { itemName: "Services", path: "/admin/services" },
-      { itemName: "Products", path: "/admin/products" }
+      { itemName: "Products", path: "/admin/products" },
+      { itemName: "Orders", path: "/admin/orders" }
     ]
   }
 ];

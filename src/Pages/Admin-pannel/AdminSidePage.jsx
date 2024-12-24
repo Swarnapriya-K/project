@@ -11,10 +11,10 @@ function AdminSidePage() {
     <div style={{padding:"10px"}} >
     
       <Row>
-        <Col xl={3} className="col-xl-3-colm">
+        <Col xl={3} lg={3} className="col-xl-3-colm">
           <h1 style={{ fontweight: "300"}}>Dashboard</h1>
         </Col>
-        <Col xl={5}>
+        <Col xl={5} lg={5} md={5}>
           <ul>
             <Link className="Admin-sidebar">
               <li>Home</li>

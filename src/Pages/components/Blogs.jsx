@@ -8,9 +8,6 @@ function Blogs() {
   return (
     <>
       <div>
-        <Header />
-      </div>
-      <div>
         <NewsArticleContainer />
       </div>
 

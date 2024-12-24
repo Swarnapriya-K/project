@@ -1,8 +1,8 @@
 import React from "react";
-import { Container, Row, Col,OverlayTrigger,Tooltip } from "react-bootstrap";
-import { Link } from "react-router-dom"; 
+import { Container, Row, Col, OverlayTrigger, Tooltip } from "react-bootstrap";
+import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faPlus , faRefresh, faTrash } from "@fortawesome/free-solid-svg-icons";
+import { faPlus, faRefresh, faTrash } from "@fortawesome/free-solid-svg-icons";
 import ServiceList from "./ServiceList";
 
 const Services = () => {
@@ -26,15 +26,15 @@ const Services = () => {
             </Col>
             <Col className="icons-colmn">
               <OverlayTrigger
-                placement="top" 
+                placement="top"
                 overlay={<Tooltip>Add New</Tooltip>}
               >
-                <button className="add-btn">
+                <Link to={"/admin/services/add-service"} className="add-btn">
                   <FontAwesomeIcon icon={faPlus} className="addicon" />
-                </button>
+                </Link>
               </OverlayTrigger>
               <OverlayTrigger
-                placement="top" 
+                placement="top"
                 overlay={<Tooltip>Rebuild</Tooltip>}
               >
                 <button className="ref-btn">
@@ -42,7 +42,7 @@ const Services = () => {
                 </button>
               </OverlayTrigger>
               <OverlayTrigger
-                placement="top" 
+                placement="top"
                 overlay={<Tooltip>Delete</Tooltip>}
               >
                 <button className="del-btn">

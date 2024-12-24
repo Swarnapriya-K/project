@@ -18,21 +18,22 @@ import "../Pages/page8-newsArticle/article.css";
 import PackageOffer from "../Pages/page9-package-offer/PackageOffer";
 import "../Pages/page9-package-offer/offerPackage.css";
 import { Footer } from "../Pages/components/Footer";
+import CheckoutComponent from "./components/CheckoutComponent";
 
 function AllPages() {
   return (
     <div className="app">
-     <Home/>
-    <Sec2home/>
-    <Servicepage/>
-    <PackageList/>
-    <HorizontalScroll/>
-    <BookingSlot/>
-    <SwiperCarousal/>
-    <VimeoVideo/>
-    <NewsArticleContainer/>
-    <PackageOffer/>
-    <Footer/>
+      <Home />
+      <Sec2home />
+      <Servicepage />
+      <PackageList />
+      <HorizontalScroll />
+      <BookingSlot />
+      <SwiperCarousal />
+      <VimeoVideo />
+      <NewsArticleContainer />
+      <PackageOffer />
+      <Footer />
     </div>
   );
 }

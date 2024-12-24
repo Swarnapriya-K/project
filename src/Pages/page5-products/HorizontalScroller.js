@@ -1,19 +1,18 @@
-import {React} from 'react'
+import { React } from "react";
 
-
-import SectionHeader from '../components/SectionHeader'
+import SectionHeader from "../components/SectionHeader";
 import picture1 from "../images/Massage-creeem.png";
 import picture2 from "../images/almond.png";
 import picture3 from "../images/black-sofa.png";
-import picture4  from"../images/stretch-cream.png";
-import picture5 from"../images/massage-oil.png";
-import picture6 from"../images/body-lotion.png";
-import picture7 from"../images/sofa.png"
-import picture8 from"../images/free-lotion.png"
-import picture9 from"../images/nivea.png"
-import picture10 from"../images/table.png"
-import ProductCards from './ProductCards';
-import { Container } from 'react-bootstrap';
+import picture4 from "../images/stretch-cream.png";
+import picture5 from "../images/massage-oil.png";
+import picture6 from "../images/body-lotion.png";
+import picture7 from "../images/sofa.png";
+import picture8 from "../images/free-lotion.png";
+import picture9 from "../images/nivea.png";
+import picture10 from "../images/table.png";
+import ProductCards from "./ProductCards";
+import { Container } from "react-bootstrap";
 
 const products = [
   {
@@ -91,10 +90,8 @@ const products = [
 ];
 
 function HorizontalScroller() {
-  console.log(products[0]);
-  
   return (
-    <div className='products-page'>
+    <div className="products-page">
       <SectionHeader title={"Beauty Products"} subtitle={"Need an awsome"} />
       <Container>
         <ProductCards products={products} />
@@ -103,4 +100,4 @@ function HorizontalScroller() {
   );
 }
 
-export default HorizontalScroller
+export default HorizontalScroller;

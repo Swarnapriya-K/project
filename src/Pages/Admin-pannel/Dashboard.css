@@ -144,6 +144,10 @@
 .Sidebar-Link:hover {
   background-color: #757575;
 }
+.map-heading{
+    border: 1px solid  #e8e4e4;
+    padding: 6px 18px;
+}
 
 /* --------------------------------SERVICE STYLING-------------------------------------------------- */
 .Service-Container {
@@ -176,8 +180,9 @@
   background-color: #1e91cf;
 }
 .addicon {
-  color: white;
-  font-size: 15px;
+    color: white;
+    font-size: 22px;
+    padding: 7px;
 }
 .ref-btn {
   background-color: white;
@@ -210,5 +215,31 @@
     color: white;
     border: 0px;
     font-size: 15px;
+}
+
+
+a[href="#logout"] {
+  text-decoration: none;
+}
+
+
+@media(max-width:1440px){
+  .col-xl-3-colm {
+    width: 17%;
+}
+}
+@media (max-width: 1024px) {
+    .col-xl-3-colm {
+        width: 22%;
+    }
+}
+@media (max-width: 768px) {
+    .col-xl-3-colm {
+        width: 30%;
+    }
+    .card-col{
+      width: 50%;
+      margin-top: 20px;
+    }
 }
 

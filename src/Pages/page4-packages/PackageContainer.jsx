@@ -1,11 +1,8 @@
 import React from "react";
 
-
 const PackageContainer = ({ selectedPackage }) => {
-  console.log(selectedPackage.packageDetails)
-  
   return (
-    <div style={{ position: "relative"}} >
+    <div style={{ position: "relative" }}>
       <div className="imgstyle">
         <img
           style={{ width: "100%" }}

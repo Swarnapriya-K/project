@@ -20,31 +20,9 @@ function Mainmenu() {
         className="genrl-main-menu d-flex justify-content-center"
       >
         <Nav className="Navstyle">
-          <NavDropdown
-            title="Home"
-            id="home-dropdown"
-            className="nav-dropdown px-2"
-            show={showHome}
-            onMouseEnter={() => setShowHome(true)}
-            onMouseLeave={() => setShowHome(false)}
-          >
-            <NavDropdown.Item as={Link} to="/" className="dropdown-style">
-              <FontAwesomeIcon
-                icon={faCaretUp}
-                aria-hidden="true"
-                className="caretup"
-              />
-              Home Page 1
-            </NavDropdown.Item>
-            <NavDropdown.Item
-              as={Link}
-              to="/section"
-              className="dropdown-style"
-            >
-              Home Page 2
-            </NavDropdown.Item>
-          </NavDropdown>
-
+          <Nav.Link as={Link} to="/" className="px-2 nav-dropdown">
+            Home
+          </Nav.Link>
           <NavDropdown
             title="Shop"
             id="shop-dropdown"
@@ -87,7 +65,7 @@ function Mainmenu() {
           >
             <NavDropdown.Item
               as={Link}
-              to="/service1"
+              to="/service"
               className="dropdown-style"
             >
               <FontAwesomeIcon
@@ -97,27 +75,7 @@ function Mainmenu() {
               />
               Service Style 1
             </NavDropdown.Item>
-            <NavDropdown.Item
-              as={Link}
-              to="/service2"
-              className="dropdown-style"
-            >
-              Service Style 2
-            </NavDropdown.Item>
-            <NavDropdown.Item
-              as={Link}
-              to="/service3"
-              className="dropdown-style"
-            >
-              Service Style 3
-            </NavDropdown.Item>
-            <NavDropdown.Item
-              as={Link}
-              to="/service-detail"
-              className="dropdown-style"
-            >
-              Service Detail
-            </NavDropdown.Item>
+            
           </NavDropdown>
 
           <NavDropdown
@@ -140,13 +98,7 @@ function Mainmenu() {
               />
               Our Blog
             </NavDropdown.Item>
-            <NavDropdown.Item
-              as={Link}
-              to="/blog-detail"
-              className="dropdown-style"
-            >
-              Blog Detail
-            </NavDropdown.Item>
+            
           </NavDropdown>
 
           <NavDropdown
@@ -196,22 +148,10 @@ function Mainmenu() {
               >
                 Gallery Style 1
               </NavDropdown.Item>
-              <NavDropdown.Item
-                as={Link}
-                to="/gallery-style-2"
-                className="dropdown-style"
-              >
-                Gallery Style 2
-              </NavDropdown.Item>
+             
             </NavDropdown>
 
-            <NavDropdown.Item
-              as={Link}
-              to="/gallery-detail"
-              className="dropdown-style"
-            >
-              Gallery Detail
-            </NavDropdown.Item>
+           
           </NavDropdown>
 
           <Nav.Link as={Link} to="/about" className="px-2 nav-dropdown">

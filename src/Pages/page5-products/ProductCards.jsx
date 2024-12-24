@@ -3,9 +3,12 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/pagination";
 import "./HorizontalScroll.css";
-import { FaShoppingBasket } from "react-icons/fa"; 
+import { FaShoppingBasket } from "react-icons/fa";
 import { FaStar } from "react-icons/fa";
+import { useDispatch } from "react-redux";
+import { addProduct } from "../../features/basketSlice";
 const ProductCards = ({ products }) => {
+  const dispatch = useDispatch();
   return (
     <Swiper
       style={{ paddingBottom: "190px" }}
@@ -60,7 +63,7 @@ const ProductCards = ({ products }) => {
                   aria-label="Rated 5.00 out of 5"
                 >
                   <span>
-                    <div style={{ display: "flex"}}>
+                    <div style={{ display: "flex" }}>
                       {Array(5)
                         .fill(null)
                         .map((_, index) => (
@@ -87,9 +90,10 @@ const ProductCards = ({ products }) => {
               </Row>
               {/* Shopping basket button */}
               <Button
-               variant="none"
+                variant="none"
                 className="shopping-basket"
                 title="Add to Basket"
+                onClick={() => dispatch(addProduct(item))}
               >
                 <FaShoppingBasket />
               </Button>

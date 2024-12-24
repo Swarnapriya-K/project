@@ -84,22 +84,13 @@ const packageDetails = [
   }
 ];
 
-
-console.log(packageDetails[4].packageName)
-
-let selected = packageDetails.filter((item) => item.id === 3)[0]
-console.log(selected)
-
 function PackageList() {
-
-
   const [activestate, setactivestate] = useState(0);
-  const [selectedPackage, setSelectedPackage] = useState(packageDetails[0])
+  const [selectedPackage, setSelectedPackage] = useState(packageDetails[0]);
 
   const handlePackageClick = (id) => {
     setactivestate(id);
     setSelectedPackage(packageDetails.filter((item) => item.id === id)[0]);
-    
   };
   return (
     <Container fluid className="package-container">

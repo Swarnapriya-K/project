@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import {
   Container,
   Row,
@@ -12,6 +12,9 @@ import { Link } from "react-router-dom"; // Import Link from react-router-dom
 import Mainmenu from "./Mainmenu";
 import Shopbaskat from "./Shopbaskat";
 import "./MyNavbar.css";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faSignOut } from "@fortawesome/free-solid-svg-icons";
+import { AuthContext } from "../../context/AuthContext";
 
 function Header() {
   const [showOffcanvas, setShowOffcanvas] = useState(false);
@@ -19,6 +22,8 @@ function Header() {
   const toggleOffcanvas = () => {
     setShowOffcanvas((prev) => !prev);
   };
+
+  const { logout } = useContext(AuthContext);
 
   return (
     <Container fluid className="g-0" style={{ position: "relative" }}>
@@ -58,6 +63,10 @@ function Header() {
                   <Shopbaskat />
                 </Col>
               </Row>
+              {/* <button style={{ all: "unset", marginLeft:"20px" }} onClick={() => logout()}>
+                <FontAwesomeIcon icon={faSignOut} />
+                Logout
+              </button> */}
             </Container>
           </Navbar>
 
@@ -81,7 +90,7 @@ function Header() {
                 <Nav.Link as={Link} to="/services" style={{ color: "white" }}>
                   Services
                 </Nav.Link>
-                <Nav.Link as={Link} to="/blog" style={{ color: "white" }}>
+                <Nav.Link as={Link} to="/our-blog" style={{ color: "white" }}>
                   Blog
                 </Nav.Link>
                 <Nav.Link as={Link} to="/pages" style={{ color: "white" }}>

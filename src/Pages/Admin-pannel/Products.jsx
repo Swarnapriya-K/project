@@ -1,12 +1,54 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { Container, Row, Col, OverlayTrigger, Tooltip } from "react-bootstrap";
 import { Link } from "react-router-dom"; // Correct import for react-router-dom
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCopy, faPlus, faTrash } from "@fortawesome/free-solid-svg-icons";
 import ProductsList from "./ProductsList";
-import AddProduct from "./AddProductContainer";
+import axios from "axios";
+import { BASEURL } from "../../config/config";
 
-const Services = () => {
+const Products = () => {
+  const [products, setProducts] = useState([]);
+  const [selectedProducts, setSelectedProducts] = useState([]);
+  const token = localStorage.getItem("token");
+
+  const fetchProducts = async () => {
+    try {
+      const response = await axios.get(`${BASEURL}/products/get-products`, {
+        headers: {
+          Authorization: `Bearer ${token}`
+        }
+      });
+      setProducts(response.data.products);
+      // setMessage(responseJson);
+      // setOrderPlaced(true);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+  useEffect(() => {
+    fetchProducts();
+  }, []);
+  const deleteMultipleProducts = async (productIds) => {
+    try {
+      const response = await axios.delete(
+        `${BASEURL}/products/delete-products`,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`
+          },
+          data: { ids: productIds }
+        }
+      );
+      console.log(response);
+      fetchProducts();
+    } catch (error) {
+      console.error(
+        "Error deleting products:",
+        error.response?.data?.message || error.message
+      );
+    }
+  };
   return (
     <>
       <div>
@@ -30,7 +72,11 @@ const Services = () => {
                 placement="top" // Tooltip will appear on top of the button
                 overlay={<Tooltip>Add New</Tooltip>}
               >
-                <Link to={"/admin/products/add-product"} className="add-btn">
+                <Link
+                  to={"/admin/products/add-product"}
+                  className="add-btn"
+                  // state={{ name: "dharanidharan" }}
+                >
                   <FontAwesomeIcon icon={faPlus} className="addicon" />
                 </Link>
               </OverlayTrigger>
@@ -46,7 +92,10 @@ const Services = () => {
                 placement="top" // Tooltip will appear on top of the button
                 overlay={<Tooltip>Delete</Tooltip>}
               >
-                <button className="del-btn">
+                <button
+                  className="del-btn"
+                  onClick={() => deleteMultipleProducts(selectedProducts)}
+                >
                   <FontAwesomeIcon icon={faTrash} className="delicon" />
                 </button>
               </OverlayTrigger>
@@ -55,7 +104,11 @@ const Services = () => {
 
           <hr className="hr-line-design2" />
           <Row>
-            <ProductsList />
+            <ProductsList
+              selectedProducts={selectedProducts}
+              setSelectedProducts={setSelectedProducts}
+              products={products}
+            />
           </Row>
         </Container>
       </div>
@@ -63,4 +116,4 @@ const Services = () => {
   );
 };
 
-export default Services;
+export default Products;

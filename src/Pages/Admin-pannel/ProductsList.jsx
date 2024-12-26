@@ -2,110 +2,7 @@ import React, { useState } from "react";
 import { Col, Row, Table, Tooltip, OverlayTrigger } from "react-bootstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faList, faPencil } from "@fortawesome/free-solid-svg-icons";
-import picture1 from "../images/Massage-creeem.png";
-import picture2 from "../images/almond.png";
-import picture3 from "../images/black-sofa.png";
-import picture4 from "../images/stretch-cream.png";
-import picture5 from "../images/massage-oil.png";
-import picture6 from "../images/body-lotion.png";
-import picture7 from "../images/sofa.png";
-import picture8 from "../images/free-lotion.png";
-import picture9 from "../images/nivea.png";
-import picture10 from "../images/table.png";
-
-const products = [
-  {
-    id: 0,
-    productName: "Massage Cream",
-    productPrice: "79",
-    productimg: picture1,
-    Discount: "",
-    quantity: "100",
-    status: "Enabled"
-  },
-  {
-    id: 1,
-    productName: "Almond Massage Cream",
-    productPrice: "29",
-    productimg: picture2,
-    Discount: "",
-    quantity: "100",
-    status: "Enabled"
-  },
-  {
-    id: 2,
-    productName: "Black Massage Sofa",
-    productPrice: "600",
-    productimg: picture3,
-    Discount: "",
-    quantity: "100",
-    status: "Enabled"
-  },
-  {
-    id: 3,
-    productName: "StrechMark Massage Cream",
-    productPrice: "77",
-    productimg: picture4,
-    Discount: "",
-    quantity: "100",
-    status: "Enabled"
-  },
-  {
-    id: 4,
-    productName: "Veleda Massage Oil",
-    productPrice: "49",
-    productimg: picture5,
-    Discount: "",
-    quantity: "100",
-    status: "Enabled"
-  },
-  {
-    id: 5,
-    productName: "Body Lotion For Massage",
-    productPrice: "99",
-    productimg: picture6,
-    Discount: "",
-    quantity: "100",
-    status: "Enabled"
-  },
-  {
-    id: 6,
-    productName: "Massage Sofa",
-    productPrice: "390",
-    productimg: picture7,
-    Discount: "",
-    quantity: "100",
-    status: "Enabled"
-  },
-  {
-    id: 7,
-    productName: "Innissfree Massage Lotion",
-    productPrice: "70",
-    productimg: picture8,
-    Discount: "",
-    quantity: "100",
-    status: "Enabled"
-  },
-  {
-    id: 8,
-    productName: "Nivea Massage Lotion",
-    productPrice: "79",
-    productimg: picture9,
-    Discount: "",
-    quantity: "100",
-    status: "Enabled"
-  },
-  {
-    id: 9,
-    productName: "Massage Table",
-    productPrice: "450",
-    productimg: picture10,
-    Discount: "",
-    quantity: "100",
-    status: "Enabled"
-  }
-];
-
+import { Link } from "react-router";
 const ProductRow = ({ product, isChecked, onCheckboxChange }) => {
   return (
     <tr>
@@ -113,52 +10,65 @@ const ProductRow = ({ product, isChecked, onCheckboxChange }) => {
         <input
           type="checkbox"
           checked={isChecked}
-          onChange={() => onCheckboxChange(product.id)}
+          onChange={() => onCheckboxChange(product._id)}
         />
       </td>
       <td>
-        <img src={product.productimg} alt="" style={{ width: "40px" }} />
+        <img
+          src={`http://localhost:8080/${product.image}`}
+          alt=""
+          style={{ width: "40px" }}
+        />
       </td>
       <td>{product.productName}</td>
       <td>{product.productPrice}</td>
-      <td>{product.Discount}</td>
-      <td>{product.quantity}</td>
-      <td>{product.status}</td>
+      <td>{product.discount}</td>
+      <td>{product.productQuantity}</td>
       <td style={{ textAlign: "end" }}>
         <OverlayTrigger
           placement="top"
-          overlay={<Tooltip id={`tooltip-top-${product.id}`}>Edit</Tooltip>}
+          overlay={<Tooltip id={`tooltip-top-${product._id}`}>Edit</Tooltip>}
         >
-          <button className="edit-btn">
-            <FontAwesomeIcon icon={faPencil} />
-          </button>
+          <Link
+            to={"/admin/products/add-product"}
+            className="add-btn"
+            state={product}
+          >
+            <button className="edit-btn">
+              <FontAwesomeIcon icon={faPencil} />
+            </button>
+          </Link>
         </OverlayTrigger>
       </td>
     </tr>
   );
 };
 
-const ProductsList = () => {
-  const [headerChecked, setHeaderChecked] = useState(false);
-  const [selectedProducts, setSelectedProducts] = useState([]);
+const ProductsList = ({ setSelectedProducts, selectedProducts, products }) => {
+  const [allSelected, setAllSelected] = useState(false);
 
-  const handleHeaderCheckboxChange = (e) => {
+  const handleSelectAll = (e) => {
     const isChecked = e.target.checked;
-    setHeaderChecked(isChecked);
+    setAllSelected(isChecked);
 
     if (isChecked) {
-      setSelectedProducts(products.map((product) => product.id));
+      setSelectedProducts(products.map((product) => product._id));
     } else {
       setSelectedProducts([]);
     }
   };
 
   const handleRowCheckboxChange = (id) => {
-    setSelectedProducts((prevSelected) =>
-      prevSelected.includes(id)
+    setSelectedProducts((prevSelected) => {
+      const isAlreadySelected = prevSelected.includes(id);
+      const updatedSelectedProducts = isAlreadySelected
         ? prevSelected.filter((productId) => productId !== id)
-        : [...prevSelected, id]
-    );
+        : [...prevSelected, id];
+
+      setAllSelected(updatedSelectedProducts.length === products.length);
+
+      return updatedSelectedProducts;
+    });
   };
 
   return (
@@ -177,8 +87,8 @@ const ProductsList = () => {
                 <th>
                   <input
                     type="checkbox"
-                    checked={headerChecked}
-                    onChange={handleHeaderCheckboxChange}
+                    checked={allSelected}
+                    onChange={handleSelectAll}
                   />
                 </th>
                 <th>Image</th>
@@ -186,16 +96,15 @@ const ProductsList = () => {
                 <th>Price</th>
                 <th>Discount</th>
                 <th>Quantity</th>
-                <th>Status</th>
                 <th>Action</th>
               </tr>
             </thead>
             <tbody>
               {products.map((product) => (
                 <ProductRow
-                  key={product.id}
+                  key={product._id}
                   product={product}
-                  isChecked={selectedProducts.includes(product.id)}
+                  isChecked={selectedProducts.includes(product._id)}
                   onCheckboxChange={handleRowCheckboxChange}
                 />
               ))}

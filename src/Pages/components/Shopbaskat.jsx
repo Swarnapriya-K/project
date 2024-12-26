@@ -1,15 +1,20 @@
-import React, { useState } from "react";
+import React, { useState,useContext } from "react";
 import Col from "react-bootstrap/esm/Col";
 import Container from "react-bootstrap/esm/Container";
 import Row from "react-bootstrap/esm/Row";
+import { Button } from "react-bootstrap";
 import Offcanvas from "react-bootstrap/Offcanvas";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faShoppingBasket } from "@fortawesome/free-solid-svg-icons";
+import { faShoppingBasket,faSignOut } from "@fortawesome/free-solid-svg-icons";
 import "./MyNavbar.css";
 import { useSelector } from "react-redux";
 import CartList from "./CartList";
+import { AuthContext } from "../../context/AuthContext";
+
 
 function Shopbaskat() {
+  const { logout } = useContext(AuthContext); // Use logout from AuthContext
+
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
@@ -38,6 +43,16 @@ function Shopbaskat() {
               Appointment
             </button>
           </Col>
+          {/* <Col>
+            <Button
+              variant="outline-danger"
+              className="logout-btn"
+              onClick={() => logout()}
+            >
+              <FontAwesomeIcon icon={faSignOut} className="me-1" />
+              Logout
+            </Button>
+          </Col> */}
         </Row>
       </Container>
 

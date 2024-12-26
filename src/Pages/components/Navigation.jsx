@@ -63,10 +63,12 @@ function Header() {
                   <Shopbaskat />
                 </Col>
               </Row>
-              {/* <button style={{ all: "unset", marginLeft:"20px" }} onClick={() => logout()}>
+              <button
+               className="logout-btn"
+                onClick={() => logout()}
+              >
                 <FontAwesomeIcon icon={faSignOut} />
-                Logout
-              </button> */}
+              </button>
             </Container>
           </Navbar>
 

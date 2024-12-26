@@ -99,6 +99,7 @@
   width: 30px;
   font-size: 2rem;
 }
+
 span.count {
   color: white;
   background-color: black;
@@ -112,7 +113,9 @@ span.count {
   position: absolute;
   left: 28px;
   top: -13px;
+  
 }
+
 
 .Navstyle .dropdown-menu {
   display: none; /* Hide dropdown by default */
@@ -226,7 +229,10 @@ span.count {
   color: #f6526d;
   border: #f6526d 1px solid;
 }
-
+.logout-btn{
+  all: unset;
+  margin-left: 80px;
+}
 /* --------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Dropdown opens on hover in large screens */
 @media (min-width: 992px) {
@@ -397,6 +403,9 @@ span.count {
     height: 40px;
     font-size: 12px;
   }
+  .logout-btn{
+  margin-left: 0px;
+}
 }
 @media (min-width: 1024px) and (max-width: 1024px) {
   .genrl-logo img {
@@ -497,6 +506,9 @@ span.count {
     height: 37px;
     font-size: 11px;
   }
+  .logout-btn{
+  margin-left: 20px;
+}
 }
 @media (min-width: 500px) and (max-width: 800px) {
   .bg-img1,
@@ -521,4 +533,7 @@ span.count {
   .booking-btn {
     height: 50px;
   }
+  .logout-btn{
+  margin-left: 20px;
+}
 }

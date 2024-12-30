@@ -20,8 +20,6 @@ const Products = () => {
         }
       });
       setProducts(response.data.products);
-      // setMessage(responseJson);
-      // setOrderPlaced(true);
     } catch (error) {
       console.log(error);
     }
@@ -29,6 +27,8 @@ const Products = () => {
   useEffect(() => {
     fetchProducts();
   }, []);
+
+  
   const deleteMultipleProducts = async (productIds) => {
     try {
       const response = await axios.delete(

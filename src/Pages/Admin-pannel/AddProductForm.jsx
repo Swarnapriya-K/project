@@ -97,6 +97,9 @@ const AddProductForm = () => {
       data.append("productQuantity", formData.productQuantity);
       data.append("discount", formData.discount || 0);
       data.append("description", formData.description || "");
+
+
+      //Add products
       if (formData.image) {
         data.append("image", formData.image);
       }

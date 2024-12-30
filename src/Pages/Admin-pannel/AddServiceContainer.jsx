@@ -11,14 +11,14 @@ function AddServiceContainer() {
       <Container fluid className="Service-Container">
         <Row className="Service-Row-Style">
           <Col xl={3} className="col-xl-3-colm">
-            <h1 style={{ fontWeight: "300" }}>Products</h1>{" "}
+            <h1 style={{ fontWeight: "300" }}>Services</h1>{" "}
             {/* Corrected 'fontweight' to 'fontWeight' */}
           </Col>
           <Col xl={5}>
             <ul>
               <Link className="Admin-sidebar">
                 <li>Home</li>
-                <li style={{ color: "#4291e7" }}>Products</li>{" "}
+                <li style={{ color: "#4291e7" }}>Services</li>{" "}
                 {/* Corrected 'Catagories' to 'Categories' */}
               </Link>
             </ul>

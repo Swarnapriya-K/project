@@ -1,223 +1,118 @@
-import React from "react";
-import { Col, Row, Table,Tooltip,OverlayTrigger } from "react-bootstrap";
+import React, { useState, useEffect } from "react";
+import { Table, Button, Col, Row } from "react-bootstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faList,faPencil } from "@fortawesome/free-solid-svg-icons";
+import { faList, faPencil } from "@fortawesome/free-solid-svg-icons";
+import axios from "axios";
+import { BASEURL } from "../../config/config";
 
-const services = [
-  {
-    id: "6747fa597c13f8dad2bd794c",
-    name: "Deep Tissue Massage",
-    serviceProviders: [
-      {
-        serviceProviderId: "674d790aba9dfda1041d1582",
-        name: "Eliana Ivy"
-      },
-      {
-        serviceProviderId: "674d7ba094f3dd36f4a278e7",
-        name: "Amelia Ava"
-      },
-      {
-        serviceProviderId: "674d7a575671de436137b5f8",
-        name: "Stella Zoe"
-      },
-      {
-        serviceProviderId: "674d7a1d5671de436137b5f1",
-        name: "Harper Luna"
-      }
-    ]
-  },
-  {
-    id: "6747facb7c13f8dad2bd794e",
-    name: "Detox Therapy Service",
-    serviceProviders: [
-      {
-        serviceProviderId: "674d7a3d5671de436137b5f5",
-        name: "Elena Naomi"
-      },
-      {
-        serviceProviderId: "674d7a1d5671de436137b5f1",
-        name: "Harper Luna"
-      }
-    ]
-  },
-  {
-    id: "6747fad77c13f8dad2bd7950",
-    name: "Vacuum Suction Therapy",
-    serviceProviders: [
-      {
-        serviceProviderId: "674d7b6e94f3dd36f4a278e1",
-        name: "Emma Lee"
-      },
-      {
-        serviceProviderId: "674d7a575671de436137b5f8",
-        name: "Stella Zoe"
-      },
-      {
-        serviceProviderId: "674d7a1d5671de436137b5f1",
-        name: "Harper Luna"
-      }
-    ]
-  },
-  {
-    id: "6747fae67c13f8dad2bd7952",
-    name: "Booking Payment Service",
-    serviceProviders: [
-      {
-        serviceProviderId: "674d7ba094f3dd36f4a278e7",
-        name: "Amelia Ava"
-      },
-      {
-        serviceProviderId: "674d7b5594f3dd36f4a278de",
-        name: "Olivia John"
-      }
-    ]
-  },
-  {
-    id: "6747faf37c13f8dad2bd7954",
-    name: "Face Therapy Service",
-    serviceProviders: [
-      {
-        serviceProviderId: "674d7a3d5671de436137b5f5",
-        name: "Elena Naomi"
-      },
-      {
-        serviceProviderId: "674d7b6e94f3dd36f4a278e1",
-        name: "Emma Lee"
-      },
-      {
-        serviceProviderId: "674d7ba094f3dd36f4a278e7",
-        name: "Amelia Ava"
-      },
-      {
-        serviceProviderId: "674d7b5594f3dd36f4a278de",
-        name: "Olivia John"
-      },
-      {
-        serviceProviderId: "674d7b8994f3dd36f4a278e4",
-        name: "Riley Zoey"
-      }
-    ]
-  },
-  {
-    id: "6747fbb9474bd8d4e1141633",
-    name: "Radio Frequency Service",
-    serviceProviders: [
-      {
-        serviceProviderId: "674d7b5594f3dd36f4a278de",
-        name: "Olivia John"
-      },
-      {
-        serviceProviderId: "674d7b8994f3dd36f4a278e4",
-        name: "Riley Zoey"
-      }
-    ]
-  },
-  {
-    id: "674861065fad29a841559379",
-    name: "Perfect At-Home Facial",
-    serviceProviders: [
-      {
-        serviceProviderId: "674d7a3d5671de436137b5f5",
-        name: "Elena Naomi"
-      },
-      {
-        serviceProviderId: "674d7b8994f3dd36f4a278e4",
-        name: "Riley Zoey"
-      }
-    ]
-  },
-  {
-    id: "6748622a5fad29a841559384",
-    name: "Wood/Metal Therapy",
-    serviceProviders: [
-      {
-        serviceProviderId: "674d7bb794f3dd36f4a278ea",
-        name: "Bella Skyler"
-      },
-      {
-        serviceProviderId: "674d7b6e94f3dd36f4a278e1",
-        name: "Emma Lee"
-      },
-      {
-        serviceProviderId: "674d7b5594f3dd36f4a278de",
-        name: "Olivia John"
-      }
-    ]
-  },
-  {
-    id: "674865730b507e17edf82305",
-    name: "Thermal Therapy Service",
-    serviceProviders: [
-      {
-        serviceProviderId: "674d7bb794f3dd36f4a278ea",
-        name: "Bella Skyler"
-      },
-      {
-        serviceProviderId: "674d7a575671de436137b5f8",
-        name: "Stella Zoe"
-      }
-    ]
-  }
-];
+const ServiceList = () => {
+  const [services, setServices] = useState([]);
+  const [selectedServices, setSelectedServices] = useState([]);
+  const [allSelected, setAllSelected] = useState(false);
 
-function ServiceList() {
+  // Fetch services from backend
+  const fetchServices = async () => {
+    const token = localStorage.getItem("token");
+    try {
+      const response = await axios.get(`${BASEURL}/service/get-services`, {
+        headers: {
+          Authorization: `Bearer ${token}`
+        }
+      });
+      setServices(response.data.services);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  useEffect(() => {
+    fetchServices();
+  }, []);
+
+  // Handle header checkbox toggle
+  const handleSelectAll = () => {
+    if (allSelected) {
+      setSelectedServices([]); // Deselect all
+    } else {
+      setSelectedServices(services.map((service) => service._id)); // Select all
+    }
+    setAllSelected(!allSelected);
+  };
+
+  // Handle individual row checkbox toggle
+  const handleRowSelect = (id) => {
+    if (selectedServices.includes(id)) {
+      setSelectedServices(
+        selectedServices.filter((serviceId) => serviceId !== id)
+      ); // Deselect
+    } else {
+      setSelectedServices([...selectedServices, id]); // Select
+    }
+  };
+
+  // Update header checkbox state when individual rows are toggled
+  useEffect(() => {
+    setAllSelected(
+      selectedServices.length === services.length && services.length > 0
+    );
+  }, [selectedServices, services]);
+
   return (
-    <>
-      <div className="service-list-Container">
-        <Row className="Service-inner-row">
-          <Col xl={1} className="servicelist-icon">
-            <FontAwesomeIcon icon={faList} />
-          </Col>
-          <Col>Services List</Col>
-        </Row>
-        <div className="Service-innerList">
-          <Row className="Service-list-items">
-            <Table  bordered hover>
-              <thead>
-                <tr>
-                  <th>
-                    <input type="checkbox" name="" id="" />
-                  </th>
-                  <th>Services</th>
-                  <th>Action</th>
+    <div className="service-list-Container">
+      <Row className="Service-inner-row">
+        <Col xl={1} className="servicelist-icon">
+          <FontAwesomeIcon icon={faList} />
+        </Col>
+        <Col>Product List</Col>
+      </Row>
+      <Row className="table-border-outline" >
+        <Table bordered hover className="table-borderline">
+          <thead>
+            <tr>
+              <th>
+                <input
+                  type="checkbox"
+                  checked={allSelected}
+                  onChange={handleSelectAll}
+                />
+              </th>
+              <th>Service Name</th>
+              <th>Price</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            {Array.isArray(services) && services.length > 0 ? (
+              services.map((service) => (
+                <tr key={service._id}>
+                  <td>
+                    <input
+                      type="checkbox"
+                      checked={selectedServices.includes(service._id)}
+                      onChange={() => handleRowSelect(service._id)}
+                    />
+                  </td>
+                  <td>{service.serviceName}</td>
+                  <td>{service.servicePrice}</td>
+                  <td>
+                    <button className="edit-btn">
+                      <FontAwesomeIcon icon={faPencil} />
+                    </button>
+                  </td>
                 </tr>
-              </thead>
-              <tbody>
-                {services.map((service, index) =>{
-                  return (
-                    <tr key={service.id}>
-                      <td>
-                        <input type="checkbox" name="" id="" />
-                      </td>
-                      <td>{service.name}</td>
-                      <td
-                        style={{
-                          textAlign: "end"
-                        }}
-                      >
-                        <OverlayTrigger
-                          placement="top" // Tooltip will appear on top of the button
-                          overlay={
-                            <Tooltip id={`tooltip-top-${service.id}`}>
-                              Edit
-                            </Tooltip>
-                          }
-                        >
-                          <button className="edit-btn">
-                            <FontAwesomeIcon icon={faPencil} />
-                          </button>
-                        </OverlayTrigger>
-                      </td>
-                    </tr>
-                  );
-                })}
-              </tbody>
-            </Table>
-          </Row>
-        </div>
-      </div>
-    </>
+              ))
+            ) : (
+              <tr>
+                <td colSpan="4" style={{ textAlign: "center" }}>
+                  No services found.
+                </td>
+              </tr>
+            )}
+          </tbody>
+        </Table>
+      </Row>
+    </div>
   );
-}
+};
 
 export default ServiceList;

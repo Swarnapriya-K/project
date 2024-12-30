@@ -221,8 +221,17 @@
 a[href="#logout"] {
   text-decoration: none;
 }
+/* ---------------------------------------------------------------------------------------------------- */
+/* Table Borders */
+.table-border-outline{
+  border: 1px solid black;
+  padding: 20px;
+}
+.table-borderline{
+  border: 1px solid black;
+}
 
-
+/* ----------------------------------------------------------------------------------------------------- */
 @media(max-width:1440px){
   .col-xl-3-colm {
     width: 17%;

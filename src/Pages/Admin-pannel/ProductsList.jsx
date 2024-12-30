@@ -13,11 +13,11 @@ const ProductRow = ({ product, isChecked, onCheckboxChange }) => {
           onChange={() => onCheckboxChange(product._id)}
         />
       </td>
-      <td>
+      <td  className="text-center">
         <img
           src={`http://localhost:8080/${product.image}`}
           alt=""
-          style={{ width: "40px" }}
+          style={{ width: "50px" }}
         />
       </td>
       <td>{product.productName}</td>
@@ -79,39 +79,37 @@ const ProductsList = ({ setSelectedProducts, selectedProducts, products }) => {
         </Col>
         <Col>Product List</Col>
       </Row>
-      <div className="Service-innerList">
-        <Row className="Service-list-items">
-          <Table bordered hover>
-            <thead>
-              <tr>
-                <th>
-                  <input
-                    type="checkbox"
-                    checked={allSelected}
-                    onChange={handleSelectAll}
-                  />
-                </th>
-                <th>Image</th>
-                <th>Products Name</th>
-                <th>Price</th>
-                <th>Discount</th>
-                <th>Quantity</th>
-                <th>Action</th>
-              </tr>
-            </thead>
-            <tbody>
-              {products.map((product) => (
-                <ProductRow
-                  key={product._id}
-                  product={product}
-                  isChecked={selectedProducts.includes(product._id)}
-                  onCheckboxChange={handleRowCheckboxChange}
+      <Row className="table-border-outline">
+        <Table bordered hover className="table-borderline">
+          <thead>
+            <tr>
+              <th>
+                <input
+                  type="checkbox"
+                  checked={allSelected}
+                  onChange={handleSelectAll}
                 />
-              ))}
-            </tbody>
-          </Table>
-        </Row>
-      </div>
+              </th>
+              <th>Image</th>
+              <th>Products Name</th>
+              <th>Price</th>
+              <th>Discount</th>
+              <th>Quantity</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            {products.map((product) => (
+              <ProductRow
+                key={product._id}
+                product={product}
+                isChecked={selectedProducts.includes(product._id)}
+                onCheckboxChange={handleRowCheckboxChange}
+              />
+            ))}
+          </tbody>
+        </Table>
+      </Row>
     </div>
   );
 };

@@ -1,7 +1,5 @@
 import React from "react";
-import { Col, Container, Row } from "react-bootstrap";
 
-import SideBar from "./SideBar";
 import "./Dashboard.css";
 import AdminSidePage from "./AdminSidePage";
 import DetailCards from "./DetailCards";

@@ -36,9 +36,8 @@ function AdminHome() {
             <Routes>
               {/* <Route path="/" element={<DashboardHome />} /> */}
               <Route path="/dashboard" element={<DashboardHome />} />
-
-              <Route path="/products" element={<>Products</>} />
-              <Route path="/contact" element={<>Contact</>} />
+              <Route path="/category" element={<>Category</>} />
+              <Route path="/products" element={<>products</>} />
             </Routes>
           </div>
         </div>

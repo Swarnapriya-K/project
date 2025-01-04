@@ -3,22 +3,22 @@ import { Container, Row, Col, OverlayTrigger, Tooltip } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faReply,faSave} from "@fortawesome/free-solid-svg-icons";
-import AddServiceForm from "./AddServiceForm";
+import AddProductForm from "./AddProductForm";
 
-function AddServiceContainer() {
+function AddProductsContainer() {
   return (
     <div>
       <Container fluid className="Service-Container">
         <Row className="Service-Row-Style">
           <Col xl={3} className="col-xl-3-colm">
-            <h1 style={{ fontWeight: "300" }}>Services</h1>{" "}
+            <h1 style={{ fontWeight: "300" }}>Product</h1>{" "}
             {/* Corrected 'fontweight' to 'fontWeight' */}
           </Col>
           <Col xl={5}>
             <ul>
               <Link className="Admin-sidebar">
                 <li>Home</li>
-                <li style={{ color: "#4291e7" }}>Services</li>{" "}
+                <li style={{ color: "#4291e7" }}>Product</li>{" "}
                 {/* Corrected 'Catagories' to 'Categories' */}
               </Link>
             </ul>
@@ -46,11 +46,11 @@ function AddServiceContainer() {
 
         <hr className="hr-line-design2" />
         <Row>
-          <AddServiceForm />
+          <AddProductForm />
         </Row>
       </Container>
     </div>
   );
 }
 
-export default AddServiceContainer;
+export default AddProductsContainer;

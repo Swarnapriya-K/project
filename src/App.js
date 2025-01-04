@@ -15,17 +15,18 @@ import Shoping from "./Pages/components/Shoping";
 import Blogs from "./Pages/components/Blogs";
 import AdminRoutes from "./Pages/Admin-pannel/AdminRoutes";
 import DashboardHome from "./Pages/Admin-pannel/DashboardHome";
-import Products from "./Pages/Admin-pannel/Products";
-import Services from "./Pages/Admin-pannel/Services";
-import Orders from "./Pages/Admin-pannel/Orders";
 import CheckoutPage from "./Pages/page10-CheckoutPage/CheckoutPage";
 import Login from "./Pages/LoginSignup/Login";
 import Signup from "./Pages/LoginSignup/Signup";
 import { Navigate } from "react-router-dom";
 import { AuthContext } from "./context/AuthContext";
 import UserLayout from "./Pages/components/UserLayout";
-import AddProductContainer from "./Pages/Admin-pannel/AddProductContainer";
-import AddServiceContainer from "./Pages/Admin-pannel/AddServiceContainer";
+
+import Category from "./Pages/Admin-pannel/Categories";
+import Catalog from "./Pages/Admin-pannel/Catalog";
+import AddCategoryContainer from "./Pages/Admin-pannel/AddCategoryContainer";
+import Products from "./Pages/Admin-pannel/Products";
+import AddProductsContainer from "./Pages/Admin-pannel/AddProductsContainer";
 const App = () => {
   const fetchData = async () => {
     try {
@@ -51,16 +52,26 @@ const App = () => {
             <Route path="/admin" element={<AdminRoutes />}>
               <Route path="/admin/" element={<DashboardHome />} />
               <Route path="/admin/dashboard" element={<DashboardHome />} />
-              <Route path="/admin/products" element={<Products />} />
-              <Route path="/admin/services" element={<Services />} />
-              <Route path="/admin/orders" element={<Orders />} />
+              <Route path="/admin/catalog" element={<Catalog />}>
+                <Route path="category" element={<Category />} />
+                <Route path="products" element={<Products />} />
+                {/* <Route
+                  path="category/add-category"
+                  element={<AddCategoryContainer />}
+                /> */}
+                {/* <Route
+                  path="products/add-product"
+                  element={<AddProductContainer />}
+                /> */}
+              </Route>
+
               <Route
-                path="/admin/products/add-product"
-                element={<AddProductContainer />}
+                path="/admin/category/add-category"
+                element={<AddCategoryContainer/>}
               />
               <Route
-                path={"/admin/services/add-service"}
-                element={<AddServiceContainer />}
+                path={"/admin/product/add-product"}
+                element={<AddProductsContainer/>}
               />
             </Route>
           ) : (

@@ -28,9 +28,8 @@ const SideBarItems = [
     itemIcon: faTags,
     className: "has-dropdown",
     subItems: [
-      { itemName: "Services", path: "/admin/services" },
-      { itemName: "Products", path: "/admin/products" },
-      { itemName: "Orders", path: "/admin/orders" }
+      { itemName: "Category", path: "/admin/catalog/category" },
+      { itemName: "Products", path: "/admin/catalog/products" }
     ]
   }
 ];
@@ -45,39 +44,47 @@ function SideBar() {
   return (
     <div className="Nav-sec">
       <ul className="List-Dashboard">
-        {SideBarItems.map((value, index) => (
-          <li key={index} className={value.className}>
-            {/* Use NavLink instead of Link */}
-            <NavLink
-              to={value.path}
-              className="Sidebar-Link"
-              activeClassName="active-link" // This adds 'active-link' class when the link is active
-              exact
-              onClick={value.subItems ? () => toggleDropdown(index) : undefined}
+        {SideBarItems.map((item, index) => (
+          <li key={index} className={item.className}>
+            <div
+              className={`Sidebar-Link ${item.subItems ? "has-subitems" : ""}`}
+              onClick={item.subItems ? () => toggleDropdown(index) : undefined}
             >
               <span>
-                <FontAwesomeIcon icon={value.itemIcon} />
+                <FontAwesomeIcon icon={item.itemIcon} />
               </span>
-              {value.itemName}
-              {value.subItems && (
-                <FontAwesomeIcon
-                  icon={faChevronDown}
-                  className={`dropdown-arrow ${
-                    activeDropdown === index ? "rotate" : ""
-                  }`}
-                />
+              {item.subItems ? (
+                <>
+                  {item.itemName}
+                  <FontAwesomeIcon
+                    icon={faChevronDown}
+                    className={`dropdown-arrow ${
+                      activeDropdown === index ? "rotate" : ""
+                    }`}
+                  />
+                </>
+              ) : (
+                <NavLink
+                  to={item.path}
+                  className={({ isActive }) =>
+                    isActive ? "active-link" : "Sidebar-Link"
+                  }
+                >
+                  {item.itemName}
+                </NavLink>
               )}
-            </NavLink>
+            </div>
 
             {/* Render subitems if dropdown is active */}
-            {value.subItems && activeDropdown === index && (
+            {item.subItems && activeDropdown === index && (
               <ul className="dropdown sidebar-dropdown">
-                {value.subItems.map((subItem, subIndex) => (
+                {item.subItems.map((subItem, subIndex) => (
                   <li key={subIndex}>
                     <NavLink
                       to={subItem.path}
-                      className="Sidebar-Link"
-                      activeClassName="active-link"
+                      className={({ isActive }) =>
+                        isActive ? "active-link" : "Sidebar-Link"
+                      }
                     >
                       {subItem.itemName}
                     </NavLink>

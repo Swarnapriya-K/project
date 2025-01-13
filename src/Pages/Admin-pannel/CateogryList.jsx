@@ -1,4 +1,4 @@
-import { React, useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Col, Row, Table } from "react-bootstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
@@ -9,16 +9,17 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import { Link } from "react-router";
 import ViewModal from "./Modal";
+import Pagination from "./Pagination";
+
 const CategoryRow = ({
   category,
+  sno,
   isChecked,
   onCheckboxChange,
   deleteMultipleCategories,
-  setSelectedCategories,
   selectedCategories,
   setClickedCategory,
-  setShowModal,
-  showModal
+  setShowModal
 }) => {
   return (
     <tr>
@@ -29,6 +30,7 @@ const CategoryRow = ({
           onChange={() => onCheckboxChange(category._id)}
         />
       </td>
+      <td>{sno}</td>
       <td>{category.name}</td>
       <td>
         <Link
@@ -51,14 +53,14 @@ const CategoryRow = ({
             <FontAwesomeIcon icon={faTrash} className="delicon" />
           </button>
         </Link>
-        <Link
-          className="add-btn"
-          onClick={() => {
-            setClickedCategory(category);
-            setShowModal(true);
-          }}
-        >
-          <button className="edit-btn">
+        <Link className="add-btn">
+          <button
+            className="edit-btn"
+            onClick={() => {
+              setClickedCategory(category);
+              setShowModal(true);
+            }}
+          >
             <FontAwesomeIcon icon={faEye} />
           </button>
         </Link>
@@ -75,6 +77,19 @@ const CategoryList = ({
   setAllSelected,
   deleteMultipleCategories
 }) => {
+  const [itemsPerPage, setItemsPerPage] = useState(5); // Default items per page
+  const [currentPage, setCurrentPage] = useState(0);
+
+  // Pagination logic
+  const totalCategories = categories.length;
+  const offset = currentPage * itemsPerPage;
+  const currentCategories = categories.slice(offset, offset + itemsPerPage);
+  const pageCount = Math.ceil(totalCategories / itemsPerPage);
+
+  const handlePageClick = (event) => {
+    setCurrentPage(event.selected);
+  };
+
   const handleSelectAll = (e) => {
     const isChecked = e.target.checked;
     setAllSelected(isChecked);
@@ -87,41 +102,38 @@ const CategoryList = ({
   };
 
   const handleRowCheckboxChange = (id) => {
-    setSelectedCategories((prevSelected) => {
-      const isAlreadySelected = prevSelected.includes(id);
-      const updatedSelectedProducts = isAlreadySelected
-        ? prevSelected.filter((productId) => productId !== id)
-        : [...prevSelected, id];
-
-      setAllSelected(updatedSelectedProducts.length === categories.length);
-
-      return updatedSelectedProducts;
-    });
+    if (selectedCategories.includes(id)) {
+      setSelectedCategories(
+        selectedCategories.filter((categoryId) => categoryId !== id)
+      ); // Deselect
+    } else {
+      setSelectedCategories([...selectedCategories, id]); // Select
+    }
   };
+
+  const handleItemsPerPageChange = (e) => {
+    const newItemsPerPage = parseInt(e.target.value); // Dynamically change items per page
+    setItemsPerPage(newItemsPerPage); // Set new items per page
+    setCurrentPage(0); // Reset to first page when items per page changes
+  };
+
   const [showModal, setShowModal] = useState(false);
   const [clickedCategory, setClickedCategory] = useState({});
   const onModalClose = () => setShowModal(false);
-  console.log(clickedCategory);
+
   return (
     <div className="service-list-Container">
       <ViewModal
         show={showModal}
         onHide={onModalClose}
-        heading={clickedCategory.productName}
+        heading={"Category Name"}
       >
-        <Table>
-          <thead>
-            <tr>
-              <th>Category Name</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>{clickedCategory?.name}</td>
-            </tr>
-          </tbody>
-        </Table>
+        <div className="modal-content">
+          <h5 className="modal-title mx-3">{clickedCategory?.name}</h5>
+          <div className="modal-body"></div>
+        </div>
       </ViewModal>
+
       <Row className="Service-inner-row">
         <Col xl={1} className="servicelist-icon">
           <FontAwesomeIcon icon={faList} />
@@ -129,7 +141,7 @@ const CategoryList = ({
         <Col>Category List</Col>
       </Row>
       <Row className="table-border-outline">
-        <Table bordered hover className="table-borderline">
+        <Table bordered hover responsive="sm" className="custom-table">
           <thead>
             <tr>
               <th>
@@ -139,29 +151,26 @@ const CategoryList = ({
                   onChange={handleSelectAll}
                 />
               </th>
+              <th>SNo</th>
               <th>Main Category</th>
-
-              <th>Action</th>
+              <th>Actions</th>
             </tr>
           </thead>
           <tbody>
-            {categories.length > 0 ? (
-              <>
-                {categories.map((category) => (
-                  <CategoryRow
-                    key={category._id}
-                    category={category}
-                    isChecked={selectedCategories.includes(category._id)}
-                    onCheckboxChange={handleRowCheckboxChange}
-                    deleteMultipleCategories={deleteMultipleCategories}
-                    selectedCategories={selectedCategories}
-                    setSelectedCategories={setSelectedCategories}
-                    setClickedCategory={setClickedCategory}
-                    setShowModal={setShowModal}
-                    showModal={showModal}
-                  />
-                ))}
-              </>
+            {currentCategories.length > 0 ? (
+              currentCategories.map((category, index) => (
+                <CategoryRow
+                  key={category._id}
+                  category={category}
+                  sno={totalCategories - (offset + index)} // Corrected SNo logic
+                  isChecked={selectedCategories.includes(category._id)}
+                  onCheckboxChange={handleRowCheckboxChange}
+                  deleteMultipleCategories={deleteMultipleCategories}
+                  selectedCategories={selectedCategories}
+                  setClickedCategory={setClickedCategory}
+                  setShowModal={setShowModal}
+                />
+              ))
             ) : (
               <tr>
                 <td colSpan="4" style={{ textAlign: "center" }}>
@@ -172,6 +181,15 @@ const CategoryList = ({
           </tbody>
         </Table>
       </Row>
+
+      <Pagination
+        itemsPerPage={itemsPerPage}
+        setItemsPerPage={setItemsPerPage}
+        pageCount={pageCount}
+        currentPage={currentPage}
+        handlePageClick={handlePageClick}
+        handleItemsPerPageChange={handleItemsPerPageChange}
+      />
     </div>
   );
 };

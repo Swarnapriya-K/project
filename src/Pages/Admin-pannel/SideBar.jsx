@@ -28,8 +28,8 @@ const SideBarItems = [
     itemIcon: faTags,
     className: "has-dropdown",
     subItems: [
-      { itemName: "Category", path: "/admin/catalog/category" },
-      { itemName: "Products", path: "/admin/catalog/products" }
+      { itemName: "> Category", path: "/admin/catalog/category" },
+      { itemName: "> Products", path: "/admin/catalog/products" }
     ]
   }
 ];

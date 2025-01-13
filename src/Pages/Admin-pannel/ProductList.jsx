@@ -10,6 +10,7 @@ import {
 import { Link } from "react-router";
 import { BASEURL } from "../../config/config";
 import ViewModal from "./Modal";
+import Pagination from "./Pagination"; // Import Pagination component
 
 const ProductList = ({
   products,
@@ -21,6 +22,12 @@ const ProductList = ({
 }) => {
   const [showModal, setShowModal] = useState(false);
   const [clickedProduct, setClickedProduct] = useState({});
+  const [currentPage, setCurrentPage] = useState(1);
+  const [itemsPerPage, setItemsPerPage] = useState(5); // Default items per page
+
+  // Calculate total pages based on number of products and items per page
+  const totalPages = Math.ceil(products.length / itemsPerPage);
+
   const handleSelectAll = () => {
     if (allSelected) {
       setSelectedProducts([]); // Deselect all
@@ -47,7 +54,25 @@ const ProductList = ({
   }, [selectedProducts, products]);
 
   const onModalClose = () => setShowModal(false);
-  console.log(clickedProduct);
+
+  // Reverse the products array for display but maintain the original order for serial number calculation
+  const indexOfLastProduct = currentPage * itemsPerPage;
+  const indexOfFirstProduct = indexOfLastProduct - itemsPerPage;
+  const currentProducts = products.slice(
+    indexOfFirstProduct,
+    indexOfLastProduct
+  );
+
+  // Handle change in items per page
+  const handleItemsPerPageChange = (e) => {
+    setItemsPerPage(Number(e.target.value));
+    setCurrentPage(1); // Reset to the first page when the items per page change
+  };
+
+  // Handle page click (pagination)
+  const handlePageClick = (event) => {
+    setCurrentPage(event.selected + 1); // ReactPaginate uses zero-based index
+  };
 
   return (
     <div className="service-list-Container">
@@ -69,7 +94,6 @@ const ProductList = ({
           <tbody>
             <tr>
               <td>
-                {" "}
                 <img
                   src={BASEURL + "/" + clickedProduct.image}
                   alt={clickedProduct.productName}
@@ -88,14 +112,16 @@ const ProductList = ({
           </tbody>
         </Table>
       </ViewModal>
+
       <Row className="Service-inner-row">
         <Col xl={1} className="servicelist-icon">
           <FontAwesomeIcon icon={faList} />
         </Col>
         <Col>Product List</Col>
       </Row>
+
       <Row className="table-border-outline">
-        <Table bordered hover className="table-borderline">
+        <Table bordered hover responsive="sm" className="custom-table">
           <thead>
             <tr>
               <th>
@@ -115,81 +141,77 @@ const ProductList = ({
             </tr>
           </thead>
           <tbody>
-            {Array.isArray(products) && products.length > 0 ? (
-              [...products].reverse().map(
-                (
-                  product,
-                  index // Reverse the products array
-                ) => (
-                  <tr key={product._id}>
-                    <td>
-                      <input
-                        type="checkbox"
-                        checked={selectedProducts.includes(product._id)}
-                        onChange={() => handleRowSelect(product._id)}
+            {Array.isArray(currentProducts) && currentProducts.length > 0 ? (
+              currentProducts.map((product, index) => (
+                <tr key={product._id}>
+                  <td>
+                    <input
+                      type="checkbox"
+                      checked={selectedProducts.includes(product._id)}
+                      onChange={() => handleRowSelect(product._id)}
+                    />
+                  </td>
+                  <td>
+                    {products.length - index - (currentPage - 1) * itemsPerPage}
+                  </td>{" "}
+                  {/* Correct SNO for reverse order */}
+                  <td>
+                    {product.image ? (
+                      <img
+                        src={BASEURL + "/" + product.image}
+                        alt={product.productName}
+                        style={{
+                          width: "50px",
+                          height: "50px",
+                          objectFit: "cover"
+                        }}
                       />
-                    </td>
-                    <td>{products.length - index}</td> {/* Reverse SNO logic */}
-                    <td>
-                      {product.image ? (
-                        <img
-                          src={BASEURL + "/" + product.image}
-                          alt={product.productName}
-                          style={{
-                            width: "50px",
-                            height: "50px",
-                            objectFit: "cover"
-                          }}
-                        />
-                      ) : (
-                        "No Image"
-                      )}
-                    </td>
-                    <td>{product?.productName}</td>
-                    <td>{product?.categoryId?.name}</td>
-                    <td>{product?.productPrice}</td>
-                    <td>{product?.discount}</td>
-                    <td>
-                      <Link
-                        to={"/admin/product/add-product"}
-                        className="add-btn"
-                        state={{
-                          ...product,
-                          categoryId: product?.categoryId?._id
-                        }}
+                    ) : (
+                      "No Image"
+                    )}
+                  </td>
+                  <td>{product?.productName}</td>
+                  <td>{product?.categoryId?.name}</td>
+                  <td>{product?.productPrice}</td>
+                  <td>{product?.discount}</td>
+                  <td>
+                    <Link
+                      to={"/admin/product/add-product"}
+                      className="add-btn"
+                      state={{
+                        ...product,
+                        categoryId: product?.categoryId?._id
+                      }}
+                    >
+                      <button className="edit-btn">
+                        <FontAwesomeIcon icon={faPencil} />
+                      </button>
+                    </Link>
+                    <Link>
+                      <button
+                        className="del-btn"
+                        onClick={() => deleteMultipleProducts([product._id])}
                       >
-                        <button className="edit-btn">
-                          <FontAwesomeIcon icon={faPencil} />
-                        </button>
-                      </Link>
-                      <Link>
-                        <button
-                          className="del-btn"
-                          onClick={() =>
-                            deleteMultipleProducts(selectedProducts)
-                          }
-                        >
-                          <FontAwesomeIcon icon={faTrash} className="delicon" />
-                        </button>
-                      </Link>
-                      <Link
-                        className="add-btn"
-                        onClick={() => {
-                          setClickedProduct(product);
-                          setShowModal(true);
-                        }}
-                      >
-                        <button className="edit-btn">
-                          <FontAwesomeIcon icon={faEye} />
-                        </button>
-                      </Link>
-                    </td>
-                  </tr>
-                )
-              )
+                        <FontAwesomeIcon icon={faTrash} className="delicon" />
+                      </button>
+                    </Link>
+                    <Link
+                      className="add-btn"
+                      onClick={() => {
+                        setClickedProduct(product);
+                        setShowModal(true);
+                      }}
+                    >
+                      <button className="edit-btn">
+                        <FontAwesomeIcon icon={faEye} />
+                      </button>
+                    </Link>
+                  </td>
+                </tr>
+              ))
             ) : (
               <tr>
-                <td colSpan="7" style={{ textAlign: "center" }}>
+                <td colSpan="8" style={{ textAlign: "center" }}>
                   No products found.
                 </td>
               </tr>
@@ -197,6 +219,16 @@ const ProductList = ({
           </tbody>
         </Table>
       </Row>
+
+      {/* Pagination component */}
+      <Pagination
+        itemsPerPage={itemsPerPage}
+        setItemsPerPage={setItemsPerPage}
+        pageCount={totalPages}
+        currentPage={currentPage}
+        handlePageClick={handlePageClick}
+        handleItemsPerPageChange={handleItemsPerPageChange}
+      />
     </div>
   );
 };

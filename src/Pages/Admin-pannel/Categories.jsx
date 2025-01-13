@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Container, Row, Col, OverlayTrigger, Tooltip } from "react-bootstrap";
 import { Link } from "react-router-dom"; // Correct import for react-router-dom
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faCopy, faPlus, faTrash } from "@fortawesome/free-solid-svg-icons";
+import { faFilePdf, faPlus, faFileCsv,faFileExcel, faTrash } from "@fortawesome/free-solid-svg-icons";
 import axios from "axios";
 import { BASEURL } from "../../config/config";
 import "./Dashboard.css";
@@ -27,6 +27,68 @@ function Category() {
       console.log(error);
     }
   };
+
+  const downloadCsv = async () => {
+    try {
+      axios
+        .get(`${BASEURL}/category/export-category-csv`, {
+          responseType: "blob"
+        })
+        .then((response) => {
+          const url = window.URL.createObjectURL(new Blob([response.data]));
+          const a = document.createElement("a");
+          a.href = url;
+          a.download = "categories.csv";
+          document.body.appendChild(a);
+          a.click();
+          a.remove();
+        });
+    } catch (error) {
+      console.log("error", error);
+    }
+  };
+
+  const downloadPdf = () => {
+    try {
+      axios
+        .get(`${BASEURL}/category/export-category-pdf`, {
+          responseType: "blob"
+        })
+        .then((response) => {
+          const url = window.URL.createObjectURL(new Blob([response.data]));
+          const a = document.createElement("a");
+          a.href = url;
+          a.download = "category.pdf";
+          document.body.appendChild(a);
+          a.click();
+          a.remove();
+          window.URL.revokeObjectURL(url);
+        });
+    } catch (error) {
+      console.log("error", error);
+    }
+  };
+
+  const downloadExcel = async () => {
+    try {
+      axios
+        .get(`${BASEURL}/category/export-category-excel`, {
+          responseType: "blob"
+        })
+        .then((response) => {
+          const url = window.URL.createObjectURL(new Blob([response.data]));
+          const a = document.createElement("a");
+          a.href = url;
+          a.download = "categories.xlsx";
+          document.body.appendChild(a);
+          a.click();
+          a.remove();
+        });
+    } catch (error) {
+      console.log("error", error);
+    }
+  };
+
   useEffect(() => {
     fetchCategories();
   }, []);
@@ -61,45 +123,57 @@ function Category() {
             <Col xl={3} className="col-xl-3-colm">
               <h1 style={{ fontWeight: "300" }}>Categories</h1>{" "}
             </Col>
-            <Col xl={5}>
-              <ul>
-                <Link className="Admin-sidebar">
-                  <Link to={"/admin/"}>Home</Link>
-                  <li style={{ color: "#4291e7" }}>Categories</li>{" "}
-                </Link>
-              </ul>
-            </Col>
+
             <Col className="icons-colmn">
+              <Link>
+                <OverlayTrigger
+                  placement="top"
+                  overlay={<Tooltip id="pdf-tooltip">Download PDF</Tooltip>}
+                >
+                  <button className="add-btn" onClick={(e) => downloadPdf()}>
+                    <FontAwesomeIcon icon={faFilePdf} />
+                  </button>
+                </OverlayTrigger>
+              </Link>
+
+              <Link>
+                <OverlayTrigger
+                  placement="top"
+                  overlay={<Tooltip id="csv-tooltip">Download CSV</Tooltip>}
+                >
+                  <button className="add-btn" onClick={(e) => downloadCsv()}>
+                    <FontAwesomeIcon icon={faFileCsv} />
+                  </button>
+                </OverlayTrigger>
+              </Link>
+
+              <Link>
+                <OverlayTrigger
+                  placement="top"
+                  overlay={<Tooltip id="excel-tooltip">Download Excel</Tooltip>}
+                >
+                  <button className="add-btn" onClick={(e) => downloadExcel()}>
+                    <FontAwesomeIcon icon={faFileExcel} />
+                  </button>
+                </OverlayTrigger>
+              </Link>
               <OverlayTrigger
                 placement="top"
                 overlay={<Tooltip>Add New</Tooltip>}
               >
-                <Link
-                  to={"/admin/category/add-category"}
-                  className="add-btn"
-                  // state={{ name: "dharanidharan" }}
-                >
+                <Link to={"/admin/category/add-category"} className="add-btn">
                   <FontAwesomeIcon icon={faPlus} className="addicon" />
                 </Link>
               </OverlayTrigger>
-              <OverlayTrigger placement="top" overlay={<Tooltip>Copy</Tooltip>}>
-                <button className="ref-btn">
-                  <FontAwesomeIcon icon={faCopy} className="reficon" />
-                </button>
-              </OverlayTrigger>
               <OverlayTrigger
                 placement="top"
-                overlay={<Tooltip>Delete</Tooltip>}
+                overlay={<Tooltip>Delete All</Tooltip>}
               >
-                <button
-                  className="del-btn"
-                  onClick={() => {
-                    if (selectedCategories.length > 0)
-                      deleteMultipleCategories(selectedCategories);
-                  }}
-                >
-                  <FontAwesomeIcon icon={faTrash} className="delicon" />
-                </button>
+                <Link>
+                  <button className="del-btn" onClick={(e)=>deleteMultipleCategories(selectedCategories)}>
+                    <FontAwesomeIcon icon={faTrash} className="addicon" />
+                  </button>
+                </Link>
               </OverlayTrigger>
             </Col>
           </Row>

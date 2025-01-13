@@ -15,7 +15,7 @@
 .active-link {
   color: white;
   text-decoration: none;
-  background-color: #3c4855; 
+  background-color: #3c4855;
 }
 .List-Dashboard {
   background-color: #2b3642;
@@ -24,8 +24,8 @@
   margin-bottom: 0px;
 }
 .List-Dashboard li {
-  font-size: 14px;
-  color: #b3cbdd;
+  font-size: 17px;
+  color: #98bbd5;
   padding: 9px 21px;
   border-bottom: 0px solid #585858;
   list-style: none;
@@ -150,11 +150,10 @@
 .Sidebar-Link:hover {
   background-color: #757575;
 }
-.map-heading{
-    border: 1px solid  #e8e4e4;
-    padding: 6px 18px;
+.map-heading {
+  border: 1px solid #e8e4e4;
+  padding: 6px 18px;
 }
-
 
 /* --------------------------------Category STYLING-------------------------------------------------- */
 .Service-Container {
@@ -170,8 +169,9 @@
 }
 .icons-colmn {
   display: flex;
-  justify-content: end;
   margin-top: 14px;
+  gap: 6px;
+  justify-content: end;
 }
 .add-btn,
 .ref-btn,
@@ -187,9 +187,9 @@
   background-color: #1e91cf;
 }
 .addicon {
-    color: white;
-    font-size: 22px;
-    padding: 7px;
+  color: white;
+  font-size: 22px;
+  padding: 7px;
 }
 .ref-btn {
   background-color: white;
@@ -211,48 +211,75 @@
   border: 1px solid black;
   padding: 8px 5px;
 }
-.servicelist-icon{
+.servicelist-icon {
   width: 20px;
 }
 .edit-btn {
-    width: 33px;
-    height: 33px;
-    border-radius: 3px;
-    background-color: #4b9fe3;
-    color: white;
-    border: 0px;
-    font-size: 15px;
+  width: 33px;
+  height: 33px;
+  border-radius: 3px;
+  background-color: #4b9fe3;
+  color: white;
+  border: 0px;
+  font-size: 15px;
 }
-
 
 a[href="#logout"] {
   text-decoration: none;
 }
+
+.pagination {
+  display: flex;
+  justify-content: end;
+  margin-top: 20px;
+}
+
+.pagination button {
+  background-color: #007bff;
+  color: white;
+  border: 1px solid #007bff;
+  padding: 8px 16px;
+  margin: 0 5px;
+  cursor: pointer;
+}
+
+.pagination button:hover {
+  background-color: #0056b3;
+}
+
+.pagination button:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+}
+.Link-style-remove{
+  text-decoration: none;
+  font-size: 16px;
+}
 /* ---------------------------------------------------------------------------------------------------- */
-.add-categoryform{
-    max-width: 400px;
+.add-categoryform {
+  max-width: 400px;
   margin: 50px auto;
   padding: 20px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   border-radius: 10px;
   background-color: #fff;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
 }
-.category-addtext{
-   text-align: center;
+.category-addtext {
+  text-align: center;
   margin-bottom: 20px;
   color: #333;
   font-weight: 600;
 }
-.category-dropdown{
-   display: block;
+.category-dropdown {
+  display: block;
   margin-bottom: 8px;
   font-size: 14px;
   font-weight: bold;
   color: #555;
 }
-.category-selection{
-    width: 100%;
+.category-selection {
+  width: 100%;
   padding: 10px;
   font-size: 14px;
   border-radius: 5px;
@@ -261,8 +288,8 @@ a[href="#logout"] {
   box-sizing: border-box;
   background-color: #f9f9f9;
 }
-.category-add-submit{
-    width: 100%;
+.category-add-submit {
+  width: 100%;
   padding: 12px;
   font-size: 16px;
   font-weight: bold;
@@ -275,32 +302,105 @@ a[href="#logout"] {
 }
 /* add form--------------------------------------------------- */
 /* Table Borders */
-.table-border-outline{
+.table-border-outline {
   border: 1px solid black;
   padding: 20px;
 }
-.table-borderline{
+.table-borderline {
   border: 1px solid black;
+}
+/* General table styles */
+.custom-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 20px 0;
+}
+
+.custom-table th, .custom-table td {
+  padding: 12px 15px;
+  text-align: left;
+  border-bottom: 1px solid #ddd;
+}
+
+.custom-table thead {
+  background-color: #f8f9fa;
+}
+
+.custom-table tbody tr:nth-child(even) {
+  background-color: #f9f9f9;
+}
+
+.custom-table tbody tr:hover {
+  background-color: #f1f1f1;
+}
+
+.custom-table th {
+  background-color: #007bff;
+  color: white;
+}
+
+/* Action buttons */
+.custom-table .btn {
+  padding: 5px 10px;
+  font-size: 14px;
+  border-radius: 4px;
+  margin: 0 5px;
+}
+
+.custom-table .btn-primary {
+  background-color: #007bff;
+  color: white;
+}
+
+.custom-table .btn-primary:hover {
+  background-color: #0056b3;
+}
+
+.custom-table .btn-danger {
+  background-color: #dc3545;
+  color: white;
+}
+
+.custom-table .btn-danger:hover {
+  background-color: #b02a37;
+}
+
+.custom-table .btn-warning {
+  background-color: #ffc107;
+  color: white;
+}
+
+.custom-table .btn-warning:hover {
+  background-color: #e0a800;
+}
+
+.custom-table .delicon {
+  color: white;
+}
+
+/* Checkbox styles */
+.custom-table input[type="checkbox"] {
+  width: 20px;
+  height: 20px;
 }
 
 /* ----------------------------------------------------------------------------------------------------- */
-@media(max-width:1440px){
+@media (max-width: 1440px) {
   .col-xl-3-colm {
     width: 17%;
-}
+  }
 }
 @media (max-width: 1024px) {
-    .col-xl-3-colm {
-        width: 22%;
-    }
+  .col-xl-3-colm {
+    width: 22%;
+  }
 }
 @media (max-width: 768px) {
-    .col-xl-3-colm {
-        width: 30%;
-    }
-    .card-col{
-      width: 50%;
-      margin-top: 20px;
-    }
+  .col-xl-3-colm {
+    width: 30%;
+  }
+  .card-col {
+    width: 50%;
+    margin-top: 20px;
+  }
 }
-

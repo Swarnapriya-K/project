@@ -87,7 +87,10 @@ const AddProductForm = () => {
     data.append("productPrice", formData.productPrice);
     data.append("discount", formData.discount || 0);
     data.append("description", formData.description || "");
-    data.append("categoryId", formData.categoryId._id);
+    data.append(
+      "categoryId",
+      state ? formData.categoryId : formData.categoryId
+    );
 
     // Add image if exists
     if (formData.image) {
@@ -123,39 +126,6 @@ const AddProductForm = () => {
       console.error(error);
     }
   };
-
-  //    e.preventDefault();
-  //    try {
-  //      // Sending form data to the backend using axios
-
-  //      let response;
-  //      if (state) {
-  //        response = await axios.patch(
-  //          `${BASEURL}/category/edit-category/${state._id}`,
-  //          { name: formData.name },
-  //          {
-  //            headers: {
-  //              Authorization: `Bearer ${token}`
-  //            }
-  //          }
-  //        );
-  //      } else {
-  //        response = await axios.post(
-  //          `${BASEURL}/category/add-category`,
-  //          { name: formData.name },
-  //          {
-  //            headers: {
-  //              Authorization: `Bearer ${token}`
-  //            }
-  //          }
-  //        );
-  //      }
-  //      navigate("/admin/catalog/category");
-  //      console.log("Category added successfully:", response.data);
-  //    } catch (error) {
-  //      console.error("Error adding category:", error);
-  //    }
-  //  };
 
   return (
     <div className="container mt-4">
@@ -227,7 +197,7 @@ const AddProductForm = () => {
                 accept="image/*"
                 onChange={handleFileChange}
               />
-              <img src={file} alt="asfd" />
+              <img src={file} alt="" />
             </Form.Group>
 
             <Form.Group className="mb-3">

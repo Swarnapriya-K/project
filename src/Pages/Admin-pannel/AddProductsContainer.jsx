@@ -16,8 +16,8 @@ function AddProductsContainer() {
           </Col>
           <Col xl={5}>
             <ul>
-              <Link className="Admin-sidebar">
-                <li>Home</li>
+              <Link to={"/admin/catalog/products"} className="Admin-sidebar">
+                
                 <li style={{ color: "#4291e7" }}>Product</li>{" "}
                 {/* Corrected 'Catagories' to 'Categories' */}
               </Link>

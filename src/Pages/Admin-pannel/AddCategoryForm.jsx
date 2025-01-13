@@ -60,6 +60,7 @@ const AddCategoryForm = () => {
       console.log("Category added successfully:", response.data);
     } catch (error) {
       console.error("Error adding category:", error);
+      alert(error?.response?.data?.message)
     }
   };
 

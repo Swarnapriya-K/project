@@ -2,7 +2,13 @@ import { React, useState, useEffect } from "react";
 import { Container, Row, Col, OverlayTrigger, Tooltip } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faPlus, faRefresh, faTrash } from "@fortawesome/free-solid-svg-icons";
+import {
+  faFilePdf,
+  faPlus,
+  faFileCsv,
+  faFileExcel,
+  faTrash
+} from "@fortawesome/free-solid-svg-icons";
 import ProductList from "./ProductList";
 import axios from "axios";
 import { BASEURL } from "../../config/config";
@@ -10,8 +16,8 @@ import { BASEURL } from "../../config/config";
 const Products = () => {
   const [products, setProducts] = useState([]);
   const [selectedProducts, setSelectedProducts] = useState([]);
-    const [allSelected, setAllSelected] = useState(false);
-  
+  const [allSelected, setAllSelected] = useState(false);
+
   const token = localStorage.getItem("token");
 
   const fetchProducts = async () => {
@@ -27,29 +33,96 @@ const Products = () => {
     }
   };
 
+  // This function adds the new product at the top of the list
+  const addProductToTop = (newProduct) => {
+    setProducts((prevProducts) => [newProduct, ...prevProducts]); // Add the new product to the top
+  };
+
+  const downloadCsv = async () => {
+    try {
+      axios
+        .get(`${BASEURL}/products/export-product-csv`, {
+          responseType: "blob"
+        })
+        .then((response) => {
+          const url = window.URL.createObjectURL(new Blob([response.data]));
+          const a = document.createElement("a");
+          a.href = url;
+          a.download = "products.csv";
+          document.body.appendChild(a);
+          a.click();
+          a.remove();
+        });
+    } catch (error) {
+      console.log("error", error);
+    }
+  };
+
+  const downloadPdf = () => {
+    try {
+      axios
+        .get(`${BASEURL}/products/export-product-pdf`, {
+          responseType: "blob"
+        })
+        .then((response) => {
+          const url = window.URL.createObjectURL(new Blob([response.data]));
+          const a = document.createElement("a");
+          a.href = url;
+          a.download = "products.pdf";
+          document.body.appendChild(a);
+          a.click();
+          a.remove();
+          window.URL.revokeObjectURL(url);
+        });
+    } catch (error) {
+      console.log("error", error);
+    }
+  };
+
+  const downloadExcel = () => {
+    try {
+      axios
+        .get(`${BASEURL}/products/export-product-excel`, {
+          responseType: "blob"
+        })
+        .then((response) => {
+          const url = window.URL.createObjectURL(new Blob([response.data]));
+          const a = document.createElement("a");
+          a.href = url;
+          a.download = "products.xlsx";
+          document.body.appendChild(a);
+          a.click();
+          a.remove();
+        });
+    } catch (error) {
+      console.log("error", error);
+    }
+  };
+
   useEffect(() => {
     fetchProducts();
   }, []);
-   const deleteMultipleProducts = async (productIds) => {
-     try {
-       const response = await axios.delete(
-         `${BASEURL}/products/delete-products`,
-         {
-           headers: {
-             Authorization: `Bearer ${token}`
-           },
-           data: { ids: productIds }
-         }
-       );
-       console.log(response);
-       fetchProducts();
-     } catch (error) {
-       console.error(
-         "Error deleting services:",
-         error.response?.data?.message || error.message
-       );
-     }
-   };
+
+  const deleteMultipleProducts = async (productIds) => {
+    try {
+      const response = await axios.delete(
+        `${BASEURL}/products/delete-products`,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`
+          },
+          data: { ids: productIds }
+        }
+      );
+      console.log(response);
+      fetchProducts(); // Fetch the updated product list after deletion
+    } catch (error) {
+      console.error(
+        "Error deleting services:",
+        error.response?.data?.message || error.message
+      );
+    }
+  };
 
   return (
     <div>
@@ -58,39 +131,62 @@ const Products = () => {
           <Col xl={3} className="col-xl-3-colm">
             <h1 style={{ fontWeight: "300" }}>Products</h1>
           </Col>
-          <Col xl={5}>
-            <ul>
-              <Link className="Admin-sidebar">
-                <li>Home</li>
-                <li style={{ color: "#4291e7" }}>Products</li>
-              </Link>
-            </ul>
-          </Col>
+
           <Col className="icons-colmn">
+            <Link>
+              <OverlayTrigger
+                placement="top"
+                overlay={<Tooltip id="pdf-tooltip">Download PDF</Tooltip>}
+              >
+                <button className="add-btn" onClick={downloadPdf}>
+                  <FontAwesomeIcon icon={faFilePdf} />
+                </button>
+              </OverlayTrigger>
+            </Link>
+
+            <Link>
+              <OverlayTrigger
+                placement="top"
+                overlay={<Tooltip id="csv-tooltip">Download CSV</Tooltip>}
+              >
+                <button className="add-btn" onClick={downloadCsv}>
+                  <FontAwesomeIcon icon={faFileCsv} />
+                </button>
+              </OverlayTrigger>
+            </Link>
+
+            <Link>
+              <OverlayTrigger
+                placement="top"
+                overlay={<Tooltip id="excel-tooltip">Download Excel</Tooltip>}
+              >
+                <button className="add-btn" onClick={downloadExcel}>
+                  <FontAwesomeIcon icon={faFileExcel} />
+                </button>
+              </OverlayTrigger>
+            </Link>
+
             <OverlayTrigger
               placement="top"
               overlay={<Tooltip>Add New</Tooltip>}
             >
-              <Link to={"/admin/product/add-product"} className="add-btn">
+              <Link to="/admin/product/add-product" className="add-btn">
                 <FontAwesomeIcon icon={faPlus} className="addicon" />
               </Link>
             </OverlayTrigger>
             <OverlayTrigger
               placement="top"
-              overlay={<Tooltip>Rebuild</Tooltip>}
+              overlay={<Tooltip>Delete All</Tooltip>}
             >
-              <button className="ref-btn">
-                <FontAwesomeIcon icon={faRefresh} className="reficon" />
-              </button>
+              <Link>
+                <button
+                  className="del-btn"
+                  onClick={(e) => deleteMultipleProducts(selectedProducts)}
+                >
+                  <FontAwesomeIcon icon={faTrash} className="addicon" />
+                </button>
+              </Link>
             </OverlayTrigger>
-            {/* <OverlayTrigger placement="top" overlay={<Tooltip>Delete</Tooltip>}>
-              <button
-                className="del-btn"
-                onClick={() => deleteMultipleProducts(selectedProducts)}
-              >
-                <FontAwesomeIcon icon={faTrash} className="delicon" />
-              </button>
-            </OverlayTrigger> */}
           </Col>
         </Row>
 
@@ -103,6 +199,7 @@ const Products = () => {
             allSelected={allSelected}
             setAllSelected={setAllSelected}
             deleteMultipleProducts={deleteMultipleProducts}
+            addProductToTop={addProductToTop} // Pass this function as a prop
           />
         </Row>
       </Container>

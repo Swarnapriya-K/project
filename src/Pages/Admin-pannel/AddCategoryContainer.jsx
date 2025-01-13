@@ -16,27 +16,21 @@ function AddCategoryContainer() {
           <Col xl={5}>
             <ul>
               <Link className="Admin-sidebar">
-                <Link to={"/admin"}>Home</Link>
-                <Link to={"/admin/catalog/category"}>Category</Link>
+                {/* <Link to={"/admin"}>Home</Link> */}
+                <Link className='Link-style-remove' to={"/admin/catalog/category"}>Category</Link>
               </Link>
             </ul>
           </Col>
           <Col className="icons-colmn">
             <OverlayTrigger
               placement="top" // Tooltip will appear on top of the button
-              overlay={<Tooltip>Save</Tooltip>}
-            >
-              <button className="ref-btn">
-                <FontAwesomeIcon icon={faSave} className="reficon" />
-              </button>
-            </OverlayTrigger>
-            <OverlayTrigger
-              placement="top" // Tooltip will appear on top of the button
               overlay={<Tooltip>Cancel</Tooltip>}
             >
-              <button className="del-btn">
-                <FontAwesomeIcon icon={faReply} className="delicon" />
-              </button>
+              <Link to={"/admin/catalog/category"}>
+                <button className="del-btn">
+                  <FontAwesomeIcon icon={faReply} className="delicon" />
+                </button>
+              </Link>
             </OverlayTrigger>
           </Col>
         </Row>

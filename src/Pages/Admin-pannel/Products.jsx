@@ -199,7 +199,7 @@ const Products = () => {
             allSelected={allSelected}
             setAllSelected={setAllSelected}
             deleteMultipleProducts={deleteMultipleProducts}
-            addProductToTop={addProductToTop} // Pass this function as a prop
+            addProductToTop={addProductToTop} 
           />
         </Row>
       </Container>

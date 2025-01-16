@@ -2,7 +2,7 @@ import React from 'react'
 import { Container, Row, Col, OverlayTrigger, Tooltip } from "react-bootstrap";
 import { Link } from "react-router-dom"; 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faReply, faSave } from "@fortawesome/free-solid-svg-icons";
+import { faReply} from "@fortawesome/free-solid-svg-icons";
 import AddCategoryForm from './AddCategoryForm';
 
 function AddCategoryContainer() {
@@ -36,7 +36,7 @@ function AddCategoryContainer() {
         </Row>
 
         <hr className="hr-line-design2" />
-        <Row>
+        <Row className='Category-add-from'>
           <AddCategoryForm />
         </Row>
       </Container>

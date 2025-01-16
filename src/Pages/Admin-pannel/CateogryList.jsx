@@ -7,78 +7,76 @@ import {
   faPencil,
   faTrash
 } from "@fortawesome/free-solid-svg-icons";
-import { Link } from "react-router";
+import { Link } from "react-router-dom";
 import ViewModal from "./Modal";
 import Pagination from "./Pagination";
 
-const CategoryRow = ({
-  category,
-  sno,
-  isChecked,
-  onCheckboxChange,
-  deleteMultipleCategories,
-  selectedCategories,
-  setClickedCategory,
-  setShowModal
-}) => {
-  return (
-    <tr>
-      <td>
-        <input
-          type="checkbox"
-          checked={isChecked}
-          onChange={() => onCheckboxChange(category._id)}
-        />
-      </td>
-      <td>{sno}</td>
-      <td>{category.name}</td>
-      <td>
-        <Link
-          to={"/admin/category/add-category"}
-          className="add-btn"
-          state={category}
-        >
-          <button className="edit-btn">
-            <FontAwesomeIcon icon={faPencil} />
-          </button>
-        </Link>
-        <Link>
-          <button
-            className="del-btn"
-            onClick={() => {
-              if (selectedCategories.length > 0)
-                deleteMultipleCategories(selectedCategories);
-            }}
+const CategoryRow = (
+  ({
+    category,
+    sno,
+    isChecked,
+    onCheckboxChange,
+    deleteMultipleCategories,
+    setClickedCategory,
+    setShowModal
+  }) => {
+    return (
+      <tr>
+        <td>
+          <input
+            type="checkbox"
+            checked={isChecked}
+            onChange={() => onCheckboxChange(category._id)}
+          />
+        </td>
+        <td>{sno}</td>
+        <td>{category.name}</td>
+        <td>
+          <Link
+            to={"/admin/category/add-category"}
+            className="add-btn"
+            state={category}
           >
-            <FontAwesomeIcon icon={faTrash} className="delicon" />
-          </button>
-        </Link>
-        <Link className="add-btn">
-          <button
-            className="edit-btn"
-            onClick={() => {
-              setClickedCategory(category);
-              setShowModal(true);
-            }}
-          >
-            <FontAwesomeIcon icon={faEye} />
-          </button>
-        </Link>
-      </td>
-    </tr>
-  );
-};
+            <button className="edit-btn">
+              <FontAwesomeIcon icon={faPencil} />
+            </button>
+          </Link>
+          <Link>
+            <button
+              className="del-btn"
+              onClick={() => deleteMultipleCategories([category._id])}
+            >
+              <FontAwesomeIcon icon={faTrash} className="delicon" />
+            </button>
+          </Link>
+          <Link className="add-btn">
+            <button
+              className="edit-btn"
+              onClick={() => {
+                setClickedCategory(category);
+                setShowModal(true);
+              }}
+            >
+              <FontAwesomeIcon icon={faEye} />
+            </button>
+          </Link>
+        </td>
+      </tr>
+    );
+  }
+);
 
 const CategoryList = ({
   categories,
   setSelectedCategories,
   selectedCategories,
-  allSelected,
-  setAllSelected,
-  deleteMultipleCategories
+  deleteMultipleCategories,
+  setAllSelected
 }) => {
-  const [itemsPerPage, setItemsPerPage] = useState(5); // Default items per page
+  const [itemsPerPage, setItemsPerPage] = useState(5);
   const [currentPage, setCurrentPage] = useState(0);
+
 
   // Pagination logic
   const totalCategories = categories.length;
@@ -105,21 +103,29 @@ const CategoryList = ({
     if (selectedCategories.includes(id)) {
       setSelectedCategories(
         selectedCategories.filter((categoryId) => categoryId !== id)
-      ); // Deselect
+      );
     } else {
-      setSelectedCategories([...selectedCategories, id]); // Select
+      setSelectedCategories([...selectedCategories, id]);
     }
   };
 
   const handleItemsPerPageChange = (e) => {
-    const newItemsPerPage = parseInt(e.target.value); // Dynamically change items per page
-    setItemsPerPage(newItemsPerPage); // Set new items per page
-    setCurrentPage(0); // Reset to first page when items per page changes
+    const newItemsPerPage = parseInt(e.target.value);
+    setItemsPerPage(newItemsPerPage);
+    setCurrentPage(0);
   };
 
   const [showModal, setShowModal] = useState(false);
   const [clickedCategory, setClickedCategory] = useState({});
   const onModalClose = () => setShowModal(false);
+
+  useEffect(() => {
+    if (categories.length > 0) {
+      setAllSelected(selectedCategories.length === categories.length);
+    } else {
+      setAllSelected(false);
+    }
+  }, [selectedCategories, categories]);
 
   return (
     <div className="service-list-Container">
@@ -147,7 +153,7 @@ const CategoryList = ({
               <th>
                 <input
                   type="checkbox"
-                  checked={allSelected}
+                  checked={selectedCategories.length === categories.length}
                   onChange={handleSelectAll}
                 />
               </th>
@@ -156,17 +162,17 @@ const CategoryList = ({
               <th>Actions</th>
             </tr>
           </thead>
+
           <tbody>
             {currentCategories.length > 0 ? (
               currentCategories.map((category, index) => (
                 <CategoryRow
                   key={category._id}
                   category={category}
-                  sno={totalCategories - (offset + index)} // Corrected SNo logic
+                  sno={totalCategories - (offset + index)}
                   isChecked={selectedCategories.includes(category._id)}
                   onCheckboxChange={handleRowCheckboxChange}
                   deleteMultipleCategories={deleteMultipleCategories}
-                  selectedCategories={selectedCategories}
                   setClickedCategory={setClickedCategory}
                   setShowModal={setShowModal}
                 />

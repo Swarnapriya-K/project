@@ -9,19 +9,18 @@ const AddCategoryForm = () => {
   });
 
   const navigate = useNavigate();
-
   const location = useLocation();
-  const state = location.state;
+  const state = location.state; // Category state passed for editing
 
-  console.log(state);
-
+  // Initialize formData when state (category) is passed for editing
   useEffect(() => {
     if (state) {
-      setFormData(state);
+      setFormData(state); // Populate form data with category state for editing
     }
   }, [state]);
 
   const token = localStorage.getItem("token");
+
   const handleChange = (e) => {
     setFormData({
       ...formData,
@@ -31,11 +30,13 @@ const AddCategoryForm = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    try {
-      // Sending form data to the backend using axios
 
+    try {
       let response;
+
+      // Use PATCH for editing, POST for adding new category
       if (state) {
+        // Editing an existing category (PATCH request)
         response = await axios.patch(
           `${BASEURL}/category/edit-category/${state._id}`,
           { name: formData.name },
@@ -46,6 +47,7 @@ const AddCategoryForm = () => {
           }
         );
       } else {
+        // Adding a new category (POST request)
         response = await axios.post(
           `${BASEURL}/category/add-category`,
           { name: formData.name },
@@ -56,11 +58,16 @@ const AddCategoryForm = () => {
           }
         );
       }
+
+      // Redirect to the category list page after successful operation
       navigate("/admin/catalog/category");
-      console.log("Category added successfully:", response.data);
+      console.log("Category successfully saved:", response.data);
     } catch (error) {
-      console.error("Error adding category:", error);
-      alert(error?.response?.data?.message)
+      console.error("Error saving category:", error);
+      alert(
+        error?.response?.data?.message ||
+          "An error occurred while saving the category."
+      );
     }
   };
 
@@ -69,19 +76,22 @@ const AddCategoryForm = () => {
       <h2 className="form-title">{state ? "Edit" : "Add"} Category</h2>
       <form onSubmit={handleSubmit}>
         <div className="form-group">
-          <label htmlFor="mainCategory" className="form-label">
+          <label htmlFor="name" className="form-label">
             Category Name
           </label>
           <input
             type="text"
+            id="name"
+            name="name"
             value={formData.name}
-            name={"name"}
             onChange={handleChange}
+            placeholder="Enter category name"
+            required
           />
         </div>
 
         <button type="submit" className="submit-btn">
-          Submit
+          {state ? "Update Category" : "Add Category"}
         </button>
       </form>
     </div>

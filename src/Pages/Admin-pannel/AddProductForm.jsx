@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import { Form, Button } from "react-bootstrap";
-import { BASEURL } from "../../config/config"; // Make sure this is your correct backend URL
+import { Form, Button, Spinner } from "react-bootstrap";
+import { BASEURL } from "../../config/config"; // Ensure this is your correct backend URL
 import { useLocation, useNavigate } from "react-router";
 
 const AddProductForm = () => {
@@ -14,31 +14,35 @@ const AddProductForm = () => {
     categoryId: ""
   });
   const [file, setFile] = useState(null);
+  const [categories, setCategories] = useState([]); // State to store category list
+  const [errors, setErrors] = useState({});
+  const [loading, setLoading] = useState(false); // State to handle loading spinner
 
   const navigate = useNavigate();
-
   const location = useLocation();
-  const state = location.state;
-  console.log(state);
+  const state = location.state; // For edit functionality
 
   useEffect(() => {
     if (state) {
       setFormData(state);
-      setFile(BASEURL + "/" + state.image);
+      setFile(BASEURL + "/" + state.image); // Set the image URL if editing
     }
   }, [state]);
-
-  const [categories, setCategories] = useState([]); // State to store category list
-  const [errors, setErrors] = useState({});
 
   // Fetch category list from the backend on component mount
   useEffect(() => {
     const fetchCategories = async () => {
+      setLoading(true); // Show loading spinner
       try {
-        const response = await axios.get(`${BASEURL}/category/get-category`); // Adjust BASEURL as needed
-        setCategories(response.data.categories);
+        const response = await axios.get(`${BASEURL}/category/get-category`);
+        // Filter out deleted categories (assumed field: deletedAt or similar)
+        setCategories(
+          response.data.categories.filter((category) => !category.deletedAt)
+        );
       } catch (error) {
         console.error("Error fetching categories:", error);
+      } finally {
+        setLoading(false); // Hide loading spinner
       }
     };
 
@@ -47,8 +51,6 @@ const AddProductForm = () => {
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    console.log(name, value);
-
     setFormData((prev) => ({
       ...prev,
       [name]: value
@@ -56,43 +58,44 @@ const AddProductForm = () => {
   };
 
   const handleFileChange = (e) => {
-    setFormData({ ...formData, image: e.target.files[0] });
-    console.log(e.target.files);
-    setFile(URL.createObjectURL(e.target.files[0]));
-  };
-
-  const handleDescriptionChange = (value) => {
-    setFormData({ ...formData, description: value });
+    const file = e.target.files[0];
+    if (file && file.size > 2 * 1024 * 1024) {
+      setErrors((prev) => ({
+        ...prev,
+        image: "File size exceeds 2MB"
+      }));
+      return;
+    }
+    setFormData({ ...formData, image: file });
+    setFile(URL.createObjectURL(file));
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    // Example validation (you can enhance this based on your needs)
+    // Form validation
     const formErrors = {};
     if (!formData.productName)
       formErrors.productName = "Product name is required";
-    if (!formData.productPrice)
-      formErrors.productPrice = "Product price is required";
+    if (!formData.productPrice || formData.productPrice <= 0)
+      formErrors.productPrice = "Product price must be a positive number";
+    if (formData.discount && formData.discount < 0)
+      formErrors.discount = "Discount cannot be negative";
     if (!formData.categoryId) formErrors.category = "Category is required";
 
-    setErrors(formErrors); // Set the error state
+    setErrors(formErrors);
 
-    // If there are errors, return early
+    // If there are validation errors, exit
     if (Object.keys(formErrors).length > 0) return;
 
-    // Assuming you are submitting the form to a different endpoint
+    // Form submission logic
     const data = new FormData();
     data.append("productName", formData.productName);
     data.append("productPrice", formData.productPrice);
     data.append("discount", formData.discount || 0);
     data.append("description", formData.description || "");
-    data.append(
-      "categoryId",
-      state ? formData.categoryId : formData.categoryId
-    );
+    data.append("categoryId", formData.categoryId);
 
-    // Add image if exists
     if (formData.image) {
       data.append("image", formData.image);
     }
@@ -111,7 +114,6 @@ const AddProductForm = () => {
             }
           }
         );
-        navigate("/admin/catalog/products");
       } else {
         response = await axios.post(`${BASEURL}/products/add-product`, data, {
           headers: {
@@ -119,9 +121,10 @@ const AddProductForm = () => {
             Authorization: `Bearer ${token}`
           }
         });
-        navigate("/admin/catalog/products");
-        console.log(response.data);
-      } // Handle the response data as needed
+        console.log(response);
+      }
+      setErrors({}); // Clear errors on success
+      navigate("/admin/catalog/products");
     } catch (error) {
       console.error(error);
     }
@@ -144,7 +147,9 @@ const AddProductForm = () => {
                 name="productName"
                 onChange={handleChange}
               />
-              <Form.Text>{errors.productName}</Form.Text>
+              <Form.Text className="text-danger">
+                {errors.productName}
+              </Form.Text>
             </Form.Group>
 
             <Form.Group className="mb-3">
@@ -157,7 +162,9 @@ const AddProductForm = () => {
                 name="productPrice"
                 onChange={handleChange}
               />
-              <Form.Text>{errors.productPrice}</Form.Text>
+              <Form.Text className="text-danger">
+                {errors.productPrice}
+              </Form.Text>
             </Form.Group>
 
             <Form.Group className="mb-3">
@@ -168,14 +175,23 @@ const AddProductForm = () => {
                 value={formData.categoryId}
                 onChange={handleChange}
               >
-                <option value="">Select a category</option>
-                {categories.map((category) => (
-                  <option key={category._id} value={category._id}>
-                    {category.name}
-                  </option>
-                ))}
+                <option value="">
+                  {state &&
+                  !categories.find((cat) => cat._id === formData.categoryId)
+                    ? "Category Deleted"
+                    : "Select a category"}
+                </option>
+                {loading ? (
+                  <option disabled>Loading categories...</option>
+                ) : (
+                  categories.map((category) => (
+                    <option key={category._id} value={category._id}>
+                      {category.name}
+                    </option>
+                  ))
+                )}
               </Form.Control>
-              <Form.Text>{errors.category}</Form.Text>
+              <Form.Text className="text-danger">{errors.category}</Form.Text>
             </Form.Group>
 
             <Form.Group className="mb-3">
@@ -187,7 +203,7 @@ const AddProductForm = () => {
                 name="discount"
                 onChange={handleChange}
               />
-              <Form.Text>{errors.discount}</Form.Text>
+              <Form.Text className="text-danger">{errors.discount}</Form.Text>
             </Form.Group>
 
             <Form.Group className="mb-3">
@@ -197,20 +213,25 @@ const AddProductForm = () => {
                 accept="image/*"
                 onChange={handleFileChange}
               />
-              <img src={file} alt="" />
+              {file && (
+                <img src={file} alt="Preview" style={{ width: "100px" }} />
+              )}
+              <Form.Text className="text-danger">{errors.image}</Form.Text>
             </Form.Group>
 
             <Form.Group className="mb-3">
               <Form.Label>Description</Form.Label>
               <textarea
                 value={formData.description}
-                onChange={(e) => handleDescriptionChange(e.target.value)}
+                onChange={(e) =>
+                  setFormData({ ...formData, description: e.target.value })
+                }
                 className="form-control"
                 placeholder="Product description"
               />
             </Form.Group>
 
-            <Button variant="primary" className="mt-5" type="submit">
+            <Button variant="primary" className="mt-3" type="submit">
               Save Product
             </Button>
           </Form>

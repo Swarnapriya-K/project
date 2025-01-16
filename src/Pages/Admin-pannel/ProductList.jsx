@@ -154,7 +154,6 @@ const ProductList = ({
                   <td>
                     {products.length - index - (currentPage - 1) * itemsPerPage}
                   </td>{" "}
-                  {/* Correct SNO for reverse order */}
                   <td>
                     {product.image ? (
                       <img

@@ -45,7 +45,7 @@ function AddProductsContainer() {
         </Row>
 
         <hr className="hr-line-design2" />
-        <Row>
+        <Row >
           <AddProductForm />
         </Row>
       </Container>

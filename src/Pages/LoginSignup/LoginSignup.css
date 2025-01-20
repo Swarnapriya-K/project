@@ -37,7 +37,7 @@
   border-radius: 5px;
 }
 
-.form-container button {
+.form-container button,.loginbtn {
   background-color: #e91e63;
   color: #fff;
   border: none;

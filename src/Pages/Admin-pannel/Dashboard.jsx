@@ -61,7 +61,7 @@ function Dashboard() {
             <button style={{ all: "unset" }} onClick={()=> logout()}>
               <FontAwesomeIcon
                 icon={faSignOut}
-                style={{ paddingRight: "10px" }}
+               
               />{" "}
               Logout
             </button>

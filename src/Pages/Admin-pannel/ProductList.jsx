@@ -137,7 +137,7 @@ const ProductList = ({
               <th>Category</th>
               <th>Price</th>
               <th>Discount</th>
-              <th>Actions</th>
+              <th className="Action-width-style">Actions</th>
             </tr>
           </thead>
           <tbody>
@@ -173,7 +173,7 @@ const ProductList = ({
                   <td>{product?.categoryId?.name}</td>
                   <td>{product?.productPrice}</td>
                   <td>{product?.discount}</td>
-                  <td>
+                  <td className="Action-width-style">
                     <Link
                       to={"/admin/product/add-product"}
                       className="add-btn"
@@ -186,14 +186,7 @@ const ProductList = ({
                         <FontAwesomeIcon icon={faPencil} />
                       </button>
                     </Link>
-                    <Link>
-                      <button
-                        className="del-btn"
-                        onClick={() => deleteMultipleProducts([product._id])}
-                      >
-                        <FontAwesomeIcon icon={faTrash} className="delicon" />
-                      </button>
-                    </Link>
+
                     <Link
                       className="add-btn"
                       onClick={() => {
@@ -203,6 +196,14 @@ const ProductList = ({
                     >
                       <button className="edit-btn">
                         <FontAwesomeIcon icon={faEye} />
+                      </button>
+                    </Link>
+                    <Link>
+                      <button
+                        className="del-btn"
+                        onClick={() => deleteMultipleProducts([product._id])}
+                      >
+                        <FontAwesomeIcon icon={faTrash} className="delicon" />
                       </button>
                     </Link>
                   </td>

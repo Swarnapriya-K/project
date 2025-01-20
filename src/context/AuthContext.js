@@ -1,6 +1,7 @@
 import axios from "axios";
 import React, { createContext, useState } from "react";
 import { BASEURL } from "../config/config";
+import { useNavigate } from "react-router";
 
 // Create Authentication Context
 export const AuthContext = createContext();
@@ -11,9 +12,11 @@ export const AuthProvider = ({ children }) => {
     JSON.parse(localStorage.getItem("isLoggedIn") || false)
   );
 
+  const navigate = useNavigate();
+
   const [role, setRole] = useState(localStorage.getItem("role") || "user");
 
-  const login = async (username, password) => {
+  const login = async (username, password, from) => {
     try {
       const response = await axios.post(`${BASEURL}/users/login`, {
         username,
@@ -21,6 +24,7 @@ export const AuthProvider = ({ children }) => {
       });
       console.log(response);
       const { token, role } = response.data;
+
       setIsLoggedIn(true);
       setRole(role);
       localStorage.setItem("isLoggedIn", true);
@@ -34,6 +38,8 @@ export const AuthProvider = ({ children }) => {
   const logout = () => {
     setIsLoggedIn(false);
     localStorage.setItem("isLoggedIn", false);
+    localStorage.clear();
+    navigate("/login");
   };
 
   return (

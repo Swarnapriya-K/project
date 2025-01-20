@@ -1,7 +1,9 @@
-import React, { useState } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import "./CheckoutComponent.css";
 import { useSelector } from "react-redux";
 import { Container } from "react-bootstrap";
+import { AuthContext } from "../../context/AuthContext";
+import { useNavigate } from "react-router";
 
 const SuccessMessage = ({ message }) => {
   return (
@@ -58,6 +60,9 @@ const CheckoutComponent = () => {
   const [orderPlaced, setOrderPlaced] = useState(false);
   const [message, setMessage] = useState("");
 
+  const { isLoggedIn } = useContext(AuthContext);
+  const navigate = useNavigate();
+
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData((prev) => ({ ...prev, [name]: value }));
@@ -94,7 +99,7 @@ const CheckoutComponent = () => {
 
   const products = useSelector((state) => state.basket.products);
   const total = products.reduce(
-    (acc, item) => acc + item.price * item.quantity,
+    (acc, item) => acc + item.productId.productPrice * item.quantity,
     0
   );
 
@@ -163,6 +168,16 @@ const CheckoutComponent = () => {
       }
     }
   };
+
+  useEffect(() => {
+    if (!isLoggedIn) {
+      navigate("/login", {
+        state: { from: "/checkout" }
+      });
+    }
+  }, [isLoggedIn, navigate]);
+
+  if (!isLoggedIn) return null;
   return (
     <Container>
       <div className="checkout-container">
@@ -281,6 +296,8 @@ const CheckoutComponent = () => {
                 <thead>
                   <tr>
                     <th>Product</th>
+                    <th>Quantity</th>
+                    <th>Price</th>
                     <th>Subtotal</th>
                   </tr>
                 </thead>
@@ -288,8 +305,12 @@ const CheckoutComponent = () => {
                   {products.map((product) => {
                     return (
                       <tr key={product.id}>
-                        <td>{product.productname}</td>
-                        <td>{product.price}</td>
+                        <td>{product.productId.productName}</td>
+                        <td>{product.quantity}</td>
+                        <td>{product.productId.productPrice}</td>
+                        <td>
+                          {product.quantity * product.productId.productPrice}
+                        </td>
                       </tr>
                     );
                   })}
@@ -297,6 +318,8 @@ const CheckoutComponent = () => {
                     <td>
                       <strong>Total</strong>
                     </td>
+                    <td></td>
+                    <td></td>
                     <td style={{ color: "#e91e63", fontWeight: "bold" }}>
                       ${total}
                     </td>

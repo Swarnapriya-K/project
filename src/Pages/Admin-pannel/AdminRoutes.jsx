@@ -3,7 +3,6 @@ import { Outlet, Navigate } from "react-router";
 import { AuthContext } from "../../context/AuthContext";
 import SideBar from "./SideBar";
 import Dashboard from "./Dashboard";
-import AdminHome from "./AdminHome";
 
 const AdminRoutes = () => {
   const { isLoggedIn } = useContext(AuthContext);
@@ -11,6 +10,7 @@ const AdminRoutes = () => {
     <>
       {isLoggedIn ? (
         <>
+        
           <Dashboard />
           <div style={{ display: "flex", overflow: "hidden" }}>
             <SideBar />
@@ -20,7 +20,7 @@ const AdminRoutes = () => {
           </div>
         </>
       ) : (
-        <Navigate to={"/admin/login"} replace />
+        <Navigate to={"/admin/login"} />
       )}
     </>
   );

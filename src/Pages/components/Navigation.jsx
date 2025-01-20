@@ -67,7 +67,9 @@ function Header() {
                className="logout-btn"
                 onClick={() => logout()}
               >
-                <FontAwesomeIcon icon={faSignOut} />
+                <FontAwesomeIcon icon={faSignOut}/>
+                
+              
               </button>
             </Container>
           </Navbar>

@@ -103,7 +103,19 @@ const Products = () => {
     fetchProducts();
   }, []);
 
-  const deleteMultipleProducts = async (productIds) => {
+const deleteMultipleProducts = async (productIds) => {
+  if (productIds.length === 0) {
+    // If no products are selected, show an alert or message
+    alert("Please select products to delete");
+    return; // Exit the function early
+  }
+
+  // Ask for confirmation before proceeding with deletion
+  const confirmation = window.confirm(
+    `Are you sure you want to delete ${productIds.length} products?`
+  );
+
+  if (confirmation) {
     try {
       const response = await axios.delete(
         `${BASEURL}/products/delete-products`,
@@ -118,11 +130,16 @@ const Products = () => {
       fetchProducts(); // Fetch the updated product list after deletion
     } catch (error) {
       console.error(
-        "Error deleting services:",
+        "Error deleting products:",
         error.response?.data?.message || error.message
       );
     }
-  };
+  } else {
+    console.log("Deletion cancelled");
+  }
+};
+
+
 
   return (
     <div>

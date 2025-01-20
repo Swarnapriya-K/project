@@ -159,6 +159,9 @@
 .Service-Container {
   background-color: rgba(117, 119, 119, 0.116);
 }
+.Category-list-Container{
+    padding: 15px 35px;
+}
 .Service-Row-Style {
   padding: 4px 0px;
 }
@@ -324,7 +327,7 @@ a[href="#logout"] {
 
 .custom-table th, .custom-table td {
   padding: 12px 15px;
-  text-align: left;
+  text-align: center;
   border-bottom: 1px solid #ddd;
 }
 
@@ -388,6 +391,9 @@ a[href="#logout"] {
 .custom-table input[type="checkbox"] {
   width: 20px;
   height: 20px;
+}
+.Action-width-style{
+  width: 25%;
 }
 
 /* ----------------------------------------------------------------------------------------------------- */

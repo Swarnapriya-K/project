@@ -1,14 +1,87 @@
-/* Premium styling */
-.premium-card {
-  background-color: #ffffff;
-  border-radius: 10px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+/* AddProductForm.css */
+.add-product-container {
+  padding: 20px;
+  background-color: #f8f9fa; /* Light background for the full page */
+  min-height: 100vh; /* Ensure the form takes full page height */
 }
 
-.premium-heading {
-  font-family: 'Arial', sans-serif;
-  color: #333;
-  font-size: 1.8rem;
-  font-weight: 700;
-  margin-bottom: 1.
+.add-product-form-wrapper {
+  background-color: #fff;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  padding: 2rem;
+}
+
+.add-product-title {
+  font-weight: 600;
+  color: #2c3e50;
+  margin-bottom: 1.5rem;
+}
+
+.add-product-form .add-product-input {
+  border-radius: 8px;
+  border: 1px solid #e0e0e0;
+  padding: 6px 10px; /* Smaller padding for compact fields */
+  font-size: 14px;
+  width: 100%;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.add-product-form .add-product-input:focus {
+  border-color: #007bff;
+  box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.1);
+  outline: none;
+}
+
+.add-product-form .add-product-textarea {
+  border-radius: 8px;
+  border: 1px solid #e0e0e0;
+  padding: 6px 10px; /* Smaller padding for compact textarea */
+  font-size: 14px;
+  width: 40%;
+  resize: vertical;
+  min-height: 100px;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.add-product-form .add-product-textarea:focus {
+  border-color: #007bff;
+  box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.1);
+  outline: none;
+}
+
+.add-product-form .add-product-btn {
+  background-color: #007bff;
+  border: none;
+  border-radius: 8px;
+  padding: 6px 12px; /* Smaller padding for compact button */
+  font-size: 14px;
+  font-weight: 500;
+  color: #fff;
+  width: auto; /* Auto width for compact button */
+  transition: background-color 0.3s ease;
+}
+
+.add-product-form .add-product-btn:hover {
+  background-color: #0056b3;
+}
+
+.add-product-img-preview {
+  width: 80px;
+  height: auto;
+  border-radius: 8px;
+  border: 1px solid #e0e0e0;
+  padding: 4px;
+  margin-top: 8px;
+}
+
+.text-danger {
+  font-size: 12px;
+  color: #dc3545;
+  margin-top: 4px;
+}
+
+/* Compact form group styling */
+.add-product-form .form-group {
+  margin-bottom: 1rem;
 }

@@ -1,14 +1,14 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import { Form, Button, Spinner } from "react-bootstrap";
+import { Form, Button, Spinner, Container, Row, Col } from "react-bootstrap";
 import { BASEURL } from "../../config/config"; // Ensure this is your correct backend URL
 import { useLocation, useNavigate } from "react-router";
+import "./AddProductForm.css"; // Custom CSS for additional styling
 
 const AddProductForm = () => {
   const [formData, setFormData] = useState({
     productName: "",
     productPrice: null,
-    discount: null,
     description: "",
     image: null,
     categoryId: ""
@@ -79,9 +79,8 @@ const AddProductForm = () => {
       formErrors.productName = "Product name is required";
     if (!formData.productPrice || formData.productPrice <= 0)
       formErrors.productPrice = "Product price must be a positive number";
-    if (formData.discount && formData.discount < 0)
-      formErrors.discount = "Discount cannot be negative";
     if (!formData.categoryId) formErrors.category = "Category is required";
+    if (!formData.image) formErrors.image = "Image is required";
 
     setErrors(formErrors);
 
@@ -92,7 +91,6 @@ const AddProductForm = () => {
     const data = new FormData();
     data.append("productName", formData.productName);
     data.append("productPrice", formData.productPrice);
-    data.append("discount", formData.discount || 0);
     data.append("description", formData.description || "");
     data.append("categoryId", formData.categoryId);
 
@@ -131,113 +129,154 @@ const AddProductForm = () => {
   };
 
   return (
-    <div className="container mt-4">
-      <div className="addcard">
-        <div className="card-body">
-          <h5>{state ? "Edit" : "Add"} Product</h5>
+    <Container fluid className="add-product-container">
+      <Row className="justify-content-center">
+        <Col md={10} lg={8}>
+          <div className="add-product-form-wrapper">
+            <h3 className="add-product-title text-center mb-4">
+              {state ? "Edit" : "Add"} Product
+            </h3>
+            <Form
+              noValidate
+              onSubmit={handleSubmit}
+              className="add-product-form"
+            >
+              <Row>
+                <Col md={6}>
+                  <Form.Group className="mb-3">
+                    <Form.Label>Product Name</Form.Label>
+                    <Form.Control
+                      type="text"
+                      placeholder="Product Name"
+                      required
+                      value={formData.productName}
+                      name="productName"
+                      onChange={handleChange}
+                      className={`add-product-input ${
+                        errors.productName ? "is-invalid" : ""
+                      }`}
+                    />
+                    <Form.Text className="text-danger">
+                      {errors.productName}
+                    </Form.Text>
+                  </Form.Group>
+                </Col>
+                <Col md={6}>
+                  <Form.Group className="mb-3">
+                    <Form.Label>Product Price</Form.Label>
+                    <Form.Control
+                      type="number"
+                      placeholder="Price"
+                      required
+                      value={formData.productPrice}
+                      name="productPrice"
+                      onChange={handleChange}
+                      className={`add-product-input ${
+                        errors.productPrice ? "is-invalid" : ""
+                      }`}
+                    />
+                    <Form.Text className="text-danger">
+                      {errors.productPrice}
+                    </Form.Text>
+                  </Form.Group>
+                </Col>
+              </Row>
 
-          <Form noValidate onSubmit={handleSubmit}>
-            <Form.Group className="mb-3">
-              <Form.Label>Product Name</Form.Label>
-              <Form.Control
-                type="text"
-                placeholder="Product Name"
-                required
-                value={formData.productName}
-                name="productName"
-                onChange={handleChange}
-              />
-              <Form.Text className="text-danger">
-                {errors.productName}
-              </Form.Text>
-            </Form.Group>
+              <Row>
+                <Col md={6}>
+                  <Form.Group className="mb-3">
+                    <Form.Label>Main Category</Form.Label>
+                    <Form.Control
+                      as="select"
+                      name="categoryId"
+                      value={formData.categoryId}
+                      onChange={handleChange}
+                      className={`add-product-input ${
+                        errors.category ? "is-invalid" : ""
+                      }`}
+                    >
+                      <option value="">
+                        {state &&
+                        !categories.find(
+                          (cat) => cat._id === formData.categoryId
+                        )
+                          ? "Category Deleted"
+                          : "Select a category"}
+                      </option>
+                      {loading ? (
+                        <option disabled>Loading categories...</option>
+                      ) : (
+                        categories.map((category) => (
+                          <option key={category._id} value={category._id}>
+                            {category.name}
+                          </option>
+                        ))
+                      )}
+                    </Form.Control>
+                    <Form.Text className="text-danger">
+                      {errors.category}
+                    </Form.Text>
+                  </Form.Group>
+                </Col>
+                <Col md={6}>
+                  <Form.Group className="mb-3">
+                    <Form.Label>Upload Image</Form.Label>
+                    <Form.Control
+                      type="file"
+                      accept="image/*"
+                      onChange={handleFileChange}
+                      className={`add-product-input ${
+                        errors.image ? "is-invalid" : ""
+                      }`}
+                    />
+                    {file && (
+                      <img
+                        src={file}
+                        alt="Preview"
+                        className="add-product-img-preview mt-2"
+                      />
+                    )}
+                    <Form.Text className="text-danger">
+                      {errors.image}
+                    </Form.Text>
+                  </Form.Group>
+                </Col>
+              </Row>
 
-            <Form.Group className="mb-3">
-              <Form.Label>Product Price</Form.Label>
-              <Form.Control
-                type="number"
-                placeholder="Price"
-                required
-                value={formData.productPrice}
-                name="productPrice"
-                onChange={handleChange}
-              />
-              <Form.Text className="text-danger">
-                {errors.productPrice}
-              </Form.Text>
-            </Form.Group>
+              <Row>
+                <Col>
+                  <Form.Group className="mb-3">
+                    <Form.Label>Description</Form.Label>
+                    <textarea
+                      value={formData.description}
+                      onChange={(e) =>
+                        setFormData({
+                          ...formData,
+                          description: e.target.value
+                        })
+                      }
+                      className="add-product-textarea form-control"
+                      placeholder="Product description"
+                      rows="4"
+                    />
+                  </Form.Group>
+                </Col>
+              </Row>
 
-            <Form.Group className="mb-3">
-              <Form.Label>Main Category</Form.Label>
-              <Form.Control
-                as="select"
-                name="categoryId"
-                value={formData.categoryId}
-                onChange={handleChange}
-              >
-                <option value="">
-                  {state &&
-                  !categories.find((cat) => cat._id === formData.categoryId)
-                    ? "Category Deleted"
-                    : "Select a category"}
-                </option>
-                {loading ? (
-                  <option disabled>Loading categories...</option>
-                ) : (
-                  categories.map((category) => (
-                    <option key={category._id} value={category._id}>
-                      {category.name}
-                    </option>
-                  ))
-                )}
-              </Form.Control>
-              <Form.Text className="text-danger">{errors.category}</Form.Text>
-            </Form.Group>
-
-            <Form.Group className="mb-3">
-              <Form.Label>Discount</Form.Label>
-              <Form.Control
-                type="number"
-                placeholder="Discount"
-                value={formData.discount}
-                name="discount"
-                onChange={handleChange}
-              />
-              <Form.Text className="text-danger">{errors.discount}</Form.Text>
-            </Form.Group>
-
-            <Form.Group className="mb-3">
-              <Form.Label>Upload Image</Form.Label>
-              <Form.Control
-                type="file"
-                accept="image/*"
-                onChange={handleFileChange}
-              />
-              {file && (
-                <img src={file} alt="Preview" style={{ width: "100px" }} />
-              )}
-              <Form.Text className="text-danger">{errors.image}</Form.Text>
-            </Form.Group>
-
-            <Form.Group className="mb-3">
-              <Form.Label>Description</Form.Label>
-              <textarea
-                value={formData.description}
-                onChange={(e) =>
-                  setFormData({ ...formData, description: e.target.value })
-                }
-                className="form-control"
-                placeholder="Product description"
-              />
-            </Form.Group>
-
-            <Button variant="primary" className="mt-3" type="submit">
-              Save Product
-            </Button>
-          </Form>
-        </div>
-      </div>
-    </div>
+              <div className="d-flex justify-content-center">
+                <Button
+                  variant="primary"
+                  type="submit"
+                  className="add-product-btn"
+                >
+                  Save Product
+                </Button>
+              </div>
+            </Form>
+          </div>
+        </Col>
+      </Row>
+    </Container>
   );
 };
 

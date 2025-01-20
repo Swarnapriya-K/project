@@ -18,7 +18,7 @@ import DashboardHome from "./Pages/Admin-pannel/DashboardHome";
 import CheckoutPage from "./Pages/page10-CheckoutPage/CheckoutPage";
 import Login from "./Pages/LoginSignup/Login";
 import Signup from "./Pages/LoginSignup/Signup";
-import { Navigate } from "react-router-dom";
+import { Navigate, useNavigate, useLocation } from "react-router-dom";
 import { AuthContext } from "./context/AuthContext";
 import UserLayout from "./Pages/components/UserLayout";
 
@@ -27,6 +27,7 @@ import Catalog from "./Pages/Admin-pannel/Catalog";
 import AddCategoryContainer from "./Pages/Admin-pannel/AddCategoryContainer";
 import Products from "./Pages/Admin-pannel/Products";
 import AddProductsContainer from "./Pages/Admin-pannel/AddProductsContainer";
+import LoginAdmin from "./Pages/Admin-pannel/LoginAdmin";
 const App = () => {
   const fetchData = async () => {
     try {
@@ -37,6 +38,8 @@ const App = () => {
       console.log(error);
     }
   };
+
+  const location = useLocation();
 
   useEffect(() => {
     fetchData();
@@ -55,23 +58,15 @@ const App = () => {
               <Route path="/admin/catalog" element={<Catalog />}>
                 <Route path="category" element={<Category />} />
                 <Route path="products" element={<Products />} />
-                {/* <Route
-                  path="category/add-category"
-                  element={<AddCategoryContainer />}
-                /> */}
-                {/* <Route
-                  path="products/add-product"
-                  element={<AddProductContainer />}
-                /> */}
               </Route>
 
               <Route
                 path="/admin/category/add-category"
-                element={<AddCategoryContainer/>}
+                element={<AddCategoryContainer />}
               />
               <Route
                 path={"/admin/product/add-product"}
-                element={<AddProductsContainer/>}
+                element={<AddProductsContainer />}
               />
             </Route>
           ) : (
@@ -88,14 +83,29 @@ const App = () => {
           <>
             <Route path="/login" element={<Login />} />
             <Route path="/signup" element={<Signup />} />
+            <Route element={<UserLayout />}>
+              <Route path="/" element={<AllPages />} />
+              <Route path="/shop" element={<Shoping />} />
+              <Route path="/our-blog" element={<Blogs />} />
+              <Route path="/checkout" element={<CheckoutPage />} />
+            </Route>
+            <Route path="/admin/login" element={<LoginAdmin />} />
+            <Route path="/admin/*" element={<Navigate to="/admin/login" />} />
           </>
         )}
-
         <Route
           path="*"
           element={
             <Navigate
-              to={isLoggedIn ? (role === "admin" ? "/admin/" : "/") : "/login"}
+              to={
+                isLoggedIn
+                  ? role === "admin"
+                    ? "/admin/dashboard" // Or your admin default route
+                    : location.state?.from
+                    ? location.state?.from
+                    : "/"
+                  : "/login"
+              }
             />
           }
         />

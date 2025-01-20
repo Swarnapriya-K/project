@@ -2,10 +2,9 @@ import React, { useState,useContext } from "react";
 import Col from "react-bootstrap/esm/Col";
 import Container from "react-bootstrap/esm/Container";
 import Row from "react-bootstrap/esm/Row";
-import { Button } from "react-bootstrap";
 import Offcanvas from "react-bootstrap/Offcanvas";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faShoppingBasket,faSignOut } from "@fortawesome/free-solid-svg-icons";
+import { faShoppingBasket, } from "@fortawesome/free-solid-svg-icons";
 import "./MyNavbar.css";
 import { useSelector } from "react-redux";
 import CartList from "./CartList";
@@ -67,7 +66,7 @@ function Shopbaskat() {
         </Offcanvas.Header>
         <hr />
         <Offcanvas.Body>
-          <CartList />
+          <CartList handleClose={handleClose}/>
         </Offcanvas.Body>
       </Offcanvas>
     </div>

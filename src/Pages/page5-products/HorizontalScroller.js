@@ -1,4 +1,4 @@
-import { React } from "react";
+import { React, useEffect, useState } from "react";
 
 import SectionHeader from "../components/SectionHeader";
 import picture1 from "../images/Massage-creeem.png";
@@ -13,6 +13,8 @@ import picture9 from "../images/nivea.png";
 import picture10 from "../images/table.png";
 import ProductCards from "./ProductCards";
 import { Container } from "react-bootstrap";
+import axios from "axios";
+import { BASEURL } from "../../config/config";
 
 const products = [
   {
@@ -90,8 +92,22 @@ const products = [
 ];
 
 function HorizontalScroller() {
+  const [products, setProducts] = useState([]);
+
+  useEffect(() => {
+    const getProducts = async () => {
+      try {
+        let response = await axios.get(`${BASEURL}/products/get-products`);
+        console.log(response.data);
+        setProducts(response.data.products);
+      } catch (error) {
+        console.log(error?.message);
+      }
+    };
+    getProducts();
+  }, []);
   return (
-    <div className="products-page">
+    <div className="products-page" id="products-page">
       <SectionHeader title={"Beauty Products"} subtitle={"Need an awsome"} />
       <Container>
         <ProductCards products={products} />

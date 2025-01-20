@@ -1,6 +1,6 @@
 import React, { useState, useContext } from "react";
 import "./LoginSignup.css";
-import { Link, useNavigate } from "react-router";
+import { Link, useLocation, useNavigate } from "react-router";
 import { AuthContext } from "../../context/AuthContext";
 
 const LoginSignup = () => {
@@ -9,11 +9,11 @@ const LoginSignup = () => {
   const [error, setError] = useState("");
 
   const { login } = useContext(AuthContext);
-  const navigate = useNavigate(); // Correct use of useNavigate
+
 
   const usernameRegex = /^[a-zA-Z0-9]{3,}$/;
 
-  const handleLogin = (e) => {
+  const handleLogin = async (e) => {
     e.preventDefault();
 
     if (!username && !password) {
@@ -39,7 +39,7 @@ const LoginSignup = () => {
     }
 
     setError("");
-    login(username, password);
+    await login(username, password);
   };
   return (
     <div className="login-container-wrapper">

@@ -1,4 +1,4 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice, current } from "@reduxjs/toolkit";
 
 const initialState = {
   products: []
@@ -8,10 +8,12 @@ const basketSlice = createSlice({
   name: "basket",
   initialState,
   reducers: {
+    addProducts: (state, action) => {
+      state.products = action.payload;
+    },
     addProduct: (state, action) => {
-      console.log(action.payload);
       const existingProduct = state.products.find(
-        (product) => product.id === action.payload.id
+        (product) => product.productId._id === action.payload.productId._id
       );
       if (existingProduct) {
         existingProduct.quantity += 1;
@@ -21,25 +23,30 @@ const basketSlice = createSlice({
     },
     removeProduct: (state, action) => {
       state.products = state.products.filter(
-        (product) => product.id !== action.payload
+        (product) => product.productId._id !== action.payload
       );
     },
     increaseQuantity: (state, action) => {
       const product = state.products.find(
-        (product) => product.id === action.payload
+        (product) => product.productId._id === action.payload
       );
       if (product) product.quantity += 1;
     },
     decreaseQuantity: (state, action) => {
       const product = state.products.find(
-        (product) => product.id === action.payload
+        (product) => product.productId._id === action.payload
       );
       if (product && product.quantity > 1) product.quantity -= 1;
     }
   }
 });
 
-export const { addProduct, removeProduct, increaseQuantity, decreaseQuantity } =
-  basketSlice.actions;
+export const {
+  addProducts,
+  addProduct,
+  removeProduct,
+  increaseQuantity,
+  decreaseQuantity
+} = basketSlice.actions;
 
 export default basketSlice.reducer;

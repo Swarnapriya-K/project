@@ -8,7 +8,7 @@ const AddCategoryForm = () => {
     name: ""
   });
 
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
   const location = useLocation();
   const state = location.state; // Category state passed for editing
 
@@ -47,20 +47,44 @@ const AddCategoryForm = () => {
           }
         );
       } else {
-        // Adding a new category (POST request)
-        response = await axios.post(
-          `${BASEURL}/category/add-category`,
-          { name: formData.name },
-          {
-            headers: {
-              Authorization: `Bearer ${token}`
-            }
-          }
+        // Check if category already exists and is inactive
+        const existingCategory = await axios.get(
+          `${BASEURL}/category/get-category`
         );
+
+        const categoryExists = existingCategory.data.categories.find(
+          (category) => category.name === formData.name && !category.active
+        );
+
+        if (categoryExists) {
+          // Reactivate the category if it exists and is inactive
+          response = await axios.patch(
+            `${BASEURL}/category/edit-category/${categoryExists._id}`,
+            { active: true }, // Reactivate the category
+            {
+              headers: {
+                Authorization: `Bearer ${token}`
+              }
+            }
+          );
+          alert("Category reactivated successfully!");
+        } else {
+          // Adding a new category (POST request)
+          response = await axios.post(
+            `${BASEURL}/category/add-category`,
+            { name: formData.name },
+            {
+              headers: {
+                Authorization: `Bearer ${token}`
+              }
+            }
+          );
+          alert("Category added successfully!");
+        }
       }
 
       // Redirect to the category list page after successful operation
-      navigate("/admin/catalog/category");
+      // navigate("/admin/catalog/category");
       console.log("Category successfully saved:", response.data);
     } catch (error) {
       console.error("Error saving category:", error);

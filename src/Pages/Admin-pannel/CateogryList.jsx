@@ -1,82 +1,74 @@
 import React, { useState, useEffect } from "react";
-import { Col, Row, Table } from "react-bootstrap";
+import {Col, Row, Table } from "react-bootstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-  faEye,
-  faList,
-  faPencil,
-  faTrash
-} from "@fortawesome/free-solid-svg-icons";
+import { faEye, faPencil, faTrash,faList } from "@fortawesome/free-solid-svg-icons";
 import { Link } from "react-router-dom";
 import ViewModal from "./Modal";
 import Pagination from "./Pagination";
 
-const CategoryRow = (
-  ({
-    category,
-    sno,
-    isChecked,
-    onCheckboxChange,
-    deleteMultipleCategories,
-    setClickedCategory,
-    setShowModal
-  }) => {
-    return (
-      <tr>
-        <td>
-          <input
-            type="checkbox"
-            checked={isChecked}
-            onChange={() => onCheckboxChange(category._id)}
-          />
-        </td>
-        <td>{sno}</td>
-        <td>{category.name}</td>
-        <td>
-          <Link
-            to={"/admin/category/add-category"}
-            className="add-btn"
-            state={category}
+const CategoryRow = ({
+  category,
+  sno,
+  isChecked,
+  onCheckboxChange,
+  updateCategoryStatus,
+  setClickedCategory,
+  setShowModal
+}) => {
+  return (
+    <tr>
+      <td>
+        <input
+          type="checkbox"
+          checked={isChecked}
+          onChange={() => onCheckboxChange(category._id)}
+        />
+      </td>
+      <td>{sno}</td>
+      <td>{category.name}</td>
+      <td>
+        <Link
+          to={"/admin/category/add-category"}
+          className="add-btn"
+          state={category}
+        >
+          <button className="edit-btn">
+            <FontAwesomeIcon icon={faPencil} />
+          </button>
+        </Link>
+
+        <Link className="add-btn">
+          <button
+            className="edit-btn"
+            onClick={() => {
+              setClickedCategory(category);
+              setShowModal(true);
+            }}
           >
-            <button className="edit-btn">
-              <FontAwesomeIcon icon={faPencil} />
-            </button>
-          </Link>
-          <Link>
-            <button
-              className="del-btn"
-              onClick={() => deleteMultipleCategories([category._id])}
-            >
-              <FontAwesomeIcon icon={faTrash} className="delicon" />
-            </button>
-          </Link>
-          <Link className="add-btn">
-            <button
-              className="edit-btn"
-              onClick={() => {
-                setClickedCategory(category);
-                setShowModal(true);
-              }}
-            >
-              <FontAwesomeIcon icon={faEye} />
-            </button>
-          </Link>
-        </td>
-      </tr>
-    );
-  }
-);
+            <FontAwesomeIcon icon={faEye} />
+          </button>
+        </Link>
+        <button
+          className="del-btn"
+          onClick={() => updateCategoryStatus([category._id])}
+        >
+          <FontAwesomeIcon icon={faTrash} className="delicon" />
+        </button>
+      </td>
+    </tr>
+  );
+};
 
 const CategoryList = ({
   categories,
-  setSelectedCategories,
   selectedCategories,
-  deleteMultipleCategories,
+  setSelectedCategories,
+  updateCategoryStatus,
+  allSelected,
   setAllSelected
 }) => {
   const [itemsPerPage, setItemsPerPage] = useState(5);
   const [currentPage, setCurrentPage] = useState(0);
-
 
   // Pagination logic
   const totalCategories = categories.length;
@@ -93,8 +85,10 @@ const CategoryList = ({
     setAllSelected(isChecked);
 
     if (isChecked) {
+      // Select all categories
       setSelectedCategories(categories.map((category) => category._id));
     } else {
+      // Deselect all categories
       setSelectedCategories([]);
     }
   };
@@ -120,32 +114,31 @@ const CategoryList = ({
   const onModalClose = () => setShowModal(false);
 
   useEffect(() => {
-    if (categories.length > 0) {
-      setAllSelected(selectedCategories.length === categories.length);
-    } else {
-      setAllSelected(false);
-    }
-  }, [selectedCategories, categories]);
+    // Update the header checkbox state based on selected categories
+    setAllSelected(
+      selectedCategories.length > 0 &&
+        selectedCategories.length === categories.length
+    );
+  }, [selectedCategories, categories, setAllSelected]);
 
   return (
-    <div className="service-list-Container">
-      <ViewModal
-        show={showModal}
-        onHide={onModalClose}
-        heading={"Category Name"}
-      >
-        <div className="modal-content">
-          <h5 className="modal-title mx-3">{clickedCategory?.name}</h5>
-          <div className="modal-body"></div>
-        </div>
-      </ViewModal>
-
+    <div className="Category-list-Container">
       <Row className="Service-inner-row">
         <Col xl={1} className="servicelist-icon">
           <FontAwesomeIcon icon={faList} />
         </Col>
         <Col>Category List</Col>
       </Row>
+      <ViewModal
+        show={showModal}
+        onHide={onModalClose}
+        heading={"Category Details"}
+      >
+        <div className="modal-content">
+          <h5 className="modal-title mx-3">{clickedCategory?.name}</h5>
+        </div>
+      </ViewModal>
+
       <Row className="table-border-outline">
         <Table bordered hover responsive="sm" className="custom-table">
           <thead>
@@ -153,13 +146,13 @@ const CategoryList = ({
               <th>
                 <input
                   type="checkbox"
-                  checked={selectedCategories.length === categories.length}
+                  checked={allSelected}
                   onChange={handleSelectAll}
                 />
               </th>
               <th>SNo</th>
               <th>Main Category</th>
-              <th>Actions</th>
+              <th className="Action-width-style">Actions</th>
             </tr>
           </thead>
 
@@ -172,7 +165,7 @@ const CategoryList = ({
                   sno={totalCategories - (offset + index)}
                   isChecked={selectedCategories.includes(category._id)}
                   onCheckboxChange={handleRowCheckboxChange}
-                  deleteMultipleCategories={deleteMultipleCategories}
+                  updateCategoryStatus={updateCategoryStatus}
                   setClickedCategory={setClickedCategory}
                   setShowModal={setShowModal}
                 />

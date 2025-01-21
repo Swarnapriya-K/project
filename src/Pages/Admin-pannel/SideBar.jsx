@@ -11,7 +11,7 @@ import "./Dashboard.css";
 
 const SideBarItems = [
   {
-    itemName: "NAVIGATION",
+    itemName: "Details",
     itemIcon: faBars,
     path: "#",
     className: "sidebar-nav"
@@ -29,7 +29,9 @@ const SideBarItems = [
     className: "has-dropdown",
     subItems: [
       { itemName: "> Category", path: "/admin/catalog/category" },
-      { itemName: "> Products", path: "/admin/catalog/products" }
+      { itemName: "> Products", path: "/admin/catalog/products" },
+      { itemName: "> Orders", path: "/admin/catalog/orders" },
+      { itemName: "> Users", path: "/admin/catalog/users" }
     ]
   }
 ];

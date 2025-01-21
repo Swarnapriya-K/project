@@ -19,39 +19,37 @@ function Category() {
   const [selectedCategories, setSelectedCategories] = useState([]);
   const [allSelected, setAllSelected] = useState(false);
 
-const fetchCategories = async () => {
-  try {
-    const token = localStorage.getItem("token");
+  const fetchCategories = async () => {
+    try {
+      const token = localStorage.getItem("token");
 
-    if (!token) {
-      // Handle missing token (optional)
-      alert("Authorization token is missing.");
-      return;
-    }
-
-    const response = await axios.get(`${BASEURL}/category/get-category`, {
-      headers: {
-        Authorization: `Bearer ${token}`
+      if (!token) {
+        // Handle missing token (optional)
+        alert("Authorization token is missing.");
+        return;
       }
-    });
 
-    // Filter and set only active categories
-    const activeCategories = response.data.categories.filter(
-      (category) => category.active
-    );
+      const response = await axios.get(`${BASEURL}/category/get-category`, {
+        headers: {
+          Authorization: `Bearer ${token}`
+        }
+      });
 
-    setCategories(activeCategories);
+      // Filter and set only active categories
+      const activeCategories = response.data.categories.filter(
+        (category) => category.active
+      );
 
-    console.log("Categories fetched successfully:", activeCategories);
-  } catch (error) {
-    console.error("Error fetching categories:", error);
+      setCategories(activeCategories);
 
-    // Optional: Display error message to the user
-    alert("Failed to fetch categories. Please try again later.");
-  }
-};
+      console.log("Categories fetched successfully:", activeCategories);
+    } catch (error) {
+      console.error("Error fetching categories:", error);
 
-
+      // Optional: Display error message to the user
+      alert("Failed to fetch categories. Please try again later.");
+    }
+  };
 
   const downloadCsv = async () => {
     try {
@@ -113,44 +111,44 @@ const fetchCategories = async () => {
     }
   };
 
-const deleteMultipleCategories = async (categoryIds) => {
-  if (categoryIds.length === 0) {
-    alert("Please select a category to delete.");
-    return;
-  }
+  const deleteMultipleCategories = async (categoryIds) => {
+    if (categoryIds.length === 0) {
+      alert("Please select a category to delete.");
+      return;
+    }
 
-  const confirmDeactivate = window.confirm(
-    `Are you sure you want to delete ${categoryIds.length} categories?`
-  );
-
-  if (!confirmDeactivate) return;
-
-  try {
-    const response = await axios.put(
-      `${BASEURL}/category/delete-categories`,
-      { ids: categoryIds },
-      {
-        headers: {
-          Authorization: `Bearer ${localStorage.getItem("token")}`
-        }
-      }
+    const confirmDeactivate = window.confirm(
+      `Are you sure you want to delete ${categoryIds.length} categories?`
     );
 
-    console.log("Categories deactivated:", response.data.message);
+    if (!confirmDeactivate) return;
 
-    // Reset selections and refresh the category list
-    setSelectedCategories([]); // Clear selected categories
-    setAllSelected(false); // Deselect all categories
-    fetchCategories(); // Refresh the category list
+    try {
+      const response = await axios.put(
+        `${BASEURL}/category/delete-categories`,
+        { ids: categoryIds },
+        {
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem("token")}`
+          }
+        }
+      );
 
-    alert(response.data.message); // Display success message
-  } catch (error) {
-    console.error("Error deactivating categories:", error);
+      console.log("Categories deactivated:", response.data.message);
 
-    // Display error message to the user
-    alert("Failed to delete categories. Please try again.");
-  }
-};
+      // Reset selections and refresh the category list
+      setSelectedCategories([]); // Clear selected categories
+      setAllSelected(false); // Deselect all categories
+      fetchCategories(); // Refresh the category list
+
+      alert(response.data.message); // Display success message
+    } catch (error) {
+      console.error("Error deactivating categories:", error);
+
+      // Display error message to the user
+      alert("Failed to delete categories. Please try again.");
+    }
+  };
 
   useEffect(() => {
     fetchCategories();
@@ -210,19 +208,18 @@ const deleteMultipleCategories = async (categoryIds) => {
               overlay={<Tooltip>Delete Categories</Tooltip>}
             >
               <button
-  onClick={() => {
-    if (selectedCategories.length === 0) {
-      alert("Please select categories to delete.");
-    } else {
-      deleteMultipleCategories(selectedCategories);
-    }
-  }}
-  className="del-btn"
-  title="Delete Selected Categories"
->
-  <FontAwesomeIcon icon={faTrash} className="addicon" />
-</button>
-
+                onClick={() => {
+                  if (selectedCategories.length === 0) {
+                    alert("Please select categories to delete.");
+                  } else {
+                    deleteMultipleCategories(selectedCategories);
+                  }
+                }}
+                className="del-btn"
+                title="Delete Selected Categories"
+              >
+                <FontAwesomeIcon icon={faTrash} className="addicon" />
+              </button>
             </OverlayTrigger>
           </Col>
         </Row>

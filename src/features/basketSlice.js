@@ -37,6 +37,9 @@ const basketSlice = createSlice({
         (product) => product.productId._id === action.payload
       );
       if (product && product.quantity > 1) product.quantity -= 1;
+    },
+    clearCart: (state) => {
+      state.products = [];
     }
   }
 });
@@ -46,7 +49,8 @@ export const {
   addProduct,
   removeProduct,
   increaseQuantity,
-  decreaseQuantity
+  decreaseQuantity,
+  clearCart
 } = basketSlice.actions;
 
 export default basketSlice.reducer;

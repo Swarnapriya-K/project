@@ -28,6 +28,8 @@ import AddCategoryContainer from "./Pages/Admin-pannel/AddCategoryContainer";
 import Products from "./Pages/Admin-pannel/Products";
 import AddProductsContainer from "./Pages/Admin-pannel/AddProductsContainer";
 import LoginAdmin from "./Pages/Admin-pannel/LoginAdmin";
+import UsersList from "./Pages/Admin-pannel/UsersList";
+import Orders from "./Pages/Admin-pannel/Orders";
 const App = () => {
   const fetchData = async () => {
     try {
@@ -58,6 +60,8 @@ const App = () => {
               <Route path="/admin/catalog" element={<Catalog />}>
                 <Route path="category" element={<Category />} />
                 <Route path="products" element={<Products />} />
+                <Route path="users" element={<UsersList/>}/>
+                <Route path="orders" element={<Orders/>}/>
               </Route>
 
               <Route

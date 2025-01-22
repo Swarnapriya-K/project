@@ -9,109 +9,12 @@ import {
   faFileExcel,
   faTrash
 } from "@fortawesome/free-solid-svg-icons";
-import OrderDetailsCard from "./OrderDetailsCard";
 import OrdersList from "./OrdersList";
 import { BASEURL } from "../../config/config";
 import axios from "axios";
-
-// const orderData = {
-//   summary: {
-//     totalOrders: 21,
-//     orderDelivered: 15,
-//     returnOrders: 0,
-//     ordersInTransit: 12
-//   },
-//   orders: [
-//     {
-//       id: "#0076",
-//       date: "Jan 14th, 2024",
-//       customer: "Gabby Whitaker",
-//       payment: "Paid",
-//       total: "$1200",
-//       delivery: "N/A",
-//       items: 5,
-//       status: "Confirmed"
-//     },
-//     {
-//       id: "#0075",
-//       date: "Jan 14th, 2024",
-//       customer: "Jenny Howard",
-//       payment: "Paid",
-//       total: "$2500",
-//       delivery: "N/A",
-//       items: 7,
-//       status: "Processing"
-//     },
-//     {
-//       id: "#0074",
-//       date: "Jan 14th, 2024",
-//       customer: "Willie Horton",
-//       payment: "Refunded",
-//       total: "$500",
-//       delivery: "N/A",
-//       items: 3,
-//       status: "Cancelled"
-//     },
-//     {
-//       id: "#0073",
-//       date: "Jan 14th, 2024",
-//       customer: "Jackie Simons",
-//       payment: "Pending",
-//       total: "$900",
-//       delivery: "N/A",
-//       items: 4,
-//       status: "Processing"
-//     },
-//     {
-//       id: "#0072",
-//       date: "Jan 14th, 2024",
-//       customer: "Andre Jones",
-//       payment: "Paid",
-//       total: "$2300",
-//       delivery: "N/A",
-//       items: 6,
-//       status: "Delivered"
-//     },
-//     {
-//       id: "#0071",
-//       date: "Jan 14th, 2024",
-//       customer: "Eleanor Perez",
-//       payment: "Paid",
-//       total: "$3000",
-//       delivery: "N/A",
-//       items: 8,
-//       status: "Delivered"
-//     },
-//     {
-//       id: "#0070",
-//       date: "Jan 14th, 2024",
-//       customer: "David White",
-//       payment: "Refunded",
-//       total: "$1100",
-//       delivery: "N/A",
-//       items: 4,
-//       status: "Cancelled"
-//     },
-//     {
-//       id: "#0069",
-//       date: "Jan 14th, 2024",
-//       customer: "Wendy Thomas",
-//       payment: "Pending",
-//       total: "$800",
-//       delivery: "N/A",
-//       items: 3,
-//       status: "Processing"
-//     }
-//   ]
-// };
 const downloadCsv = async () => {
   try {
-    const response = await axios.get(
-      `${BASEURL}/orders/export-order-csv`
-      //  {
-      //    responseType: "blob"
-      //  }
-    );
+    const response = await axios.get(`${BASEURL}/orders/export-order-csv`);
     const url = window.URL.createObjectURL(new Blob([response.data]));
     const a = document.createElement("a");
     a.href = url;
@@ -160,22 +63,57 @@ const downloadExcel = async () => {
 
 const Orders = () => {
   const [ordersList, setOrdersList] = useState([]);
+  const [selectedOrders, setSelectedOrders] = useState([]);
+  const [allSelected, setAllSelected] = useState(false);
 
-  useEffect(() => {
-    const token = localStorage.getItem("token");
-    const fetchOrders = async () => {
+  const token = localStorage.getItem("token");
+
+  const deleteMultipleOrders = async (orderIds) => {
+    if (orderIds.length === 0) {
+      // If no products are selected, show an alert or message
+      alert("Please select products to delete");
+      return; // Exit the function early
+    }
+
+    // Ask for confirmation before proceeding with deletion
+    const confirmation = window.confirm(
+      `Are you sure you want to delete ${orderIds.length} orders?`
+    );
+
+    if (confirmation) {
       try {
-        const response = await axios.get(`${BASEURL}/orders/`, {
+        const response = await axios.delete(`${BASEURL}/orders/delete-orders`, {
           headers: {
             Authorization: `Bearer ${token}`
-          }
+          },
+          data: { ids: orderIds }
         });
-        setOrdersList(response.data.orders);
-        console.log(response.data.orders)
+        console.log(response);
+        fetchOrders(); // Fetch the updated product list after deletion
       } catch (error) {
-        console.log(error);
+        console.error(
+          "Error deleting products:",
+          error.response?.data?.message || error.message
+        );
       }
-    };
+    } else {
+      console.log("Deletion cancelled");
+    }
+  };
+  const fetchOrders = async () => {
+    try {
+      const response = await axios.get(`${BASEURL}/orders/`, {
+        headers: {
+          Authorization: `Bearer ${token}`
+        }
+      });
+      setOrdersList(response.data.orders);
+      console.log(response.data.orders);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+  useEffect(() => {
     fetchOrders();
   }, []);
   return (
@@ -220,11 +158,30 @@ const Orders = () => {
                   </button>
                 </OverlayTrigger>
               </Link>
+              <OverlayTrigger
+                placement="top"
+                overlay={<Tooltip>Delete All</Tooltip>}
+              >
+                <Link>
+                  <button
+                    className="del-btn"
+                    onClick={(e) => deleteMultipleOrders(selectedOrders)}
+                  >
+                    <FontAwesomeIcon icon={faTrash} className="addicon" />
+                  </button>
+                </Link>
+              </OverlayTrigger>
             </Col>
           </Row>
           <div style={{ padding: "16px" }}>
             <div>
-              <OrdersList orders={ordersList} />
+              <OrdersList
+                orders={ordersList}
+                selectedOrders={selectedOrders}
+                setSelectedOrders={setSelectedOrders}
+                allSelected={allSelected}
+                setAllSelected={setAllSelected}
+              />
             </div>
           </div>
         </Container>

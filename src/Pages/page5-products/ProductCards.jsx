@@ -19,7 +19,7 @@ function SuccessModal({ onHide, show }) {
       centered
     >
       <Modal.Body>
-        <h3>Product added successfully to the cart!</h3>
+        <h5>Product added successfully to the cart!</h5>
       </Modal.Body>
       <Modal.Footer>
         <Button onClick={onHide}>Close</Button>

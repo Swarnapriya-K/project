@@ -136,7 +136,6 @@ const ProductList = ({
               <th>Product Name</th>
               <th>Category</th>
               <th>Price</th>
-              <th>Discount</th>
               <th className="Action-width-style">Actions</th>
             </tr>
           </thead>
@@ -172,7 +171,6 @@ const ProductList = ({
                   <td>{product?.productName}</td>
                   <td>{product?.categoryId?.name}</td>
                   <td>{product?.productPrice}</td>
-                  <td>{product?.discount}</td>
                   <td className="Action-width-style">
                     <Link
                       to={"/admin/product/add-product"}

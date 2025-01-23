@@ -80,7 +80,7 @@ const ProductCards = ({ products }) => {
         }}
         className="product-swiper"
       >
-        {products.map((item) => (
+        {products?.map((item) => (
           <SwiperSlide key={item._id}>
             <Card className="card" id="products-page-card">
               <Card.Img

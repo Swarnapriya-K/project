@@ -27,7 +27,7 @@ const Products = () => {
           Authorization: `Bearer ${token}`
         }
       });
-      setProducts(response.data.products);
+      setProducts(response.data.items);
     } catch (error) {
       console.log(error);
     }

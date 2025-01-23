@@ -97,9 +97,11 @@ function HorizontalScroller() {
   useEffect(() => {
     const getProducts = async () => {
       try {
-        let response = await axios.get(`${BASEURL}/products/get-products`);
-        console.log(response.data);
-        setProducts(response.data.products);
+        let response = await axios.get(`${BASEURL}/products/get-only-products`);
+        // console.log(response.data);
+        // setProducts(response.data.products);
+        console.log("API Response:", response.data); // Verify structure here
+        setProducts(response.data.products || []); 
       } catch (error) {
         console.log(error?.message);
       }

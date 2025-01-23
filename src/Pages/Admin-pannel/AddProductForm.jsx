@@ -122,7 +122,8 @@ const AddProductForm = () => {
         console.log(response);
       }
       setErrors({}); // Clear errors on success
-      navigate("/admin/catalog/products");
+      // navigate("/admin/catalog/products");
+      alert(" Item Added Succesfully");
     } catch (error) {
       console.error(error);
     }

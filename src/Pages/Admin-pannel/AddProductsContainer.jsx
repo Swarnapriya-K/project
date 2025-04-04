@@ -2,7 +2,7 @@ import React from "react";
 import { Container, Row, Col, OverlayTrigger, Tooltip } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faReply,faSave} from "@fortawesome/free-solid-svg-icons";
+import { faReply} from "@fortawesome/free-solid-svg-icons";
 import AddProductForm from "./AddProductForm";
 
 function AddProductsContainer() {
@@ -12,13 +12,11 @@ function AddProductsContainer() {
         <Row className="Service-Row-Style">
           <Col xl={3} className="col-xl-3-colm">
             <h1 style={{ fontWeight: "300" }}>Product</h1>{" "}
-            {/* Corrected 'fontweight' to 'fontWeight' */}
           </Col>
           <Col xl={5}>
             <ul>
               <Link to={"/admin/catalog/products"} className="Admin-sidebar">
                 <li style={{ color: "#4291e7" }}>Products</li>{" "}
-                {/* Corrected 'Catagories' to 'Categories' */}
               </Link>
             </ul>
           </Col>

@@ -23,6 +23,7 @@ export const AuthProvider = ({ children }) => {
         password
       });
       console.log(response);
+      console.log(response.data.error)
       const { token, role } = response.data;
 
       setIsLoggedIn(true);

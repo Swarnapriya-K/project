@@ -87,11 +87,13 @@ const Signup = () => {
               placeholder="Confirm Password"
               value={formData.confirmPassword}
               onChange={handleInputChange}
-            /> <br />
+            />
             {error && <div className="error-message">{error}</div>}
-            <button type="submit" disabled={isLoading}>
-              {isLoading ? "Signing Up..." : "Sign Up"}
-            </button>
+            <div>
+              <button type="submit" disabled={isLoading}>
+                {isLoading ? "Signing Up..." : "Sign Up"}
+              </button>
+            </div>
           </form>
         </div>
       </div>
